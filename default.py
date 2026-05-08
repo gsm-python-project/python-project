@@ -14,7 +14,7 @@ class Mainfront(QStackedWidget):
         from page1 import Chapter1
         from page2 import Chapter2
 
-        self.prologue = prologue(self)
+        self.prologue = prologue(self) # chapter 호출
         self.chapter1 = Chapter1(self)
         self.chapter2 = Chapter2()
 
@@ -22,7 +22,7 @@ class Mainfront(QStackedWidget):
         self.addWidget(self.chapter1)
         self.addWidget(self.chapter2)
 
-        self.setCurrentIndex(0)
+        self.setCurrentIndex(0) #0번 인덱스(self.prologue)로 이동
 
 
 class App_default(QWidget):

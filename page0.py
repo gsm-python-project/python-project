@@ -9,16 +9,15 @@ from page1 import Chapter1
 class prologue(App_default):
     def __init__(self,stack):
         super().__init__()
-        self.stack=stack
-        self.Mainfront=Mainfront
-        self.chapter1=Chapter1(self.Mainfront)
+        self.stack=stack # self.stack에 Mainfront 저장(왜냐면 Widget에는 화면 전환 기능이 없어서 Widstackedwidget을 불러와야하기 때문에!)
+        self.chapter1=Chapter1(stack)
 
         self.btn_prologue = QPushButton("next", self) #버튼!
-        self.btn_prologue.setGeometry(50,50,250,100)
-        self.btn_prologue.clicked.connect(self.on_click_prologue)
+        self.btn_prologue.setGeometry(50,50,250,100) # 버튼 크기 설정
+        self.btn_prologue.clicked.connect(self.on_click_prologue) # on_click_prologue 함수와 연결
 
     def on_click_prologue(self):
-        self.stack.setCurrentIndex(1)
+        self.stack.setCurrentIndex(1) # 인덱스가 1인 페이지로 이동
 
 
 
