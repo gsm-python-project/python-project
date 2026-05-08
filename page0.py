@@ -13,6 +13,7 @@ class prologue(App_default):
         self.chapter1=Chapter1(stack)
 
         self.btn_prologue = QPushButton("next", self) #버튼!
+        
         self.btn_prologue.setGeometry(50,50,250,100) # 버튼 크기 설정
         self.btn_prologue.clicked.connect(self.on_click_prologue) # on_click_prologue 함수와 연결
 
