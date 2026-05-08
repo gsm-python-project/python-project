@@ -2,9 +2,6 @@ import sys
 from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QVBoxLayout
 
 from default import Mainfront
-from page0 import prologue
-
-
 
 app=QApplication(sys.argv) # 앱 관리자. 얘 없이 창만 만들면 오류남!
 window=Mainfront() # 실제 앱

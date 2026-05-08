@@ -1,26 +1,27 @@
 
 from PyQt6.QtWidgets import QApplication, QStackedWidget, QWidget, QPushButton, QLabel, QVBoxLayout
-from PyQt6.QtGui import QPixmap
 from CHARACTER import butterfly, volt, colombina
-import sys
 
 class Mainfront(QStackedWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("가면 무도회") # 창 이름
-        self.setFixedSize(1100,800) # 창 사이즈, setFixedSize는 창 크기 수정이 불가능하게 만들어줌
+        self.setFixedSize(1200,800) # 창 사이즈, setFixedSize는 창 크기 수정이 불가능하게 만들어줌
 
         from page0 import prologue
         from page1 import Chapter1
         from page2 import Chapter2
+        from ending import EndingFront
 
         self.prologue = prologue(self) # chapter 호출
         self.chapter1 = Chapter1(self)
-        self.chapter2 = Chapter2()
+        self.chapter2 = Chapter2(self)
+        self.ending = EndingFront()
 
         self.addWidget(self.prologue) #페이지 추가
         self.addWidget(self.chapter1)
         self.addWidget(self.chapter2)
+        self.addWidget(self.ending)
 
         self.setCurrentIndex(0) #0번 인덱스(self.prologue)로 이동
 
@@ -52,11 +53,14 @@ class Button(App_default):
         self.cri3 = colombina(age=20, name="colombina", communicationCount=5)
 
     def on_click_butterfly(self): # 나비 버튼을 눌렀을 때 Character class의 communication 함수를 호출
+        print("test")
         return self.cri1.communication()
     
     def on_click_volt(self):
+        print("volt")
         return self.cri2.communication()
     
     def on_click_colombina(self):
+        print("colombia")
         return self.cri3.communication()
         
