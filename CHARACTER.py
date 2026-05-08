@@ -19,7 +19,6 @@ class Character: ## 캐릭터 기본 설정
     def answer_Fail(self):
         pass
         ## 오늘은 더이상 대화할 수 없습니다.<이런 안내멘트 띄워야함!
-        
 
 class butterfly(Character): ## 캐릭터 나비 가면 아직 구현 안됨
     def __init__(self, age, name, communicationCount):
@@ -30,3 +29,6 @@ class volt(Character): ## 캐릭터 볼트 아직 구현 안됨
     def __init__(self, age, name, communicationCount):
         super().__init__(age, name, communicationCount)
 
+class colombina(Character):
+    def __init__(self, age, name, communicationCount):
+        super().__init__(age, name, communicationCount)
