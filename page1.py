@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QApplication, QStackedWidget, QWidget, QPushButton, QLabel, QVBoxLayout
+from PyQt6.QtWidgets import *
 from PyQt6.QtGui import QPixmap
 from CHARACTER import butterfly, volt, colombina
 from default import Button

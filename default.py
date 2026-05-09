@@ -1,5 +1,7 @@
 
-from PyQt6.QtWidgets import QApplication, QStackedWidget, QWidget, QPushButton, QLabel, QVBoxLayout
+from PyQt6.QtWidgets import *
+from PyQt6.QtGui import *
+from PyQt6.QtCore import Qt
 from CHARACTER import butterfly, volt, colombina
 
 class Mainfront(QStackedWidget):
@@ -39,10 +41,11 @@ class Button(App_default):
         self.butterfly=QPushButton("나비",self) # 나비 버튼. 아직 UI 구현 안됨
         self.butterfly.setGeometry(50,50,1000,80)
         self.butterfly.clicked.connect(self.on_click_butterfly)
+        butterfly.setCursor(QCursor(Qt.CursorShape.PointingHandCursor)) # 버튼 위에 마우스 커서 올리면 손모양으로 변경
 
         self.volt=QPushButton("볼트", self) # 볼트 버튼. 아직 UI 구현 안됨
         self.volt.setGeometry(50,140,1000,80)
-        self.volt.clicked.connect(self.on_click_volt)
+        self.volt.clicked.connect(self.on_click_volt) # 버튼 클릭시 대화
 
         self.colombina=QPushButton("콜롬비나", self)
         self.colombina.setGeometry(50,230,self.x,self.y)
@@ -63,4 +66,4 @@ class Button(App_default):
     def on_click_colombina(self):
         print("colombia")
         return self.cri3.communication()
-        
+    

@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QApplication, QStackedWidget, QWidget, QPushButton, QLabel, QVBoxLayout
+from PyQt6.QtWidgets import *
 from PyQt6.QtGui import QPixmap
 from CHARACTER import butterfly, volt, colombina
 import sys
@@ -18,5 +18,4 @@ class Chapter2(Button):
     def on_click_chapter2(self):
         self.stack.setCurrentIndex(3)
 
-        
     
