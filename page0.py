@@ -1,16 +1,13 @@
 
 from PyQt6.QtWidgets import *
 from PyQt6.QtGui import *
-from CHARACTER import butterfly, volt, colombina
 from default import App_default
-from page1 import Chapter1
 
 ##여기에 처음 프롤로그처럼 상황 설명 하는 장면 만들기
 class prologue(App_default):
     def __init__(self,stack):
         super().__init__()
         self.stack=stack # self.stack에 Mainfront 저장(왜냐면 Widget에는 화면 전환 기능이 없어서 Widstackedwidget을 불러와야하기 때문에!)
-        self.chapter1=Chapter1(stack)
 
         self.btn_next_prologue = QPushButton("next", self) #버튼!
         # self.btn_next_prologue.hide() # 버튼 숨기기

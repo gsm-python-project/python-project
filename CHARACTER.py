@@ -39,3 +39,4 @@ class crow(Character):
 class moreta(Character):
     def __init__(self, age=18, name="moreta", communicationCount=3):
         super().__init__(age, name, communicationCount)
+

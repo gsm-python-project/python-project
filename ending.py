@@ -1,21 +1,27 @@
 from PyQt6.QtWidgets import *
 from PyQt6.QtGui import *
-import sys
-from default import App_default, Mainfront
-
-class EndingFront(App_default):
+from PyQt6.QtCore import Qt
+from default import App_default  
+    
+class ending(App_default):
     def __init__(self):
         super().__init__()
-
-    
-class ending:
-    def __init__(self, slct):
-        self.slct=slct
         
-    def decision(self): # 무슨 엔딩을 호출해야하는지 검사(범인을 맞췄는지 안 맞췄는지, 진엔딩 조건을 만족했는지 등)
-        pass
-
 class HappyEnding(ending):
-    def __init__(self, slct):
-        super().__init__(slct)
+    def __init__(self, stack):
+        super().__init__()
+        self.stack=stack
+        self.label = QLabel("해피 엔딩", self)
+        self.label.setGeometry(50,50,200,50)
 
+        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+class BadEnding(ending):
+    def __init__(self,stack):
+        super().__init__()
+        self.stack=stack
+
+class HiddenEnding(ending):
+    def __init__(self,stack):
+        super().__init__()
+        self.stack=stack

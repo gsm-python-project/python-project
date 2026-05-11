@@ -1,7 +1,5 @@
 from PyQt6.QtWidgets import *
-from PyQt6.QtGui import QPixmap
-from CHARACTER import butterfly, volt, colombina
-import sys
+from PyQt6.QtGui import *
 from default import Button
 
 ## 제 2장
@@ -49,22 +47,15 @@ class Chapter2(Button):
         self.moreta.hide()
 
     def criminal(self):
-        self.result= 1
-        return self.criminal_select()
+        self.result= 3
+        return self.chapter2_end()
 
     def nocriminal(self):
-        self.result= 0
-        return self.criminal_select()
-
-    def criminal_select(self):
-        if self.result == 0:
-            pass
-        elif self.result == 1:
-            pass
+        self.result= 4
         return self.chapter2_end()
 
     def on_click_chapter2(self):
-        self.stack.setCurrentIndex(3)
+        self.stack.setCurrentIndex(self.result)
 
     def chapter2_end(self):
         self.btn_next_Ending.show() #버튼 보이기

@@ -13,17 +13,19 @@ class Mainfront(QStackedWidget):
         from page0 import prologue
         from page1 import Chapter1
         from page2 import Chapter2
-        from ending import EndingFront
+        from ending import HappyEnding, BadEnding
 
         self.prologue = prologue(self) # chapter 호출
         self.chapter1 = Chapter1(self)
         self.chapter2 = Chapter2(self)
-        self.ending = EndingFront()
+        self.happyending = HappyEnding(self)
+        self.badending = BadEnding(self)
 
         self.addWidget(self.prologue) #페이지 추가
         self.addWidget(self.chapter1)
         self.addWidget(self.chapter2)
-        self.addWidget(self.ending)
+        self.addWidget(self.happyending)
+        self.addWidget(self.badending)
 
         self.setCurrentIndex(0) #0번 인덱스(self.prologue)로 이동
 
@@ -31,6 +33,11 @@ class Mainfront(QStackedWidget):
 class App_default(QWidget):
     def __init__(self):
         super().__init__()
+
+
+#class EndingFront(Mainfront):
+#    def __init__(self):
+#        super().__init__()
         
 
 class Button(App_default):

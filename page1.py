@@ -1,15 +1,12 @@
 from PyQt6.QtWidgets import *
-from PyQt6.QtGui import QPixmap
-from CHARACTER import butterfly, volt, colombina
+from PyQt6.QtGui import *
 from default import Button
-from page2 import Chapter2
 
 class Chapter1(Button):
     def __init__(self, stack):
         super().__init__()
         self.stack=stack # self.stack에 Mainfront 저장(왜냐면 Widget에는 화면 전환 기능이 없어서 Widstackedwidget을 불러와야하기 때문에!)
-        self.chapter2=Chapter2(stack) # Chapter2 불러오기
-
+        
         self.btn_next_chapter1 = QPushButton("next1", self) # 버튼 생성
         # self.btn_next_chapter1.hide() # 버튼 숨기기
         self.btn_next_chapter1.setGeometry(50,50,250,100) # 버튼 크기 조절
