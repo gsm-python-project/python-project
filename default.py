@@ -2,7 +2,7 @@
 from PyQt6.QtWidgets import *
 from PyQt6.QtGui import *
 from PyQt6.QtCore import Qt
-from CHARACTER import butterfly, volt, colombina
+from CHARACTER import butterfly, volt, colombina, crow, moreta
 
 class Mainfront(QStackedWidget):
     def __init__(self):
@@ -31,6 +31,7 @@ class Mainfront(QStackedWidget):
 class App_default(QWidget):
     def __init__(self):
         super().__init__()
+        
 
 class Button(App_default):
     def __init__(self):
@@ -41,7 +42,7 @@ class Button(App_default):
         self.butterfly=QPushButton("나비",self) # 나비 버튼. 아직 UI 구현 안됨
         self.butterfly.setGeometry(50,50,1000,80)
         self.butterfly.clicked.connect(self.on_click_butterfly)
-        butterfly.setCursor(QCursor(Qt.CursorShape.PointingHandCursor)) # 버튼 위에 마우스 커서 올리면 손모양으로 변경
+        # butterfly.setCursor(QCursor(Qt.CursorShape.PointingHandCursor)) # 버튼 위에 마우스 커서 올리면 손모양으로 변경
 
         self.volt=QPushButton("볼트", self) # 볼트 버튼. 아직 UI 구현 안됨
         self.volt.setGeometry(50,140,1000,80)
@@ -51,9 +52,19 @@ class Button(App_default):
         self.colombina.setGeometry(50,230,self.x,self.y)
         self.colombina.clicked.connect(self.on_click_colombina)
 
-        self.cri1 = butterfly(age=20, name="나비", communicationCount=5) # 캐릭터 불러오기
-        self.cri2 = volt(age=20, name="volt", communicationCount=5)
-        self.cri3 = colombina(age=20, name="colombina", communicationCount=5)
+        self.crow=QPushButton("까마귀", self)
+        self.crow.setGeometry(50, 320, self.x, self.y)
+        self.crow.clicked.connect(self.on_click_crow)
+
+        self.moreta=QPushButton("모레타", self)
+        self.moreta.setGeometry(50,410,self.x,self.y)
+        self.moreta.clicked.connect(self.on_click_moreta)
+
+        self.cri1 = butterfly() # 캐릭터 불러오기
+        self.cri2 = volt()
+        self.cri3 = colombina()
+        self.npc1= crow()
+        self.npc2 = moreta()
 
     def on_click_butterfly(self): # 나비 버튼을 눌렀을 때 Character class의 communication 함수를 호출
         print("test")
@@ -67,3 +78,8 @@ class Button(App_default):
         print("colombia")
         return self.cri3.communication()
     
+    def on_click_crow(self):
+        return self.npc1.communication()
+    
+    def on_click_moreta(self):
+        return self.npc2.communication()

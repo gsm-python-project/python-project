@@ -11,11 +11,15 @@ class Chapter2(Button):
         super().__init__()
         self.stack=stack
 
-        self.btn_next_Ending = QPushButton("엔딩 보러가기", self)
+        self.btn_next_Ending = QPushButton("범인 선택하기", self)
+        self.btn_next_Ending.hide() # 버튼 숨기기
         self.btn_next_Ending.setGeometry(50,50,250,100)
         self.btn_next_Ending.clicked.connect(self.on_click_chapter2)
+
 
     def on_click_chapter2(self):
         self.stack.setCurrentIndex(3)
 
+    def chapter2_end(self):
+        self.btn_next_Ending.show() #버튼 보이기
     

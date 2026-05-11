@@ -2,7 +2,6 @@
 from PyQt6.QtWidgets import *
 from PyQt6.QtGui import QPixmap
 from CHARACTER import butterfly, volt, colombina
-import sys
 from default import App_default
 from page1 import Chapter1
 
@@ -14,12 +13,16 @@ class prologue(App_default):
         self.chapter1=Chapter1(stack)
 
         self.btn_next_prologue = QPushButton("next", self) #버튼!
+        # self.btn_next_prologue.hide() # 버튼 숨기기
         
         self.btn_next_prologue.setGeometry(50,50,250,100) # 버튼 크기 설정
         self.btn_next_prologue.clicked.connect(self.on_click_prologue) # on_click_prologue 함수와 연결
 
     def on_click_prologue(self):
         self.stack.setCurrentIndex(1) # 인덱스가 1인 페이지로 이동
+    
+    def prologue_end(self):
+        self.btn_next_prologue.show # 버튼 보이기
 
 
 

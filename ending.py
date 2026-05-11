@@ -15,7 +15,6 @@ class ending:
     def decision(self): # 무슨 엔딩을 호출해야하는지 검사(범인을 맞췄는지 안 맞췄는지, 진엔딩 조건을 만족했는지 등)
         pass
 
-
 class HappyEnding(ending):
     def __init__(self, slct):
         super().__init__(slct)

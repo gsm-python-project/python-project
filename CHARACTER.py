@@ -21,14 +21,21 @@ class Character: ## 캐릭터 기본 설정
         ## 오늘은 더이상 대화할 수 없습니다.<이런 안내멘트 띄워야함!
 
 class butterfly(Character): ## 캐릭터 나비 가면 아직 구현 안됨
-    def __init__(self, age, name, communicationCount):
+    def __init__(self, age=26, name="butterfly", communicationCount=5):
         super().__init__(age, name, communicationCount)
 
-
 class volt(Character): ## 캐릭터 볼트 아직 구현 안됨
-    def __init__(self, age, name, communicationCount):
+    def __init__(self, age=26, name="volt", communicationCount=5):
         super().__init__(age, name, communicationCount)
 
 class colombina(Character):
-    def __init__(self, age, name, communicationCount):
+    def __init__(self, age=27, name="colombina", communicationCount=5):
+        super().__init__(age, name, communicationCount)
+
+class crow(Character):
+    def __init__(self, age=37, name="crow", communicationCount=3):
+        super().__init__(age, name, communicationCount)
+    
+class moreta(Character):
+    def __init__(self, age=18, name="moreta", communicationCount=3):
         super().__init__(age, name, communicationCount)

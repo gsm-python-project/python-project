@@ -11,9 +11,13 @@ class Chapter1(Button):
         self.chapter2=Chapter2(stack) # Chapter2 불러오기
 
         self.btn_next_chapter1 = QPushButton("next1", self) # 버튼 생성
+        self.btn_next_chapter1.hide() # 버튼 숨기기
         self.btn_next_chapter1.setGeometry(50,50,250,100) # 버튼 크기 조절
         self.btn_next_chapter1.clicked.connect(self.on_click_chapter1) # on_click_chapter1 함수에 연결
 
 
     def on_click_chapter1(self):
         self.stack.setCurrentIndex(2) # 인덱스가 2인 페이지로 이동
+
+    def chapter1_end(self):
+        self.btn_next_chapter1.show() # 버튼 보이기
