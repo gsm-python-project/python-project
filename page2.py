@@ -61,7 +61,7 @@ class Chapter2(Button):
             pass
         elif self.result == 1:
             pass
-        return self.on_click_chapter2()
+        return self.chapter2_end()
 
     def on_click_chapter2(self):
         self.stack.setCurrentIndex(3)
