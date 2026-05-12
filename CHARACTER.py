@@ -69,6 +69,7 @@ class Answer_Fail(QDialog):
         layout = QVBoxLayout()
         self.label = QLabel("오늘은 더이상 대화할 수 없습니다.")
         self.btn_close = QPushButton("닫기")
+        self.btn_close.resize(20,50)
         self.btn_close.clicked.connect(self.close)
 
         layout.addWidget(self.label)
