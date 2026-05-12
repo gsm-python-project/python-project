@@ -10,7 +10,7 @@ class Chapter2(Button):
         self.stack=stack
 
         self.cri_slct =QPushButton("범인 선택하기",self)
-        # self.cri_slct.hide()
+        self.cri_slct.hide()
         self.cri_slct.setGeometry(50,140,self.x, self.y)
         self.cri_slct.clicked.connect(self.criminal_show)
 

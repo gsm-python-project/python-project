@@ -35,7 +35,7 @@ class App_default(QWidget):
         super().__init__()
 
 
-#class EndingFront(Mainfront):
+#class EndingFront(Mainfront): #기본 엔딩 UI 구현
 #    def __init__(self):
 #        super().__init__()
         
@@ -46,6 +46,7 @@ class Button(App_default):
 
         self.x=1000
         self.y=80
+
         self.butterfly=QPushButton("나비",self) # 나비 버튼. 아직 UI 구현 안됨
         self.butterfly.setGeometry(50,50,1000,80)
         self.butterfly.clicked.connect(self.on_click_butterfly)
@@ -74,15 +75,12 @@ class Button(App_default):
         self.npc2 = moreta()
 
     def on_click_butterfly(self): # 나비 버튼을 눌렀을 때 Character class의 communication 함수를 호출
-        print("test")
         return self.cri1.communication()
     
     def on_click_volt(self):
-        print("volt")
         return self.cri2.communication()
     
     def on_click_colombina(self):
-        print("colombia")
         return self.cri3.communication()
     
     def on_click_crow(self):
@@ -90,3 +88,5 @@ class Button(App_default):
     
     def on_click_moreta(self):
         return self.npc2.communication()
+    
+
