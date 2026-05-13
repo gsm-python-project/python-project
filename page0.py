@@ -8,12 +8,14 @@ class prologue(App_default):
         super().__init__()
         self.stack = stack # stack에 mainfront를 저장. (왜냐면 Widget에는 화면 전환 기능이 없어서 Widstackedwidget을 불러와야하기 때문에!)
 
+        # chapter1으로 넘어가는 버튼 설정
         self.btn_next_prologue = QPushButton("next", self) # 버튼 생성
         self.btn_next_prologue.setGeometry(50, 50, 250, 100) # 버튼 크기 설정
         self.btn_next_prologue.clicked.connect(self.on_click_prologue) # 버튼과 함수를 연결
         self.btn_next_prologue.setCursor(QCursor(Qt.PointingHandCursor)) # 커서 변경
         self.btn_next_prologue.hide() # 버튼 숨기기
 
+        # 배경 화면 색 설정
         self.setAutoFillBackground(True) # 배경 자동 채움 True
         palette = self.palette() # palette에 self.palette 메소드 저장
         palette.setColor(QPalette.Window, QColor("black")) # 배경을 검정색으로 지정

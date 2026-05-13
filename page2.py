@@ -8,18 +8,22 @@ class Chapter2(Button):
         super().__init__()
         self.stack = stack
 
+        # 버튼 클릭 시 범인 후보 3명을 띄워줌.
         self.cri_slct = QPushButton("범인 선택하기", self) # 버튼 생성, 범인 선택하기를 누르면 다른 버튼들이 안 보이고 범인을 선택하는 창이 나타남.
         self.cri_slct.hide()
         self.cri_slct.setGeometry(50, 140, self.x, self.y)
         self.cri_slct.clicked.connect(self.criminal_show)
         self.cri_slct.setCursor(QCursor(Qt.PointingHandCursor))
 
+        # 범인 선택 후 네 를 클릭해야 넘어가짐(잘못 선택했을 때 바꿀 수 있도록!!)
         self.btn_next_Ending = QPushButton("네", self) # 버튼 생성, 범인을 클릭할 시에 나타남.
         self.btn_next_Ending.hide()
         self.btn_next_Ending.setGeometry(50, 50, 250, 100)
         self.btn_next_Ending.clicked.connect(self.on_click_chapter2)
         self.btn_next_Ending.setCursor(QCursor(Qt.PointingHandCursor))
 
+        # 범인 1,2,3은 임의로 넣어놓은 값이고 나중에 이름으로 바꿀 거임!
+        # 버튼 클릭 시 3이나 4를 반환하여 엔딩을 가른다.
         self.btn_cri1 = QPushButton("범인1", self) # 버튼 생성
         self.btn_cri1.hide()
         self.btn_cri1.setGeometry(50, 210, self.x, self.y)
