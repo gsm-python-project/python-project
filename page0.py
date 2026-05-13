@@ -1,28 +1,24 @@
-
-from PyQt6.QtWidgets import *
-from PyQt6.QtGui import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 from default import App_default
 
-##여기에 처음 프롤로그처럼 상황 설명 하는 장면 만들기
 class prologue(App_default):
-    def __init__(self,stack):
+    def __init__(self, stack):
         super().__init__()
-        self.stack=stack # self.stack에 Mainfront 저장(왜냐면 Widget에는 화면 전환 기능이 없어서 Widstackedwidget을 불러와야하기 때문에!)
+        self.stack = stack
 
-        self.btn_next_prologue = QPushButton("next", self) #버튼!
-        # self.btn_next_prologue.hide() # 버튼 숨기기
-        
-        self.btn_next_prologue.setGeometry(50,50,250,100) # 버튼 크기 설정
-        self.btn_next_prologue.clicked.connect(self.on_click_prologue) # on_click_prologue 함수와 연결
+        self.btn_next_prologue = QPushButton("next", self)
+        self.btn_next_prologue.setGeometry(50, 50, 250, 100)
+        self.btn_next_prologue.clicked.connect(self.on_click_prologue)
+
+        self.setAutoFillBackground(True)
+        palette = self.palette()
+        palette.setColor(QPalette.Window, QColor("black"))  # PyQt5는 ColorRole 네임스페이스 없이 사용
+        self.setPalette(palette)
 
     def on_click_prologue(self):
-        self.stack.setCurrentIndex(1) # 인덱스가 1인 페이지로 이동
-    
+        self.stack.setCurrentIndex(1)
+
     def prologue_end(self):
-        self.btn_next_prologue.show # 버튼 보이기
-
-
-
-    
-
-        
+        self.btn_next_prologue.show()
