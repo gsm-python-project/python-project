@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 from default import Button
 
 class Chapter2(Button):
@@ -7,33 +8,38 @@ class Chapter2(Button):
         super().__init__()
         self.stack = stack
 
-        self.cri_slct = QPushButton("범인 선택하기", self)
+        self.cri_slct = QPushButton("범인 선택하기", self) # 버튼 생성, 범인 선택하기를 누르면 다른 버튼들이 안 보이고 범인을 선택하는 창이 나타남.
         self.cri_slct.hide()
         self.cri_slct.setGeometry(50, 140, self.x, self.y)
         self.cri_slct.clicked.connect(self.criminal_show)
+        self.cri_slct.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.btn_next_Ending = QPushButton("네", self)
+        self.btn_next_Ending = QPushButton("네", self) # 버튼 생성, 범인을 클릭할 시에 나타남.
         self.btn_next_Ending.hide()
         self.btn_next_Ending.setGeometry(50, 50, 250, 100)
         self.btn_next_Ending.clicked.connect(self.on_click_chapter2)
+        self.btn_next_Ending.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.btn_cri1 = QPushButton("범인1", self)
+        self.btn_cri1 = QPushButton("범인1", self) # 버튼 생성
         self.btn_cri1.hide()
         self.btn_cri1.setGeometry(50, 210, self.x, self.y)
         self.btn_cri1.clicked.connect(self.nocriminal)
+        self.btn_cri1.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.btn_cri2 = QPushButton("범인2", self)
+        self.btn_cri2 = QPushButton("범인2", self) # 버튼 생성
         self.btn_cri2.hide()
         self.btn_cri2.setGeometry(50, 310, self.x, self.y)
         self.btn_cri2.clicked.connect(self.nocriminal)
+        self.btn_cri2.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.btn_cri3 = QPushButton("범인3", self)
+        self.btn_cri3 = QPushButton("범인3", self) # 버튼 생성
         self.btn_cri3.hide()
         self.btn_cri3.setGeometry(50, 410, self.x, self.y)
         self.btn_cri3.clicked.connect(self.criminal)
+        self.btn_cri3.setCursor(QCursor(Qt.PointingHandCursor))
 
-    def criminal_show(self):
-        self.btn_cri1.show()
+    def criminal_show(self): # 범인 선택 버튼 클릭시 실행
+        self.btn_cri1.show() 
         self.btn_cri2.show()
         self.btn_cri3.show()
         self.cri_slct.hide()
@@ -44,15 +50,15 @@ class Chapter2(Button):
         self.moreta.hide()
 
     def criminal(self):
-        self.result = 3
+        self.result = 3 # result라는 변수에 3 저장
         return self.chapter2_end()
 
     def nocriminal(self):
-        self.result = 4
+        self.result = 4 # result라는 변수에 4 저장
         return self.chapter2_end()
 
     def on_click_chapter2(self):
-        self.stack.setCurrentIndex(self.result)
+        self.stack.setCurrentIndex(self.result) # 위 저장 값에 따라 어떤 엔딩이 달라짐!!
 
     def chapter2_end(self):
         self.btn_next_Ending.show()
