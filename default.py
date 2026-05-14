@@ -33,36 +33,46 @@ class Mainfront(QStackedWidget):
 class App_default(QWidget):
     def __init__(self):
         super().__init__()
+        #self.initUI()
+
+    def initUI(self):
+        self.center()
+    
+    def center(self):
+        qr = self.frameGeometry()
+        cp = QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
 
 
 class Button(App_default): # 버튼. chapterr 1, chapter2에서 사용!
     def __init__(self):
         super().__init__()
 
-        self.x = 1000 # 버튼의 가로 사이즈
-        self.y = 80 # 버튼의 세로 사이즈/
+        self.x = 200 # 버튼의 가로 사이즈
+        self.y = 200 # 버튼의 세로 사이즈/
 
-        self.butterfly = QPushButton("나비", self) # 버튼 생성
-        self.butterfly.setGeometry(50, 50, 1000, 80) # 버튼 사이즈, 위치 조절. 순서대로 x좌표 y좌표 가로사이즈, 세로사이즈.
-        self.butterfly.clicked.connect(self.on_click_butterfly) # on_click_butterfly 함수에 연결.
-        self.butterfly.setCursor(QCursor(Qt.PointingHandCursor)) # 커서 변경
+        self.butterfly = ClickableLabel("image1.png", self)
+        self.butterfly.setGeometry(500,10,self.x, self.y)
+        self.butterfly.clicked.connect(self.on_click_butterfly)
+        self.butterfly.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.volt = QPushButton("볼트", self)
-        self.volt.setGeometry(50, 140, 1000, 80)
-        self.volt.clicked.connect(self.on_click_volt)
+        self.volt = ClickableLabel("image1.png",self) # "" 사이에 이미지 경로 넣기!
+        self.volt.setGeometry(50, 100, self.x, self.y)
+        self.volt.clicked.connect(self.on_click_colombina)
         self.volt.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.colombina = QPushButton("콜롬비나", self)
+        self.colombina = ClickableLabel("image1.png", self) # "" 사이에 이미지 경로 넣기!
         self.colombina.setGeometry(50, 230, self.x, self.y)
         self.colombina.clicked.connect(self.on_click_colombina)
         self.colombina.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.crow = QPushButton("까마귀", self)
+        self.crow = ClickableLabel("image1.png", self)
         self.crow.setGeometry(50, 320, self.x, self.y)
         self.crow.clicked.connect(self.on_click_crow)
         self.crow.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.moreta = QPushButton("모레타", self)
+        self.moreta = ClickableLabel("image1.png", self)
         self.moreta.setGeometry(50, 410, self.x, self.y)
         self.moreta.clicked.connect(self.on_click_moreta)
         self.moreta.setCursor(QCursor(Qt.PointingHandCursor))
@@ -87,3 +97,16 @@ class Button(App_default): # 버튼. chapterr 1, chapter2에서 사용!
 
     def on_click_moreta(self):
         return self.npc2.communication()
+
+class ClickableLabel(QLabel): # 이미지 기본 설정 클래스
+    clicked = pyqtSignal()
+
+    def __init__(self,image_path,parent = None):
+        super().__init__(parent)
+        pixmap = QPixmap(image_path)
+        self.setPixmap(pixmap)
+        self.setPixmap(pixmap.scaled(1000, 80, Qt.KeepAspectRatio))
+        
+    def mousePressEvent(self, ev):
+        if ev.button() == Qt.LeftButton:
+            self.clicked.emit()
