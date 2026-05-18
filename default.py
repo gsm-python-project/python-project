@@ -1,7 +1,10 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+import google.generativeai as genai
 from CHARACTER import butterfly, volt, colombina, crow, moreta
+
+model = genai.GenerativeModel
 
 class Mainfront(QStackedWidget):
     def __init__(self):
@@ -31,19 +34,15 @@ class Mainfront(QStackedWidget):
 
 
 class App_default(QWidget):
+    shared_history=[]
     def __init__(self):
         super().__init__()
-        #self.initUI()
 
-    def initUI(self):
-        self.center()
-    
-    def center(self):
-        qr = self.frameGeometry()
-        cp = QDesktopWidget().availableGeometry().center()
-        qr.moveCenter(cp)
-        self.move(qr.topLeft())
-
+        genai.configure(api_key="API 키 입력하기")
+        self.Model= genai.GenerativeModel(
+            model_name="모델 명 입력",
+            system_instruction=""
+        )
 
 class Button(App_default): # 버튼. chapterr 1, chapter2에서 사용!
     def __init__(self):
@@ -99,13 +98,13 @@ class Button(App_default): # 버튼. chapterr 1, chapter2에서 사용!
         return self.npc2.communication()
 
 class ClickableLabel(QLabel): # 이미지 기본 설정 클래스
-    clicked = pyqtSignal()
+    clicked = pyqtSignal() #clicked 이벤트 재정의
 
     def __init__(self,image_path,parent = None):
         super().__init__(parent)
-        pixmap = QPixmap(image_path)
+        pixmap = QPixmap(image_path) # pixmap 메소드로 imagepath 저장
         self.setPixmap(pixmap)
-        self.setPixmap(pixmap.scaled(1000, 80, Qt.KeepAspectRatio))
+        self.setPixmap(pixmap.scaled(1000, 80, Qt.KeepAspectRatio)) # 크기
         
     def mousePressEvent(self, ev):
         if ev.button() == Qt.LeftButton:
