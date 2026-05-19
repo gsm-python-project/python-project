@@ -4,8 +4,8 @@ from PyQt5.QtCore import *
 from default import Button, ClickableLabel
 
 class Chapter2(Button):
-    def __init__(self, stack):
-        super().__init__()
+    def __init__(self, stack, characters):
+        super().__init__(characters)
         self.stack = stack
 
         # 버튼 클릭 시 범인 후보 3명을 띄워줌.
@@ -32,13 +32,13 @@ class Chapter2(Button):
 
         self.btn_cri2 = ClickableLabel("image1.png", self) # 버튼 생성
         self.btn_cri2.hide()
-        self.btn_cri2.setGeometry(50, 310, self.x, self.y)
+        self.btn_cri2.setGeometry(50, 360, self.x, self.y)
         self.btn_cri2.clicked.connect(self.nocriminal)
         self.btn_cri2.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.btn_cri3 = ClickableLabel("image1.png", self) # 버튼 생성
         self.btn_cri3.hide()
-        self.btn_cri3.setGeometry(50, 410, self.x, self.y)
+        self.btn_cri3.setGeometry(50, 510, self.x, self.y)
         self.btn_cri3.clicked.connect(self.criminal)
         self.btn_cri3.setCursor(QCursor(Qt.PointingHandCursor))
 

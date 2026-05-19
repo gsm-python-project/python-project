@@ -4,8 +4,8 @@ from PyQt5.QtCore import *
 from default import Button, ClickableLabel
 
 class Chapter1(Button):
-    def __init__(self, stack):
-        super().__init__()
+    def __init__(self, stack, characters):
+        super().__init__(characters)
         self.stack = stack
 
         # chapter2로 넘어가는 버튼 설정
