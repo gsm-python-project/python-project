@@ -5,7 +5,7 @@ from default import Button, ClickableLabel
 
 class Chapter2(Button):
     def __init__(self, stack, characters):
-        super().__init__(characters)
+        super().__init__(stack,characters)
         self.stack = stack
 
         # 버튼 클릭 시 범인 후보 3명을 띄워줌.

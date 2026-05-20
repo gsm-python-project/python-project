@@ -21,7 +21,7 @@ class Character:
 
     def answer(self, user_input):
         if self.chat is None:
-             self.client.chats.create(
+            self.chat = self.client.chats.create(
             model="gemini-2.5-flash",
             config={
                 "system_instruction": self.prompt,
@@ -47,7 +47,7 @@ class butterfly(Character):
 
 class volt(Character):
     def __init__(self, age=26, name="volt", communicationCount=5):
-        self.prompt="너는 '볼트'라는 캐릭터이고, 무조건 위다온이라는 사람을 흉내내야해. 위다온은 쿼카를 닮고 성격이 포악해."
+        self.prompt=""
         super().__init__(age, name, communicationCount)
         
 
