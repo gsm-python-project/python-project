@@ -71,8 +71,10 @@ class Answer_default(App_default):
         user_input = self.input_box.text().strip()
         if not user_input:
             return
-        self.chat_log.append(f"나 : {user_input}")
+        
         self.input_box.clear()
 
-        response=self.character.answer(user_input)
-        self.chat_log.append(f"{self.character.name} : {response}")
+        response=self.character.communication(user_input)
+        if not response is None:
+            self.chat_log.append(f"나 : {user_input}")
+            self.chat_log.append(f"{self.character.name} : {response}")

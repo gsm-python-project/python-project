@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 
 class Character:
-    def __init__(self, age, name, communicationCount):
+    def __init__(self, age=None, name=None, communicationCount=None):
         self.age = age # 인물의 나이
         self.name = name # 인물의 이름
         self.communicationCount = communicationCount # 대화 횟수
@@ -22,15 +22,18 @@ class Character:
     def answer(self, user_input):
         if self.chat is None:
             self.chat = self.client.chats.create(
-            model="gemini-2.5-flash-lite",
+            model="gemini-2.0-flash",
             config={
                 "system_instruction": self.prompt,
                 "max_output_tokens": 100}
         )
-        response= self.chat.send_message(user_input)
-        self.history.append(("나", user_input))         # 메모리에 저장
-        self.history.append((self.name, response.text)) # 메모리에 저장
-        return response.text
+        try:
+            response= self.chat.send_message(user_input)
+            self.history.append(("나", user_input))         # 메모리에 저장
+            self.history.append((self.name, response.text)) # 메모리에 저장
+            return response.text
+        except Exception as e:
+            return "잠시 후 다시 시도해주세요."  # 오류나도 앱 안 죽음
     
     def answer_Fail(self):
         self.w = Answer_Fail() # Answer_Fail() 클래스 불러오기
@@ -58,7 +61,7 @@ class volt(Character):
         return response
 
 class colombina(Character):
-    def __init__(self, age=27, name="colombina", communicationCount=5):
+    def __init__(self, age=27, name="colombina", communicationCount=1):
         self.prompt=""
         super().__init__(age, name, communicationCount)
         
