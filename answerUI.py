@@ -9,27 +9,54 @@ class Answer_default(App_default):
         self.stack=stack
         self.character = None
 
-        self.chat_log = QTextEdit()
+        #배경화면 색 설명
+        self.background = QLabel(self)
+        self.background.setGeometry(0, 0, 1600, 900)
+        self.background.setPixmap(QPixmap("background.png").scaled(1600, 900))
+        self.background.lower()  # 제일 뒤로
+
+        self.chat_log = QTextEdit(self)
         self.chat_log.setReadOnly(True)
+        self.chat_log.setGeometry(500, 0, 1100, 750)  # 둘 다 고정
+
+        palette_chat_log = self.chat_log.palette()
+        palette_chat_log.setColor(QPalette.Base, Qt.transparent)
+        palette_chat_log.setColor(QPalette.Text, QColor("white"))
+        self.chat_log.setPalette(palette_chat_log)
 
         self.back = QPushButton("돌아가기", self)
-        self.back.setGeometry(50,50,200,200)
+        self.back.setGeometry(500, 850, 200, 50)
         self.back.clicked.connect(self.on_click_back)
         self.back.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.send = QPushButton("전송", self)
-        self.send.setGeometry(500,50,200,200)
+        self.send.setGeometry(1400, 800, 200, 50)
         self.send.clicked.connect(self.on_click_send)
         self.send.setCursor(QCursor(Qt.PointingHandCursor))
         self.send.setShortcut('Return')
 
-        layout=QVBoxLayout()
+        self.character_img = QLabel(self)
+        self.character_img.setGeometry(0, 0, 500, 900)
+
         self.input_box = QLineEdit(self)
-        layout.addWidget
+        self.input_box.setGeometry(500, 800, 900, 50)
+
+        self.palette_input_box = self.input_box.palette()
+        self.palette_input_box.setColor(QPalette.Base, Qt.transparent)
+        self.palette_input_box.setColor(QPalette.Text, QColor("white"))
+        self.input_box.setPalette(self.palette_input_box)
+        
+        font = QFont()
+        font.setPointSize(15)  # 글자 크기
+        self.chat_log.setFont(font)
+        self.input_box.setFont(font)
 
     def set_chatlog(self, character):
         self.character = character
         self.chat_log.clear()
+        pixmap=QPixmap(f"{character.name}.png")
+        self.character_img.setPixmap(pixmap.scaled(500, 900, Qt.KeepAspectRatio))
+
         for sender, msg in character.history:
             self.chat_log.append(f"{sender}:{msg}")
     
@@ -39,6 +66,7 @@ class Answer_default(App_default):
     def on_click_send(self):
         if not self.character:
             return
+        
         user_input = self.input_box.text().strip()
         if not user_input:
             return

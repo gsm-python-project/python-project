@@ -22,13 +22,14 @@ class Character:
     def answer(self, user_input):
         if self.chat is None:
             self.chat = self.client.chats.create(
-            model="gemini-2.5-flash",
+            model="gemini-2.5-flash-lite",
             config={
                 "system_instruction": self.prompt,
-                "thinking_config": {"thinking_budget": 0},
                 "max_output_tokens": 100}
         )
         response= self.chat.send_message(user_input)
+        self.history.append(("나", user_input))         # 메모리에 저장
+        self.history.append((self.name, response.text)) # 메모리에 저장
         return response.text
     
     def answer_Fail(self):
@@ -43,7 +44,7 @@ class butterfly(Character):
     def answer(self, user_input):
         print("butterfly")
         response = super().answer(user_input)
-        print(response)
+        return response
 
 class volt(Character):
     def __init__(self, age=26, name="volt", communicationCount=5):
@@ -54,7 +55,7 @@ class volt(Character):
     def answer(self, user_input):
         print("volt")
         response = super().answer(user_input)
-        print(response)
+        return response
 
 class colombina(Character):
     def __init__(self, age=27, name="colombina", communicationCount=5):
@@ -65,7 +66,7 @@ class colombina(Character):
     def answer(self, user_input):
         print("colombina")
         response = super().answer(user_input)
-        print(response)
+        return response
 
 class crow(Character):
     def __init__(self, age=37, name="crow", communicationCount=3):
@@ -76,7 +77,7 @@ class crow(Character):
     def answer(self, user_input):
         print("crow")
         response = super().answer(user_input)
-        print(response)
+        return response
 
 class moreta(Character):
     def __init__(self, age=18, name="moreta", communicationCount=3):
@@ -86,7 +87,7 @@ class moreta(Character):
     def answer(self, user_input):
         print("test")
         response = super().answer(user_input)
-        print(response)
+        return response
 
 class Answer_Fail(QDialog): # 대화 횟수가 0일 때 살행하는 팝업창
     def __init__(self, parent=None): # Parent를 받지 않아도 실행 ㄱㄴ, 반대로 받아도 실행 가능

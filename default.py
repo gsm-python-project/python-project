@@ -89,27 +89,27 @@ class Button(App_default): # 버튼. chapterr 1, chapter2에서 사용!
 
 
     def on_click_butterfly(self): # 버튼과 그 버튼에 맞는 클래스의 communication(answer)과 연결.
-        self.stack.answerUI.character=self.cri1
+        self.stack.answerUI.set_chatlog(self.cri1)
         self.stack.setCurrentIndex(5)
         #return self.cri1.communication(self.question)
 
     def on_click_volt(self):
-        self.stack.answerUI.character=self.cri2
+        self.stack.answerUI.set_chatlog(self.cri2)
         self.stack.setCurrentIndex(5)
         #return self.cri2.communication(self.question)
 
     def on_click_colombina(self):
-        self.stack.answerUI.character=self.cri3
+        self.stack.answerUI.set_chatlog(self.cri3)
         self.stack.setCurrentIndex(5)
         # return self.cri3.communication(self.question)
 
     def on_click_crow(self):
-        self.stack.answerUI.character=self.npc1
+        self.stack.answerUI.set_chatlog(self.npc1)
         self.stack.setCurrentIndex(5)
         #return self.npc1.communication(self.question)
 
     def on_click_moreta(self):
-        self.stack.answerUI.character=self.npc2
+        self.stack.answerUI.set_chatlog(self.npc2)
         self.stack.setCurrentIndex(5)
         #return self.npc2.communication(self.question)
 
