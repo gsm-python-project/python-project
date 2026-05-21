@@ -8,6 +8,7 @@ class Answer_default(App_default):
         super().__init__()
         self.stack=stack
         self.character = None
+        self.chapter = 1
 
         #배경화면 색 설명
         self.background = QLabel(self)
@@ -45,9 +46,9 @@ class Answer_default(App_default):
         self.palette_input_box.setColor(QPalette.Base, Qt.transparent)
         self.palette_input_box.setColor(QPalette.Text, QColor("white"))
         self.input_box.setPalette(self.palette_input_box)
-        
+
         font = QFont()
-        font.setPointSize(15)  # 글자 크기
+        font.setPointSize(12)  # 글자 크기
         self.chat_log.setFont(font)
         self.input_box.setFont(font)
 

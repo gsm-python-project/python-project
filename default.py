@@ -46,8 +46,6 @@ class App_default(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.chapter=1
-
 class Button(App_default): # 버튼. chapterr 1, chapter2에서 사용!
     def __init__(self, stack,characters):
         super().__init__()
