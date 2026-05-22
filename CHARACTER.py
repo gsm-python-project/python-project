@@ -3,15 +3,18 @@ from google import genai
 import os
 from dotenv import load_dotenv
 
+
 class Character:
     def __init__(self, age, name, communicationCount):
         self.age = age # 인물의 나이
         self.name = name # 인물의 이름
         self.communicationCount = communicationCount # 대화 횟수
+        self._initial_count = communicationCount
         self.history=[]
         load_dotenv()
         self.client = genai.Client(api_key=os.getenv('GOOGLE_API_KEY'))
         self.chat =None
+        
 
     def communication(self, user_input):
         if self.communicationCount > 0: # 만약 대화 횟수가 0보다 크다면 대답하고, 아니라면 대화 ㄴㄴ 팝업창 띄우기
