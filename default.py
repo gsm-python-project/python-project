@@ -10,7 +10,6 @@ class Mainfront(QStackedWidget):
         self.setWindowTitle("가면 무도회") # 팝업창의 이름
         self.setFixedSize(1600, 900) #팝업창의 사이즈
         from CHARACTER import butterfly, volt, colombina, crow, moreta
-
         self.characters={
             "cri1" : butterfly(),
             "cri2" : volt(), # 변수에 butterfly 클래스 저장

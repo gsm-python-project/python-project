@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 
 class Character:
-    def __init__(self, age, name, communicationCount):
+    def __init__(self, age=None, name=None, communicationCount=None):
         self.age = age # 인물의 나이
         self.name = name # 인물의 이름
         self.communicationCount = communicationCount # 대화 횟수
@@ -14,6 +14,8 @@ class Character:
         load_dotenv()
         self.client = genai.Client(api_key=os.getenv('GOOGLE_API_KEY'))
         self.chat =None
+
+        self.communicationCountreset=communicationCount
         
 
     def communication(self, user_input):
@@ -25,51 +27,45 @@ class Character:
     def answer(self, user_input):
         if self.chat is None:
             self.chat = self.client.chats.create(
-            model="gemini-2.5-flash-lite",
+            model="gemini-2.5-flash",
             config={
                 "system_instruction": self.prompt,
+                "thinking_config": {"thinking_budget": 0},
                 "max_output_tokens": 100}
         )
-        response= self.chat.send_message(user_input)
-        self.history.append(("나", user_input))         # 메모리에 저장
-        self.history.append((self.name, response.text)) # 메모리에 저장
-        return response.text
+        try:
+            response= self.chat.send_message(user_input)
+            self.history.append(("나", user_input))         # 메모리에 저장
+            self.history.append((self.name, response.text)) # 메모리에 저장
+            return response.text
+        except:
+            self.communicationCount +=1
+            return "잠시 후에 다시 시도해주세요."
     
     def answer_Fail(self):
         self.w = Answer_Fail() # Answer_Fail() 클래스 불러오기
         self.w.exec_()  # Answer_Fail() 클래스 실행
+
+    def reset(self):
+        self.communicationCount= self.communicationCountreset
         
 class butterfly(Character):
     def __init__(self, age=26, name="butterfly", communicationCount=5): # 나이, 이름, 대화 횟수 결정
         self.prompt="" #캐릭터 prompt 설정
         super().__init__(age, name, communicationCount)
 
-    def answer(self, user_input):
-        print("butterfly")
-        response = super().answer(user_input)
-        return response
 
 class volt(Character):
     def __init__(self, age=26, name="volt", communicationCount=5):
         self.prompt=""
         super().__init__(age, name, communicationCount)
-        
 
-    def answer(self, user_input):
-        print("volt")
-        response = super().answer(user_input)
-        return response
 
 class colombina(Character):
-    def __init__(self, age=27, name="colombina", communicationCount=5):
+    def __init__(self, age=27, name="colombina", communicationCount=1):
         self.prompt=""
         super().__init__(age, name, communicationCount)
         
-
-    def answer(self, user_input):
-        print("colombina")
-        response = super().answer(user_input)
-        return response
 
 class crow(Character):
     def __init__(self, age=37, name="crow", communicationCount=3):
@@ -77,20 +73,11 @@ class crow(Character):
         super().__init__(age, name, communicationCount)
         
 
-    def answer(self, user_input):
-        print("crow")
-        response = super().answer(user_input)
-        return response
-
 class moreta(Character):
     def __init__(self, age=18, name="moreta", communicationCount=3):
         self.prompt=""
         super().__init__(age, name, communicationCount)
 
-    def answer(self, user_input):
-        print("test")
-        response = super().answer(user_input)
-        return response
 
 class Answer_Fail(QDialog): # 대화 횟수가 0일 때 살행하는 팝업창
     def __init__(self, parent=None): # Parent를 받지 않아도 실행 ㄱㄴ, 반대로 받아도 실행 가능

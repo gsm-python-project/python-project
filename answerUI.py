@@ -9,6 +9,7 @@ class Answer_default(App_default):
         self.stack=stack
         self.character = None
         self.chapter = 1
+        self.waiting=False
 
         #배경화면 색 설명
         self.background = QLabel(self)
@@ -71,8 +72,15 @@ class Answer_default(App_default):
         user_input = self.input_box.text().strip()
         if not user_input:
             return
-        self.chat_log.append(f"나 : {user_input}")
+    
+        self.waiting=True
+        self.send.setEnabled(False)
         self.input_box.clear()
 
-        response=self.character.answer(user_input)
-        self.chat_log.append(f"{self.character.name} : {response}")
+        response=self.character.communication(user_input)
+        if not response is None:
+            self.chat_log.append(f"나 : {user_input}")
+            self.chat_log.append(f"{self.character.name} : {response}")
+
+        self.waiting=False
+        self.send.setEnabled(True)
