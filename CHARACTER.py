@@ -48,31 +48,31 @@ class Character:
 
 
 class butterfly(Character):
-    def __init__(self, age=26, name="butterfly", communicationCount=5): # 나이, 이름, 대화 횟수 결정
+    def __init__(self, age=22, name="나비", communicationCount=5): # 나이, 이름, 대화 횟수 결정
         self.prompt="" #캐릭터 prompt 설정
         super().__init__(age, name, communicationCount)
 
 
 class volt(Character):
-    def __init__(self, age=26, name="volt", communicationCount=5):
+    def __init__(self, age=27, name="볼토", communicationCount=5):
         self.prompt="" #캐릭터 prompt 설정
         super().__init__(age, name, communicationCount)
 
 
 class colombina(Character):
-    def __init__(self, age=27, name="colombina", communicationCount=1):
+    def __init__(self, age=25, name="콜롬비나", communicationCount=1):
         self.prompt="" #캐릭터 prompt 설정
         super().__init__(age, name, communicationCount)
         
 
 class crow(Character):
-    def __init__(self, age=37, name="crow", communicationCount=3):
+    def __init__(self, age=39, name="까마귀", communicationCount=3):
         self.prompt="" #캐릭터 prompt 설정
         super().__init__(age, name, communicationCount)
         
 
 class moreta(Character):
-    def __init__(self, age=18, name="moreta", communicationCount=3):
+    def __init__(self, age=33, name="모레타", communicationCount=3):
         self.prompt="" #캐릭터 prompt 설정
         super().__init__(age, name, communicationCount)
 

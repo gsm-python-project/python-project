@@ -30,20 +30,23 @@ class Mainfront(QStackedWidget):
         self.happyending = HappyEnding(self)
         self.badending = BadEnding(self)
         self.answerUI= Answer_default(self)
+        self.startUI=startdisplay(self)
 
         self.addWidget(self.prologue) # 페이지 추가 인덱스:0
         self.addWidget(self.chapter1) # 인덱스:1
         self.addWidget(self.chapter2) # 인덱스:2
         self.addWidget(self.happyending) # 인덱스:3
         self.addWidget(self.badending) # 인덱스:4
-        self.addWidget(self.answerUI)
+        self.addWidget(self.answerUI) # 인덱스:5
+        self.addWidget(self.startUI) # 인덱스:6
 
-        self.setCurrentIndex(0) # 인덱스가 0인 페이지로 이동.
+        self.setCurrentIndex(6) # 인덱스가 0인 페이지로 이동.
 
 
 class App_default(QWidget):
     def __init__(self):
         super().__init__()
+
 
 class Button(App_default): # 버튼. chapterr 1, chapter2에서 사용!
     def __init__(self, stack,characters):
@@ -88,27 +91,23 @@ class Button(App_default): # 버튼. chapterr 1, chapter2에서 사용!
     def on_click_butterfly(self): # 버튼과 그 버튼에 맞는 클래스의 communication(answer)과 연결.
         self.stack.answerUI.set_chatlog(self.cri1)
         self.stack.setCurrentIndex(5)
-        #return self.cri1.communication(self.question)
 
     def on_click_volt(self):
         self.stack.answerUI.set_chatlog(self.cri2)
         self.stack.setCurrentIndex(5)
-        #return self.cri2.communication(self.question)
 
     def on_click_colombina(self):
         self.stack.answerUI.set_chatlog(self.cri3)
         self.stack.setCurrentIndex(5)
-        # return self.cri3.communication(self.question)
 
     def on_click_crow(self):
         self.stack.answerUI.set_chatlog(self.npc1)
         self.stack.setCurrentIndex(5)
-        #return self.npc1.communication(self.question)
 
     def on_click_moreta(self):
         self.stack.answerUI.set_chatlog(self.npc2)
         self.stack.setCurrentIndex(5)
-        #return self.npc2.communication(self.question)
+
 
 class ClickableLabel(QLabel): # 이미지 기본 설정 클래스
     clicked = pyqtSignal() #clicked 이벤트 재정의
@@ -122,3 +121,27 @@ class ClickableLabel(QLabel): # 이미지 기본 설정 클래스
     def mousePressEvent(self, ev):
         if ev.button() == Qt.LeftButton:
             self.clicked.emit()
+
+class startdisplay(App_default):
+    def __init__(self, stack):
+        super().__init__()
+        self.stack = stack
+
+        self.x = 100
+        self.y=100
+
+        self.setAutoFillBackground(True) # 배경 자동 채움 True
+        palette = self.palette() # palette에 self.palette 메소드 저장
+        palette.setColor(QPalette.Window, QColor("black")) # 배경을 검정색으로 지정
+        self.setPalette(palette) # palette 실행
+
+        label = QLabel("기본 글자")
+        label.setText("삽입할 글자")
+
+        self.btn=QPushButton("시작", self)
+        self.btn.setGeometry(800, 500, self.x, self.y)
+        self.btn.clicked.connect(self.next_prologue)
+        self.btn.setCursor(QCursor(Qt.PointingHandCursor))
+
+    def next_prologue(self):
+        self.stack.setCurrentIndex(0)
