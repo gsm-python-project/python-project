@@ -13,7 +13,7 @@ class Character:
         self.history=[]
         load_dotenv()
         self.client = genai.Client(api_key=os.getenv('GOOGLE_API_KEY'))
-        self.chat =None
+        self.chat = None
 
         self.communicationCountreset=communicationCount
         
@@ -39,16 +39,14 @@ class Character:
             self.history.append((self.name, response.text)) # 메모리에 저장
             return response.text
         except:
-            self.communicationCount +=1
+            # self.communicationCount +=1
             return "잠시 후에 다시 시도해주세요."
     
     def answer_Fail(self):
         self.w = Answer_Fail() # Answer_Fail() 클래스 불러오기
         self.w.exec_()  # Answer_Fail() 클래스 실행
 
-    def reset(self):
-        self.communicationCount= self.communicationCountreset
-        
+
 class butterfly(Character):
     def __init__(self, age=26, name="butterfly", communicationCount=5): # 나이, 이름, 대화 횟수 결정
         self.prompt="" #캐릭터 prompt 설정
@@ -57,25 +55,25 @@ class butterfly(Character):
 
 class volt(Character):
     def __init__(self, age=26, name="volt", communicationCount=5):
-        self.prompt=""
+        self.prompt="" #캐릭터 prompt 설정
         super().__init__(age, name, communicationCount)
 
 
 class colombina(Character):
     def __init__(self, age=27, name="colombina", communicationCount=1):
-        self.prompt=""
+        self.prompt="" #캐릭터 prompt 설정
         super().__init__(age, name, communicationCount)
         
 
 class crow(Character):
     def __init__(self, age=37, name="crow", communicationCount=3):
-        self.prompt=""
+        self.prompt="" #캐릭터 prompt 설정
         super().__init__(age, name, communicationCount)
         
 
 class moreta(Character):
     def __init__(self, age=18, name="moreta", communicationCount=3):
-        self.prompt=""
+        self.prompt="" #캐릭터 prompt 설정
         super().__init__(age, name, communicationCount)
 
 

@@ -19,7 +19,8 @@ class Chapter1(Button):
 
         for character in self.stack.characters.values():
             character.history.append(("", "----------------- 제 2장 -----------------"))
-            
+            # if character.chat:
+            #     character.chat.send_message("2장 시작.") 
         self.stack.setCurrentIndex(2)
 
     def chapter1_end(self): # chapter1이 끝났을때, 버튼을 보이게 하는 함수.
