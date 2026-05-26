@@ -11,7 +11,7 @@ class Answer_default(App_default):
         self.chapter = 1
         self.waiting=False
 
-        #배경화면 색 설명
+        #배경화면
         self.background = QLabel(self)
         self.background.setGeometry(0, 0, 1600, 900)
         self.background.setPixmap(QPixmap("background.png").scaled(1600, 900))
