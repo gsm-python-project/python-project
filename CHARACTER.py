@@ -39,7 +39,7 @@ class Character:
             self.history.append((self.name, response.text)) # 메모리에 저장
             return response.text
         except:
-            # self.communicationCount +=1
+            self.communicationCount +=1
             return "잠시 후에 다시 시도해주세요."
     
     def answer_Fail(self):

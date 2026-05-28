@@ -9,6 +9,7 @@ class Mainfront(QStackedWidget):
 
         self.setWindowTitle("가면 무도회") # 팝업창의 이름
         self.setFixedSize(1600, 900) #팝업창의 사이즈
+
         from CHARACTER import butterfly, volt, colombina, crow, moreta
         self.characters={
             "cri1" : butterfly(),
@@ -127,19 +128,27 @@ class startdisplay(App_default):
         super().__init__()
         self.stack = stack
 
-        self.x = 100
-        self.y=100
+        self.x = 200
+        self.y=80
 
         self.setAutoFillBackground(True) # 배경 자동 채움 True
         palette = self.palette() # palette에 self.palette 메소드 저장
         palette.setColor(QPalette.Window, QColor("black")) # 배경을 검정색으로 지정
         self.setPalette(palette) # palette 실행
 
-        label = QLabel("기본 글자")
-        label.setText("삽입할 글자")
+        self.label = QLabel("옥장판", self) 
+        self.label.setGeometry(600, 300, 300, 100)
+        self.label.setAlignment(Qt.AlignCenter) 
+
+        font=QFont()
+        font.setPointSize(40)  # 글자 크기
+        palette = self.label.palette()
+        palette.setColor(QPalette.WindowText, QColor("White"))
+        self.label.setPalette(palette)
+        self.label.setFont(font)
 
         self.btn=QPushButton("시작", self)
-        self.btn.setGeometry(800, 500, self.x, self.y)
+        self.btn.setGeometry(650, 450, self.x, self.y)
         self.btn.clicked.connect(self.next_prologue)
         self.btn.setCursor(QCursor(Qt.PointingHandCursor))
 
