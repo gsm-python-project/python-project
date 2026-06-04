@@ -33,14 +33,14 @@ class Character:
                 "thinking_config": {"thinking_budget": 0},
                 "max_output_tokens": 100}
         )
-        try:
-            response= self.chat.send_message(user_input)
-            self.history.append(("나", user_input))         # 메모리에 저장
-            self.history.append((self.name, response.text)) # 메모리에 저장
-            return response.text
-        except:
-            self.communicationCount +=1
-            return "잠시 후에 다시 시도해주세요."
+        # try:
+        response= self.chat.send_message(user_input)
+        self.history.append(("나", user_input))         # 메모리에 저장
+        self.history.append((self.name, response.text)) # 메모리에 저장
+        return response.text
+        # except:
+        #     self.communicationCount +=1
+        #     return "잠시 후에 다시 시도해주세요."
     
     def answer_Fail(self):
         self.w = Answer_Fail() # Answer_Fail() 클래스 불러오기
