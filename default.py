@@ -24,6 +24,7 @@ class Mainfront(QStackedWidget):
         from page2 import Chapter2
         from ending import TrueEnding, FalseEnding
         from answerUI import Answer_default
+        from profile import Profile_default
 
         self.prologue = prologue(self) # 변수에 추가
         self.chapter1 = Chapter1(self, self.characters)  # 캐릭터 넘겨주기
@@ -32,6 +33,8 @@ class Mainfront(QStackedWidget):
         self.falseending = FalseEnding(self)
         self.answerUI= Answer_default(self)
         self.startUI=startdisplay(self)
+
+        self.profileMain = Profile_default(self, self.characters)
 
         self.addWidget(self.prologue) # 페이지 추가 인덱스:0
         self.addWidget(self.chapter1) # 인덱스:1
@@ -137,7 +140,7 @@ class startdisplay(App_default):
         self.setPalette(palette) # palette 실행
 
         self.label = QLabel("옥장판", self) 
-        self.label.setGeometry(600, 300, 300, 100)
+        self.label.setGeometry(625, 300, 300, 100)
         self.label.setAlignment(Qt.AlignCenter) 
 
         font=QFont()
@@ -148,7 +151,7 @@ class startdisplay(App_default):
         self.label.setFont(font)
 
         self.btn=QPushButton("시작", self)
-        self.btn.setGeometry(650, 450, self.x, self.y)
+        self.btn.setGeometry(675, 450, self.x, self.y)
         self.btn.clicked.connect(self.next_prologue)
         self.btn.setCursor(QCursor(Qt.PointingHandCursor))
 

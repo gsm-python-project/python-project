@@ -9,13 +9,10 @@ class Character:
         self.age = age # 인물의 나이
         self.name = name # 인물의 이름
         self.communicationCount = communicationCount # 대화 횟수
-        self._initial_count = communicationCount
         self.history=[]
         load_dotenv()
         self.client = genai.Client(api_key=os.getenv('GOOGLE_API_KEY'))
         self.chat = None
-
-        self.communicationCountreset=communicationCount
         
 
     def communication(self, user_input):

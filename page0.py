@@ -23,8 +23,6 @@ class prologue(App_default):
         self.btn_next_prologue.clicked.connect(self.on_click_prologue) # 버튼과 함수를 연결
         self.btn_next_prologue.setCursor(QCursor(Qt.PointingHandCursor)) # 커서 변경
         # self.btn_next_prologue.hide() # 버튼 숨기기
-
-        # self.QPropertyAnimation()
     
     def on_click_prologue(self): # 버튼 클릭 시 인덱스가 1인 페이지로 넘어가게 해주는 함수
         self.stack.setCurrentIndex(1)
