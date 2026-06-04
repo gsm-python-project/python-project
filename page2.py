@@ -36,13 +36,13 @@ class Chapter2(Button):
         self.btn_cri2 = ClickableLabel("image1.png", self) # 버튼 생성
         self.btn_cri2.hide()
         self.btn_cri2.setGeometry(50, 360, self.x, self.y)
-        self.btn_cri2.clicked.connect(self.nocriminal)
+        self.btn_cri2.clicked.connect(self.criminal)
         self.btn_cri2.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.btn_cri3 = ClickableLabel("image1.png", self) # 버튼 생성
         self.btn_cri3.hide()
         self.btn_cri3.setGeometry(50, 510, self.x, self.y)
-        self.btn_cri3.clicked.connect(self.criminal)
+        self.btn_cri3.clicked.connect(self.nocriminal)
         self.btn_cri3.setCursor(QCursor(Qt.PointingHandCursor))
 
     def criminal_show(self): # 범인 선택 버튼 클릭시 실행

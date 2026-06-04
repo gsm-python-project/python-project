@@ -22,22 +22,22 @@ class Mainfront(QStackedWidget):
         from page0 import prologue # import문, 각 챕터랑 엔딩을 불러온다.
         from page1 import Chapter1
         from page2 import Chapter2
-        from ending import HappyEnding, BadEnding
+        from ending import TrueEnding, FalseEnding
         from answerUI import Answer_default
 
         self.prologue = prologue(self) # 변수에 추가
         self.chapter1 = Chapter1(self, self.characters)  # 캐릭터 넘겨주기
         self.chapter2 = Chapter2(self, self.characters)  # 캐릭터 넘겨주기
-        self.happyending = HappyEnding(self)
-        self.badending = BadEnding(self)
+        self.trueending = TrueEnding(self)
+        self.falseending = FalseEnding(self)
         self.answerUI= Answer_default(self)
         self.startUI=startdisplay(self)
 
         self.addWidget(self.prologue) # 페이지 추가 인덱스:0
         self.addWidget(self.chapter1) # 인덱스:1
         self.addWidget(self.chapter2) # 인덱스:2
-        self.addWidget(self.happyending) # 인덱스:3
-        self.addWidget(self.badending) # 인덱스:4
+        self.addWidget(self.trueending) # 인덱스:3
+        self.addWidget(self.falseending) # 인덱스:4
         self.addWidget(self.answerUI) # 인덱스:5
         self.addWidget(self.startUI) # 인덱스:6
 

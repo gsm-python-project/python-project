@@ -7,7 +7,7 @@ class ending(App_default):
     def __init__(self):
         super().__init__()
         
-class HappyEnding(ending):
+class TrueEnding(ending):
     def __init__(self, stack):
         super().__init__()
         self.stack = stack # stack에 mainfront 클래스 저장
@@ -16,7 +16,7 @@ class HappyEnding(ending):
         self.label.setGeometry(50, 50, 200, 50)
         self.label.setAlignment(Qt.AlignCenter)
 
-class BadEnding(ending):
+class FalseEnding(ending):
     def __init__(self, stack):
         super().__init__()
         self.stack = stack # stack에 mainfront 클래스 저장
