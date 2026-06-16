@@ -24,7 +24,7 @@ class Mainfront(QStackedWidget):
         from page2 import Chapter2
         from ending import TrueEnding, FalseEnding
         from answerUI import Answer_default
-        from profile import Profile_default
+        from CharacterProfile import Profile, Character_Profile # 파일 이름을 profile로 하니 모듈 profile로 인식해서 파일 이름 변경
 
         self.prologue = prologue(self) # 변수에 추가
         self.chapter1 = Chapter1(self, self.characters)  # 캐릭터 넘겨주기
@@ -33,8 +33,8 @@ class Mainfront(QStackedWidget):
         self.falseending = FalseEnding(self)
         self.answerUI= Answer_default(self)
         self.startUI=startdisplay(self)
-
-        self.profileMain = Profile_default(self, self.characters)
+        self.profileMain = Profile(self, self.characters)
+        self.profile_character = Character_Profile(self, self.characters)
 
         self.addWidget(self.prologue) # 페이지 추가 인덱스:0
         self.addWidget(self.chapter1) # 인덱스:1
@@ -43,8 +43,10 @@ class Mainfront(QStackedWidget):
         self.addWidget(self.falseending) # 인덱스:4
         self.addWidget(self.answerUI) # 인덱스:5
         self.addWidget(self.startUI) # 인덱스:6
+        self.addWidget(self.profileMain) # 인덱스: 7
+        self.addWidget(self.profile_character) # 인덱스: 8
 
-        self.setCurrentIndex(6) # 인덱스가 0인 페이지로 이동.
+        self.setCurrentIndex(6) # 인덱스가 6인 페이지(start)로 이동.
 
 
 class App_default(QWidget):
@@ -156,4 +158,4 @@ class startdisplay(App_default):
         self.btn.setCursor(QCursor(Qt.PointingHandCursor))
 
     def next_prologue(self):
-        self.stack.setCurrentIndex(0)
+        self.stack.setCurrentIndex(0) # 프롤로그로 이동
