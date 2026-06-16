@@ -62,6 +62,11 @@ class Button(App_default): # 버튼. chapterr 1, chapter2에서 사용!
         self.x = 100 # 버튼의 가로 사이즈
         self.y = 100 # 버튼의 세로 사이즈/
 
+        self.note = ClickableLabel("image1.png", self)
+        self.note.setGeometry(500, 410, self.x, self.y)
+        self.note.clicked.connect(self.on_click_note)
+        self.note.setCursor(QCursor(Qt.PointingHandCursor))
+
         self.butterfly = ClickableLabel("image1.png", self)
         self.butterfly.setGeometry(500,10,self.x, self.y)
         self.butterfly.clicked.connect(self.on_click_butterfly)
@@ -93,6 +98,8 @@ class Button(App_default): # 버튼. chapterr 1, chapter2에서 사용!
         self.npc1 = characters["npc1"]
         self.npc2 = characters["npc2"]
 
+    def on_click_note(self):
+        self.stack.setCurrentIndex(7)
 
     def on_click_butterfly(self): # 버튼과 그 버튼에 맞는 클래스의 communication(answer)과 연결.
         self.stack.answerUI.set_chatlog(self.cri1)
