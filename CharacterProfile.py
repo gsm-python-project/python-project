@@ -18,9 +18,14 @@ class Profile(App_default):
         self.x=100
         self.y=100
 
+        self.back = QPushButton("이전으로 돌아가기", self)
+        self.back.setGeometry(0,0,200,100)
+        self.back.clicked.connect(self.on_click_back)
+        self.back.setCursor(QCursor(Qt.PointingHandCursor))
+
         from default import ClickableLabel
 
-        self.butterfly = ClickableLabel("", self)
+        self.butterfly = ClickableLabel("image1.png", self)
         self.butterfly.setGeometry(0, 0, self.x, self.y)
         self.butterfly.clicked.connect(self.on_click_butterfly)
         self.butterfly.setCursor(QCursor(Qt.PointingHandCursor))
@@ -49,23 +54,23 @@ class Profile(App_default):
         self.stack.setCurrentIndex(self.chapter)
 
     def on_click_butterfly(self):
-        self.stack.Character_Profile.profile(self.cri1)
+        self.stack.profile_character.profile(self.cri1)
         self.stack.setCurrentIndex(8)
     
     def on_click_colombina(self):
-        self.stack.Character_Profile.profile(self.cri2)
+        self.stack.profile_character.profile(self.cri2)
         self.stack.setCurrentIndex(8)
         
     def on_click_volt(self):
-        self.stack.Character_Profile.profile(self.cri3)
+        self.stack.profile_character.profile(self.cri3)
         self.stack.setCurrentIndex(8)
         
     def on_click_crow(self):
-        self.stack.Character_Profile.profile(self.npc1)
+        self.stack.profile_character.profile(self.npc1)
         self.stack.setCurrentIndex(8)
         
     def on_click_moreta(self):
-        self.stack.Character_Profile.profile(self.npc2)
+        self.stack.profile_character.profile(self.npc2)
         self.stack.setCurrentIndex(8)
 
 
@@ -84,13 +89,10 @@ class Character_Profile(App_default):
 
         
 
-        self.back = QPushButton("이전으로 돌아가기", self)
-        self.back.setGeometry(0,0,200,100)
-        self.back.clicked.connect(self.on_click_back)
-        self.back.setCursor(QCursor(Qt.PointingHandCursor))
-
         self.character_img = QLabel(self)
         self.character_img.setGeometry(0, 0, 1600, 900)
+        self.character_img.lower()  # 제일 뒤로
+
 
     def profile(self, character):
         self.character=character
