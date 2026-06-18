@@ -119,7 +119,6 @@ class Answer_default(App_default):
             self.chat_log.verticalScrollBar().maximum()
         )
         
-
     def _on_stream_error(self, error_msg:str):
         self.character.history[-1]=(self.character.name, f"[오류] {error_msg}")
         self._refresh_chatlog()
