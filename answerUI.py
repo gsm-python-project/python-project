@@ -10,6 +10,8 @@ class Answer_default(App_default):
         self.character = None
         self.chapter = 1
         self.waiting=False
+        self._char_queue=""
+        self._init_typing_timer()
 
         #배경화면
         self.background = QLabel(self)
@@ -77,10 +79,76 @@ class Answer_default(App_default):
         self.send.setEnabled(False)
         self.input_box.clear()
 
-        response=self.character.communication(user_input)
-        if not response is None:
-            self.chat_log.append(f"나 : {user_input}")
-            self.chat_log.append(f"{self.character.name} : {response}")
+        self.character.history.append(("나", user_input))
 
+        self.character.history.append((self.character.name, ""))
+        self._refresh_chatlog()
+
+        self.worker = Stream(self.character, user_input)
+        self.worker.token_received.connect(self._on_token)
+        self.worker.finished.connect(self._on_stream_finished)
+        self.worker.error.connect(self._on_stream_error)
+        self.worker.start()
+        
+    def _refresh_chatlog(self):
+        self.chat_log.clear()
+        for sender, msg in self.character.history:
+            self.chat_log.append(f"{sender} : {msg}")
+
+    def _on_token(self, chunk: str):
+        self._char_queue+=chunk
+
+    def _init_typing_timer(self):
+        self._char_queue=""
+        self._typing_timer = QTimer(self)
+        self._typing_timer.setInterval(30)
+        self._typing_timer.timeout.connect(self._type_next_char)
+        self._typing_timer.start()
+
+    def _type_next_char(self):
+        if not self._char_queue:
+            return
+        char=self._char_queue[0]
+        self._char_queue=self._char_queue[1:]
+
+        sender, current_text=self.character.history[-1]
+        self.character.history[-1]=(sender,current_text + char)
+        self._refresh_chatlog()
+    
+        self.chat_log.verticalScrollBar().setValue(
+            self.chat_log.verticalScrollBar().maximum()
+        )
+        
+
+    def _on_stream_error(self, error_msg:str):
+        self.character.history[-1]=(self.character.name, f"[오류] {error_msg}")
+        self._refresh_chatlog()
+        self.waiting=False
+        self.send.setEnabled(True)    
+    
+    def _on_stream_finished(self):
         self.waiting=False
         self.send.setEnabled(True)
+
+
+class Stream(QThread):
+    token_received=pyqtSignal(str)
+    error=pyqtSignal(str)
+
+    def __init__(self, character, user_input):
+        super().__init__()
+        self.character = character
+        self.user_input = user_input
+
+    def run(self):
+        try:
+            full_text=""
+            for chunk in self.character.answer(self.user_input):
+                full_text += chunk
+                self.token_received.emit(chunk)
+            self.finished.emit()
+        except Exception as e:
+            self.error.emit(str(e))
+
+
+    

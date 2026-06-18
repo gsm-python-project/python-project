@@ -87,8 +87,6 @@ class Character_Profile(App_default):
 
         self.character=None
 
-        
-
         self.character_img = QLabel(self)
         self.character_img.setGeometry(0, 0, 1600, 900)
         self.character_img.lower()  # 제일 뒤로
