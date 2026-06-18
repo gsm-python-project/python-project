@@ -87,10 +87,17 @@ class Character_Profile(App_default):
 
         self.character=None
 
+        self.x=100
+        self.y=100
+
         self.character_img = QLabel(self)
         self.character_img.setGeometry(0, 0, 1600, 900)
         self.character_img.lower()  # 제일 뒤로
 
+        self.back=QPushButton("이전으로 돌아가기", self)
+        self.back.setGeometry(1500,800,self.x,self.y)
+        self.back.clicked.connect(self.on_click_back)
+        self.back.setCursor(QCursor(Qt.PointingHandCursor))
 
     def profile(self, character):
         self.character=character
