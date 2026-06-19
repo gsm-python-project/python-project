@@ -43,7 +43,7 @@ class Answer_default(App_default):
         self.character_img.setGeometry(0, 0, 500, 900)
 
         self.input_box = QLineEdit(self)
-        self.input_box.setGeometry(500, 800, 900, 50)
+        self.input_box.setGeometry(0, 800, 1600, 100)
 
         self.palette_input_box = self.input_box.palette()
         self.palette_input_box.setColor(QPalette.Base, Qt.transparent)
@@ -148,6 +148,3 @@ class Stream(QThread):
             self.finished.emit()
         except Exception as e:
             self.error.emit(str(e))
-
-
-    

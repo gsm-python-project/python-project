@@ -33,12 +33,20 @@ class prologue(App_default):
             self.background.setPixmap(QPixmap("콜롬비나.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
         elif self.q==1:
-            self.background.setPixmap(QPixmap("background.png").scaled(1600, 900))
-            self.background.lower()  # 제일 뒤로
+            pass
         elif self.q==2:
             self.background.setPixmap(QPixmap("background.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
         elif self.q==3:
+            pass
+        elif self.q==4:
+            pass
+        elif self.q==5:
+            self.background.setPixmap(QPixmap("background.png").scaled(1600, 900))
+            self.background.lower()  # 제일 뒤로
+        elif self.q==6:
+            pass
+        elif self.q==7:
             self.background.setPixmap(QPixmap("background.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
         else:
