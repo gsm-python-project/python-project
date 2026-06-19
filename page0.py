@@ -9,6 +9,8 @@ class prologue(App_default):
         super().__init__()
         self.stack = stack # stack에 mainfront를 저장. (왜냐면 Widget에는 화면 전환 기능이 없어서 Widstackedwidget을 불러와야하기 때문에!)
 
+        self.typing=False
+
         self.x=200
         self.y=100
 
@@ -27,17 +29,22 @@ class prologue(App_default):
         self.btn_next_prologue.hide() # 버튼 숨기기
     
     def mousePressEvent(self, event):
-        self.q+=1
         if self.q==0:
-            pass
+            self.background.setPixmap(QPixmap("콜롬비나.png").scaled(1600, 900))
+            self.background.lower()  # 제일 뒤로
         elif self.q==1:
-            pass
+            self.background.setPixmap(QPixmap("background.png").scaled(1600, 900))
+            self.background.lower()  # 제일 뒤로
         elif self.q==2:
-            pass
+            self.background.setPixmap(QPixmap("background.png").scaled(1600, 900))
+            self.background.lower()  # 제일 뒤로
         elif self.q==3:
-            pass
+            self.background.setPixmap(QPixmap("background.png").scaled(1600, 900))
+            self.background.lower()  # 제일 뒤로
         else:
             self.btn_next_prologue.show()
+    
+        self.q+=1
 
     def on_click_prologue(self): # 버튼 클릭 시 인덱스가 1인 페이지로 넘어가게 해주는 함수
         self.stack.setCurrentIndex(1) 
