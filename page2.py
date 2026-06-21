@@ -45,6 +45,11 @@ class Chapter2(Button):
         self.btn_cri3.clicked.connect(self.nocriminal)
         self.btn_cri3.setCursor(QCursor(Qt.PointingHandCursor))
 
+        
+        self.message = ["당신은 흩어진 증거를 모아 퍼즐을 맞추어 가기 시작했다.",
+                        "모든 증언은 부서진 유리 조각과 같다. 날카롭고 위험하며, 함부로 만졌다간 진실보다 먼저 상처를 입게 된다.",
+                        "이제 진실은 질문 속에 있고, 정답은 교묘한 대답 뒤에 숨어 있다. 당신의 날카로운 추리력을 발현하여 정교하게 설계된 거짓말의 빈틈을 파고 들어 이 비극의 마침표를 찍을 진범을 가려내야 한다."]
+
     def criminal_show(self): # 범인 선택 버튼 클릭시 실행
         self.btn_cri1.show() 
         self.btn_cri2.show()
@@ -52,6 +57,7 @@ class Chapter2(Button):
         self.cri_slct.hide()
         self.butterfly.hide()
         self.colombina.hide()
+        self.note.hide()
         self.volt.hide()
         self.crow.hide()
         self.moreta.hide()

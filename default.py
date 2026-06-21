@@ -52,6 +52,62 @@ class Mainfront(QStackedWidget):
 class App_default(QWidget):
     def __init__(self):
         super().__init__()
+        
+        self.q=0
+
+        self.typing=False
+
+        
+        self.background = QLabel(self)
+        self.background.setGeometry(0, 0, 1600, 900)
+        self.background.setPixmap(QPixmap("background.png").scaled(1600, 900))
+        self.background.lower()  # 제일 뒤로
+        
+        self.subtitle=QLabel(self)
+        self.subtitle.setGeometry(100,750,1500,100)
+        self.subtitle.setWordWrap(True)
+        self.subtitle.raise_()
+
+        self._full_text = ""     # 이번 단계에서 보여줄 전체 텍스트
+        self._char_index = 0     # 현재까지 출력한 글자 수
+        self._typing_timer = QTimer(self)
+        self._typing_timer.setInterval(40)  # 글자당 40ms
+        self._typing_timer.timeout.connect(self._type_next_char)
+        
+        #글자 스타일
+        palette = self.subtitle.palette()
+        palette.setColor(QPalette.ColorRole.WindowText, QColor(255, 255, 255))
+        self.subtitle.setPalette(palette)
+
+        font=QFont()
+        font.setPointSize(15)
+        self.subtitle.setFont(font)
+
+    def _start_typing(self, index):
+        """해당 인덱스의 대사를 타이핑 시작"""
+        if index >= len(self.messages):
+            self.subtitle.setText("")
+            return
+
+        self._full_text = self.messages[index]
+        self._char_index = 0
+        self.subtitle.setText("")
+        self.typing = True
+        self._typing_timer.start()
+
+    def _type_next_char(self):
+        if self._char_index >= len(self._full_text):
+            self._typing_timer.stop()
+            self.typing = False
+            return
+
+        self._char_index += 1
+        self.subtitle.setText(self._full_text[:self._char_index])
+
+    def _finish_typing_immediately(self): # 타이핑 중인 메시지 완성
+            self._typing_timer.stop()
+            self.subtitle.setText(self._full_text)
+            self.typing = False
 
 
 class Button(App_default): # 버튼. chapterr 1, chapter2에서 사용!

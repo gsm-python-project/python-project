@@ -14,6 +14,7 @@ class Chapter1(Button):
         self.btn_next_chapter1.clicked.connect(self.on_click_chapter1) # 버튼을 on_click_chapter1이라는 함수에 연결.
         self.btn_next_chapter1.setCursor(QCursor(Qt.PointingHandCursor)) # 커서 변경
 
+
     def on_click_chapter1(self): # 인덱스가 2인 페이지로 넘어가게 해주는 함수.
         self.stack.answerUI.chapter = 2
         self.stack.profileMain.chapter = 2
@@ -24,5 +25,18 @@ class Chapter1(Button):
                 character.chat.send_message_stream("2장 시작.") 
         self.stack.setCurrentIndex(2)
 
+    def mousePressEvent(self, a0):
+        if self.typing:
+            self._finish_typing_immediately()
+            return
+        
+        if self.q==0:
+            self.background.setPixmap(QPixmap(".png").scaled(1600, 900))
+            self.background.lower()  # 제일 뒤로
+        if self.q==1:
+            self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
+            self.background.lower()  # 제일 뒤로
+
     def chapter1_end(self): # chapter1이 끝났을때, 버튼을 보이게 하는 함수.
         self.btn_next_chapter1.show()
+    
