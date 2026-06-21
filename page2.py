@@ -69,8 +69,6 @@ class Chapter2(Button):
         elif self.q==1:
             self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
-        elif self.q==2:
-            pass
         else:
             self.background.setPixmap(QPixmap("background.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
