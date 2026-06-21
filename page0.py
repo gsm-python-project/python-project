@@ -50,34 +50,16 @@ class prologue(App_default):
         if self.q==0:
             self.background.setPixmap(QPixmap("prologue2.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
-        elif self.q==1:
-            pass
-        elif self.q==2:
-            pass
         elif self.q==3:
             self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
-        elif self.q==4:
-            pass
-        elif self.q==5:
-            pass
-        elif self.q==6:
-            pass
         elif self.q==7:
             self.background.setPixmap(QPixmap("prologue3.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
-        elif self.q==8:
-            pass
-        elif self.q==9:
-            pass
-        elif self.q==10:
-            pass
-        elif self.q==11:
-            pass
         elif self.q==12:
             self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
-        else:
+        elif self.q==13:
             self.btn_next_prologue.show()
 
     

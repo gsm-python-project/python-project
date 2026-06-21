@@ -24,19 +24,6 @@ class Chapter1(Button):
             if character.chat:
                 character.chat.send_message_stream("2장 시작.") 
         self.stack.setCurrentIndex(2)
-
-    def mousePressEvent(self, a0):
-        if self.typing:
-            self._finish_typing_immediately()
-            return
-        
-        if self.q==0:
-            self.background.setPixmap(QPixmap(".png").scaled(1600, 900))
-            self.background.lower()  # 제일 뒤로
-        if self.q==1:
-            self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
-            self.background.lower()  # 제일 뒤로
-
     def chapter1_end(self): # chapter1이 끝났을때, 버튼을 보이게 하는 함수.
         self.btn_next_chapter1.show()
     

@@ -16,7 +16,7 @@ class Answer_default(App_default):
         #배경화면
         self.background = QLabel(self)
         self.background.setGeometry(0, 0, 1600, 900)
-        self.background.setPixmap(QPixmap("background.png").scaled(1600, 900))
+        self.background.setPixmap(QPixmap("backgroundld.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
         self.chat_log = QTextEdit(self)
@@ -29,21 +29,21 @@ class Answer_default(App_default):
         self.chat_log.setPalette(palette_chat_log)
 
         self.back = QPushButton("돌아가기", self)
-        self.back.setGeometry(500, 850, 200, 50)
+        self.back.setGeometry(20, 200, 100, 50)
         self.back.clicked.connect(self.on_click_back)
         self.back.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.send = QPushButton("전송", self)
-        self.send.setGeometry(1400, 800, 200, 50)
+        self.send.setGeometry(1500, 700, 200, 100)
         self.send.clicked.connect(self.on_click_send)
         self.send.setCursor(QCursor(Qt.PointingHandCursor))
         self.send.setShortcut('Return')
 
         self.character_img = QLabel(self)
-        self.character_img.setGeometry(0, 0, 500, 900)
+        self.character_img.setGeometry(0, 0, 900, 900)
 
         self.input_box = QLineEdit(self)
-        self.input_box.setGeometry(0, 800, 1600, 100)
+        self.input_box.setGeometry(0, 800, 1400, 100)
 
         self.palette_input_box = self.input_box.palette()
         self.palette_input_box.setColor(QPalette.Base, Qt.transparent)

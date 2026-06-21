@@ -57,7 +57,6 @@ class App_default(QWidget):
 
         self.typing=False
 
-        
         self.background = QLabel(self)
         self.background.setGeometry(0, 0, 1600, 900)
         self.background.setPixmap(QPixmap("background.png").scaled(1600, 900))
@@ -118,32 +117,32 @@ class Button(App_default): # 버튼. chapterr 1, chapter2에서 사용!
         self.x = 100 # 버튼의 가로 사이즈
         self.y = 100 # 버튼의 세로 사이즈/
 
-        self.note = ClickableLabel("image1.png", self)
+        self.note = ClickableLabel("note.png", self)
         self.note.setGeometry(500, 410, self.x, self.y)
         self.note.clicked.connect(self.on_click_note)
         self.note.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.butterfly = ClickableLabel("image1.png", self)
+        self.butterfly = ClickableLabel("butterfly.png", self)
         self.butterfly.setGeometry(500,10,self.x, self.y)
         self.butterfly.clicked.connect(self.on_click_butterfly)
         self.butterfly.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.volt = ClickableLabel("image.png",self) # "" 사이에 이미지 경로 넣기!
+        self.volt = ClickableLabel("volt.png",self) # "" 사이에 이미지 경로 넣기!
         self.volt.setGeometry(1000, 100, self.x, self.y)
         self.volt.clicked.connect(self.on_click_volt)
         self.volt.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.colombina = ClickableLabel("image1.png", self) # "" 사이에 이미지 경로 넣기!
+        self.colombina = ClickableLabel("colombina.png", self) # "" 사이에 이미지 경로 넣기!
         self.colombina.setGeometry(50, 230, self.x, self.y)
         self.colombina.clicked.connect(self.on_click_colombina)
         self.colombina.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.crow = ClickableLabel("image1.png", self)
+        self.crow = ClickableLabel("crow.png", self)
         self.crow.setGeometry(50, 320, self.x, self.y)
         self.crow.clicked.connect(self.on_click_crow)
         self.crow.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.moreta = ClickableLabel("image1.png", self)
+        self.moreta = ClickableLabel("moreta.png", self)
         self.moreta.setGeometry(50, 410, self.x, self.y)
         self.moreta.clicked.connect(self.on_click_moreta)
         self.moreta.setCursor(QCursor(Qt.PointingHandCursor))
@@ -199,10 +198,8 @@ class startdisplay(App_default):
         self.x = 200
         self.y=80
 
-        self.setAutoFillBackground(True) # 배경 자동 채움 True
-        palette = self.palette() # palette에 self.palette 메소드 저장
-        palette.setColor(QPalette.Window, QColor("black")) # 배경을 검정색으로 지정
-        self.setPalette(palette) # palette 실행
+        self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
+        self.background.lower()  # 제일 뒤로
 
         self.label = QLabel("옥장판", self) 
         self.label.setGeometry(625, 300, 300, 100)

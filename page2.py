@@ -13,7 +13,7 @@ class Chapter2(Button):
         
         # 버튼 클릭 시 범인 후보 3명을 띄워줌.
         self.cri_slct = QPushButton("범인 선택하기", self) # 버튼 생성, 범인 선택하기를 누르면 다른 버튼들이 안 보이고 범인을 선택하는 창이 나타남.
-        # self.cri_slct.hide()
+        self.cri_slct.hide()
         self.cri_slct.setGeometry(1370, 765, self.x, self.y)
         self.cri_slct.clicked.connect(self.criminal_show)
         self.cri_slct.setCursor(QCursor(Qt.PointingHandCursor))
@@ -45,10 +45,48 @@ class Chapter2(Button):
         self.btn_cri3.clicked.connect(self.nocriminal)
         self.btn_cri3.setCursor(QCursor(Qt.PointingHandCursor))
 
+        self.cri_slct.hide()
+        self.butterfly.hide()
+        self.colombina.hide()
+        self.note.hide()
+        self.volt.hide()
+        self.crow.hide()
+        self.moreta.hide()
+        self.subtitle.raise_()
         
-        self.message = ["당신은 흩어진 증거를 모아 퍼즐을 맞추어 가기 시작했다.",
+        self.messages = ["당신은 흩어진 증거를 모아 퍼즐을 맞추어 가기 시작했다.",
                         "모든 증언은 부서진 유리 조각과 같다. 날카롭고 위험하며, 함부로 만졌다간 진실보다 먼저 상처를 입게 된다.",
                         "이제 진실은 질문 속에 있고, 정답은 교묘한 대답 뒤에 숨어 있다. 당신의 날카로운 추리력을 발현하여 정교하게 설계된 거짓말의 빈틈을 파고 들어 이 비극의 마침표를 찍을 진범을 가려내야 한다."]
+        self._start_typing(self.q)
+
+    def mousePressEvent(self, a0):
+        if self.typing:
+            self._finish_typing_immediately()
+            return
+        if self.q==0:
+            self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
+            self.background.lower()  # 제일 뒤로
+        elif self.q==1:
+            self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
+            self.background.lower()  # 제일 뒤로
+        elif self.q==2:
+            pass
+        else:
+            self.background.setPixmap(QPixmap("background.png").scaled(1600, 900))
+            self.background.lower()  # 제일 뒤로
+            self.cri_slct.show()
+            self.butterfly.show()
+            self.colombina.show()
+            self.note.show()
+            self.volt.show()
+            self.crow.show()
+            self.moreta.show()
+            self.subtitle.hide()
+
+        self.q+=1
+        self._start_typing(self.q)
+
+
 
     def criminal_show(self): # 범인 선택 버튼 클릭시 실행
         self.btn_cri1.show() 
