@@ -24,10 +24,12 @@ class TrueEnding(ending):
     
     def mousePressEvent(self, a0):
         if self.q==0:
-            self.background.setPixmap(QPixmap("happyending.png").scaled(1600, 900))
+            self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
         elif self.q==1:
             pass
+        self.q+=1
+        self._start_typing(self.q)
 
 
 class FalseEnding(ending):
@@ -52,3 +54,4 @@ class FalseEnding(ending):
         elif self.q==5:
             pass
         self.q+=1
+        self._start_typing(self.q)
