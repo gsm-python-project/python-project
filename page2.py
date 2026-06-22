@@ -89,8 +89,10 @@ class Chapter2(Button):
         self.q+=1
         self._start_typing(self.q)
 
-
-
+    def showEvent(self, a0):
+        super().showEvent(a0)
+        self.play_bgm("chapter1.mp3")
+        
     def criminal_show(self): # 범인 선택 버튼 클릭시 실행
         self.btn_cri1.show() 
         self.btn_cri2.show()
@@ -112,6 +114,7 @@ class Chapter2(Button):
         return self.chapter2_end()
 
     def on_click_chapter2(self):
+        self.stop_bgm()
         self.stack.setCurrentIndex(self.result) # 위 저장 값에 따라 어떤 엔딩이 달라짐!!
 
     def chapter2_end(self):

@@ -11,6 +11,8 @@ class prologue(App_default):
         self.x=200
         self.y=100
 
+        self.play_bgm("prologue.mp3")
+
         self.messages = [
             "화려한 샹들리에 아래, 최고 부자로 소문난 남작의 가면 무도회에 초대된 당신은 아끼던 휴가까지 써가며 이 대저택에 왔다.",
             "기대에 걸맞은 화려함과 여러 사치품, 그리고 가면을 쓴 귀족들의 웃음 소리가 연회장을 가득 채우고 있었다.",  # q==1: 대사 없음
@@ -66,5 +68,6 @@ class prologue(App_default):
         self._start_typing(self.q)
 
     def on_click_prologue(self): # 버튼 클릭 시 인덱스가 1인 페이지로 넘어가게 해주는 함수
+        self.stop_bgm()
         self.stack.setCurrentIndex(1) 
 

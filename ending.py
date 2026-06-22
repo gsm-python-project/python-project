@@ -35,11 +35,16 @@ class TrueEnding(ending):
                         "당신은 뒤도 돌아보지 않고 저택을 나섰다. 그의 등 뒤로는 화려했던 무도회장의 불빛이 하나 둘 꺼져가고 있었다.",
                         "남작이 탐욕으로 쌓아 올린 성벽은 진실이라는 단 하나의 균열 앞에 허망하게 무너져 내렸다.",
                         "무대는 끝났고, 배우는 사라졌으며, 이제 오직 진실만이 황폐한 저택의 객석을 지키고 있었다.",
-                        "GAMECLEAR - 완벽한 거짓은 존재하지 않는다."]
+                        "< 완벽한 거짓은 존재하지 않는다. >"]
         
         
         self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
+
+    
+    def showEvent(self, a0):
+        super().showEvent(a0)
+        self.play_bgm("chapter1.mp3")
     
     def mousePressEvent(self, a0):
         if self.typing:
@@ -53,7 +58,7 @@ class TrueEnding(ending):
             font=QFont()
             font.setPointSize(27)
             self.subtitle.setFont(font)
-            self.subtitle.setGeometry(200,300,1500,200)
+            self.subtitle.setGeometry(200,370,1500,200)
         self.q+=1
         self._start_typing(self.q)
 
@@ -62,6 +67,7 @@ class FalseEnding(ending):
     def __init__(self, stack):
         super().__init__()
         self.stack = stack # stack에 mainfront 클래스 저장
+        
 
         self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
@@ -73,9 +79,11 @@ class FalseEnding(ending):
                       "억울한 희생자가 끌려가는 동안, 저 멀리 어둠 속에서 누군가 남은 와인을 비우며 조용히 미소지었다.",
                       "잘못 끼워진 퍼즐 조각은 결코 진실에 닿을 수 없다.",
                       "저택에 남은 것은 싸늘한 시신과, 영원히 가면 뒤에 숨어버린 진짜 괴물의 웃음소리뿐이다.",
-                      "GAMEOVER - 당신은 진실을 놓쳤습니다."] #q=5
+                      "< 당신은 진실을 놓쳤습니다. >"] #q=5
         
-
+    def showEvent(self, a0):
+        super().showEvent(a0)
+        self.play_bgm("chapter1.mp3")
     def mousePressEvent(self, a0):
         if self.typing:
             self._finish_typing_immediately()
@@ -90,6 +98,6 @@ class FalseEnding(ending):
             font=QFont()
             font.setPointSize(27)
             self.subtitle.setFont(font)
-            self.subtitle.setGeometry(200,300,1500,200)
+            self.subtitle.setGeometry(200,370,1500,200)
         self.q+=1
         self._start_typing(self.q)

@@ -826,7 +826,9 @@ class moreta(Character):
     
     def answer(self, user_input):
         if user_input in "자살" and user_input in "까마귀":
-            return ""
+            return "... (범인은 볼토라고 중얼거리는 듯하다.)"
+        else:
+            return "..."
         
 
 

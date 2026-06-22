@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 
 
 class Mainfront(QStackedWidget):
@@ -48,7 +49,6 @@ class Mainfront(QStackedWidget):
 
         self.setCurrentIndex(6) # 인덱스가 6인 페이지(start)로 이동.
 
-
 class App_default(QWidget):
     def __init__(self):
         super().__init__()
@@ -81,6 +81,25 @@ class App_default(QWidget):
         font=QFont()
         font.setPointSize(15)
         self.subtitle.setFont(font)
+
+        self.player = QMediaPlayer(self)
+        self.play_bgm("chapter1.mp3")
+
+    def play_bgm(self, file_path, loop=True): #loop=True -> 무한반복
+        self.player.setMedia(QMediaContent(QUrl.fromLocalFile(file_path)))
+        self.player.setVolume(50)
+        self.player.play()
+
+        if loop:
+            self.player.mediaStatusChanged.connect(self._loop_music)
+
+    def _loop_music(self, status):
+        if status == QMediaPlayer.EndOfMedia:
+            self.player.setPosition(0)
+            self.player.play()
+
+    def stop_bgm(self):
+        self.player.stop()
 
     def _start_typing(self, index):
         if index >= len(self.messages):
@@ -117,32 +136,32 @@ class Button(App_default): # 버튼. chapterr 1, chapter2에서 사용!
         self.y = 100 # 버튼의 세로 사이즈/
 
         self.note = ClickableLabel("note.png", self)
-        self.note.setGeometry(500, 410, self.x, self.y)
+        self.note.setGeometry(1480, 20, self.x, self.y)
         self.note.clicked.connect(self.on_click_note)
         self.note.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.butterfly = ClickableLabel("butterfly.png", self)
-        self.butterfly.setGeometry(500,10,self.x, self.y)
+        self.butterfly.setGeometry(1020, 310, self.x, self.y)
         self.butterfly.clicked.connect(self.on_click_butterfly)
         self.butterfly.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.volt = ClickableLabel("volt.png",self) # "" 사이에 이미지 경로 넣기!
-        self.volt.setGeometry(1000, 100, self.x, self.y)
+        self.volt.setGeometry(190, 450, self.x, self.y)
         self.volt.clicked.connect(self.on_click_volt)
         self.volt.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.colombina = ClickableLabel("colombina.png", self) # "" 사이에 이미지 경로 넣기!
-        self.colombina.setGeometry(50, 230, self.x, self.y)
+        self.colombina.setGeometry(650, 410, self.x, self.y)
         self.colombina.clicked.connect(self.on_click_colombina)
         self.colombina.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.crow = ClickableLabel("crow.png", self)
-        self.crow.setGeometry(50, 320, self.x, self.y)
+        self.crow.setGeometry(1180, 570, self.x, self.y)
         self.crow.clicked.connect(self.on_click_crow)
         self.crow.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.moreta = ClickableLabel("moreta.png", self)
-        self.moreta.setGeometry(50, 410, self.x, self.y)
+        self.moreta.setGeometry(1350, 310, self.x, self.y)
         self.moreta.clicked.connect(self.on_click_moreta)
         self.moreta.setCursor(QCursor(Qt.PointingHandCursor))
 
