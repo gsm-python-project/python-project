@@ -21,7 +21,7 @@ class Answer_default(App_default):
 
         self.chat_log = QTextEdit(self)
         self.chat_log.setReadOnly(True)
-        self.chat_log.setGeometry(500, 0, 1100, 750)  # 둘 다 고정
+        self.chat_log.setGeometry(800, 0, 800, 750)  # 둘 다 고정
 
         palette_chat_log = self.chat_log.palette()
         palette_chat_log.setColor(QPalette.Base, Qt.transparent)
@@ -29,12 +29,13 @@ class Answer_default(App_default):
         self.chat_log.setPalette(palette_chat_log)
 
         self.back = QPushButton("돌아가기", self)
-        self.back.setGeometry(20, 200, 100, 50)
+        self.back.setGeometry(20, 0, 100, 50)
         self.back.clicked.connect(self.on_click_back)
         self.back.setCursor(QCursor(Qt.PointingHandCursor))
+        self.back.raise_()
 
         self.send = QPushButton("전송", self)
-        self.send.setGeometry(1500, 700, 200, 100)
+        self.send.setGeometry(1400, 800, 200, 100)
         self.send.clicked.connect(self.on_click_send)
         self.send.setCursor(QCursor(Qt.PointingHandCursor))
         self.send.setShortcut('Return')
@@ -54,12 +55,13 @@ class Answer_default(App_default):
         font.setPointSize(12)  # 글자 크기
         self.chat_log.setFont(font)
         self.input_box.setFont(font)
+        self.back.raise_()
 
     def set_chatlog(self, character):
         self.character = character
         self.chat_log.clear()
         pixmap=QPixmap(f"{character.name}.png")
-        self.character_img.setPixmap(pixmap.scaled(500, 900, Qt.KeepAspectRatio))
+        self.character_img.setPixmap(pixmap.scaled(800, 900, Qt.KeepAspectRatio))
 
         for sender, msg in character.history:
             self.chat_log.append(f"{sender}:{msg}")

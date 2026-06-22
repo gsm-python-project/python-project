@@ -25,7 +25,6 @@ class Mainfront(QStackedWidget):
         from page2 import Chapter2
         from ending import TrueEnding, FalseEnding
         from answerUI import Answer_default
-        from CharacterProfile import Profile, Character_Profile # 파일 이름을 profile로 하니 모듈 profile로 인식해서 파일 이름 변경
 
         self.prologue = prologue(self) # 변수에 추가
         self.chapter1 = Chapter1(self, self.characters)  # 캐릭터 넘겨주기
@@ -34,8 +33,6 @@ class Mainfront(QStackedWidget):
         self.falseending = FalseEnding(self)
         self.answerUI= Answer_default(self)
         self.startUI=startdisplay(self)
-        self.profileMain = Profile(self, self.characters)
-        self.profile_character = Character_Profile(self, self.characters)
 
         self.addWidget(self.prologue) # 페이지 추가 인덱스:0
         self.addWidget(self.chapter1) # 인덱스:1
@@ -44,8 +41,6 @@ class Mainfront(QStackedWidget):
         self.addWidget(self.falseending) # 인덱스:4
         self.addWidget(self.answerUI) # 인덱스:5
         self.addWidget(self.startUI) # 인덱스:6
-        self.addWidget(self.profileMain) # 인덱스: 7
-        self.addWidget(self.profile_character) # 인덱스: 8
 
         self.setCurrentIndex(6) # 인덱스가 6인 페이지(start)로 이동.
 
@@ -83,7 +78,6 @@ class App_default(QWidget):
         self.subtitle.setFont(font)
 
         self.player = QMediaPlayer(self)
-        self.play_bgm("chapter1.mp3")
 
     def play_bgm(self, file_path, loop=True): #loop=True -> 무한반복
         self.player.setMedia(QMediaContent(QUrl.fromLocalFile(file_path)))
@@ -132,36 +126,31 @@ class Button(App_default): # 버튼. chapterr 1, chapter2에서 사용!
         super().__init__()
 
         self.stack= stack
-        self.x = 100 # 버튼의 가로 사이즈
-        self.y = 100 # 버튼의 세로 사이즈/
-
-        self.note = ClickableLabel("note.png", self)
-        self.note.setGeometry(1480, 20, self.x, self.y)
-        self.note.clicked.connect(self.on_click_note)
-        self.note.setCursor(QCursor(Qt.PointingHandCursor))
+        self.x = 200 # 버튼의 가로 사이즈
+        self.y = 300 # 버튼의 세로 사이즈/
 
         self.butterfly = ClickableLabel("butterfly.png", self)
-        self.butterfly.setGeometry(1020, 310, self.x, self.y)
+        self.butterfly.setGeometry(820, 210, self.x, self.y)
         self.butterfly.clicked.connect(self.on_click_butterfly)
         self.butterfly.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.volt = ClickableLabel("volt.png",self) # "" 사이에 이미지 경로 넣기!
-        self.volt.setGeometry(190, 450, self.x, self.y)
+        self.volt.setGeometry(90, 350, self.x, self.y)
         self.volt.clicked.connect(self.on_click_volt)
         self.volt.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.colombina = ClickableLabel("colombina.png", self) # "" 사이에 이미지 경로 넣기!
-        self.colombina.setGeometry(650, 410, self.x, self.y)
+        self.colombina.setGeometry(450, 310, self.x, self.y)
         self.colombina.clicked.connect(self.on_click_colombina)
         self.colombina.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.crow = ClickableLabel("crow.png", self)
-        self.crow.setGeometry(1180, 570, self.x, self.y)
+        self.crow.setGeometry(980, 470, self.x, self.y)
         self.crow.clicked.connect(self.on_click_crow)
         self.crow.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.moreta = ClickableLabel("moreta.png", self)
-        self.moreta.setGeometry(1350, 310, self.x, self.y)
+        self.moreta.setGeometry(1150, 310, self.x, self.y)
         self.moreta.clicked.connect(self.on_click_moreta)
         self.moreta.setCursor(QCursor(Qt.PointingHandCursor))
 
@@ -202,7 +191,9 @@ class ClickableLabel(QLabel): # 이미지 기본 설정 클래스
         super().__init__(parent)
         pixmap = QPixmap(image_path) # pixmap 메소드로 imagepath 저장
         self.setPixmap(pixmap)
-        self.setPixmap(pixmap.scaled(1000, 80, Qt.KeepAspectRatio)) # 크기
+        self.setPixmap(pixmap.scaled(200, 300, Qt.KeepAspectRatio, Qt.SmoothTransformation)) # 크기
+
+        self.resize(pixmap.size()) 
         
     def mousePressEvent(self, ev):
         if ev.button() == Qt.LeftButton:

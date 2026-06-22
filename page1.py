@@ -16,7 +16,8 @@ class Chapter1(Button):
 
     def showEvent(self, a0):
         super().showEvent(a0)
-        self.play_bgm("chapter1.mp3")
+        if self.stack.currentWidget() is self:
+            self.play_bgm("chapter1.mp3")
 
     def on_click_chapter1(self): # 인덱스가 2인 페이지로 넘어가게 해주는 함수.
         self.stack.answerUI.chapter = 2

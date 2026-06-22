@@ -44,7 +44,8 @@ class TrueEnding(ending):
     
     def showEvent(self, a0):
         super().showEvent(a0)
-        self.play_bgm("chapter1.mp3")
+        if self.stack.currentWidget() is self:
+            self.play_bgm("chapter1.mp3")
     
     def mousePressEvent(self, a0):
         if self.typing:
@@ -83,7 +84,9 @@ class FalseEnding(ending):
         
     def showEvent(self, a0):
         super().showEvent(a0)
-        self.play_bgm("chapter1.mp3")
+        if self.stack.currentWidget() is self:
+            self.play_bgm("chapter1.mp3")
+
     def mousePressEvent(self, a0):
         if self.typing:
             self._finish_typing_immediately()
@@ -93,11 +96,18 @@ class FalseEnding(ending):
             pass
         elif self.q==1:
             pass
+        elif self.q==4:
+            
+            self.background.setPixmap(QPixmap("falseending.png").scaled(1600, 900))
+            self.background.lower()  # 제일 뒤로
         elif self.q==5:
             self._typing_timer.setInterval(100)
             font=QFont()
             font.setPointSize(27)
+            palette = self.subtitle.palette()
+            palette.setColor(QPalette.ColorRole.WindowText, QColor(161, 161, 161))
+            self.subtitle.setPalette(palette)
             self.subtitle.setFont(font)
-            self.subtitle.setGeometry(200,370,1500,200)
+            self.subtitle.setGeometry(100,370,1500,200)
         self.q+=1
         self._start_typing(self.q)

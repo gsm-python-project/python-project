@@ -11,6 +11,7 @@ class prologue(App_default):
         self.x=200
         self.y=100
 
+
         self.play_bgm("prologue.mp3")
 
         self.messages = [
