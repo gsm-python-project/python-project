@@ -53,8 +53,13 @@ class Chapter2(Button):
         self.crow.hide()
         self.moreta.hide()
         self.subtitle.raise_()
+
+        self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
+        self.background.lower()  # 제일 뒤로
         
-        self.messages = ["당신은 흩어진 증거를 모아 퍼즐을 맞추어 가기 시작했다.",
+        
+        self.messages = ["",
+                        "당신은 흩어진 증거를 모아 퍼즐을 맞추어 가기 시작했다.",
                         "모든 증언은 부서진 유리 조각과 같다. 날카롭고 위험하며, 함부로 만졌다간 진실보다 먼저 상처를 입게 된다.",
                         "이제 진실은 질문 속에 있고, 정답은 교묘한 대답 뒤에 숨어 있다. 당신의 날카로운 추리력을 발현하여 정교하게 설계된 거짓말의 빈틈을 파고 들어 이 비극의 마침표를 찍을 진범을 가려내야 한다."]
         self._start_typing(self.q)
@@ -69,7 +74,7 @@ class Chapter2(Button):
         elif self.q==1:
             self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
-        else:
+        elif self.q==3:
             self.background.setPixmap(QPixmap("background.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
             self.cri_slct.show()
@@ -90,13 +95,13 @@ class Chapter2(Button):
         self.btn_cri1.show() 
         self.btn_cri2.show()
         self.btn_cri3.show()
-        self.cri_slct.hide()
-        self.butterfly.hide()
-        self.colombina.hide()
-        self.note.hide()
-        self.volt.hide()
-        self.crow.hide()
-        self.moreta.hide()
+        self.cri_slct.deleteLater()
+        self.butterfly.deleteLater()
+        self.colombina.deleteLater()
+        self.note.deleteLater()
+        self.volt.deleteLater()
+        self.crow.deleteLater()
+        self.moreta.deleteLater()
 
     def criminal(self):
         self.result = 3 # result라는 변수에 3 저장

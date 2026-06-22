@@ -61,7 +61,6 @@ class prologue(App_default):
             self.background.lower()  # 제일 뒤로
         elif self.q==13:
             self.btn_next_prologue.show()
-
     
         self.q+=1
         self._start_typing(self.q)
