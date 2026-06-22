@@ -83,7 +83,6 @@ class App_default(QWidget):
         self.subtitle.setFont(font)
 
     def _start_typing(self, index):
-        """해당 인덱스의 대사를 타이핑 시작"""
         if index >= len(self.messages):
             self.subtitle.setText("")
             return

@@ -63,7 +63,6 @@ class FalseEnding(ending):
         super().__init__()
         self.stack = stack # stack에 mainfront 클래스 저장
 
-        
         self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
