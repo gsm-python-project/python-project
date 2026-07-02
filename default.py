@@ -26,7 +26,7 @@ class Mainfront(QStackedWidget):
         from ending import TrueEnding, FalseEnding, HiddenEnding
         from answerUI import Answer_default
         from CharacterProfile import Profile, Character_Profile # 파일 이름을 profile로 하니 모듈 profile로 인식해서 파일 이름 변경
-        from evidence import evidence
+        from evidence import evidence, slect, evidence2
 
         self.prologue = prologue(self) # 변수에 추가
         self.chapter1 = Chapter1(self, self.characters)  # 캐릭터 넘겨주기
@@ -39,6 +39,8 @@ class Mainfront(QStackedWidget):
         self.profile_character = Character_Profile(self, self.characters)
         self.hiddenending = HiddenEnding(self)
         self.evidence = evidence(self)
+        self.slect=slect(self)
+        self.evidence2=evidence2(self)
 
         self.addWidget(self.prologue) # 페이지 추가 인덱스:0
         self.addWidget(self.chapter1) # 인덱스:1
@@ -50,6 +52,9 @@ class Mainfront(QStackedWidget):
         self.addWidget(self.profileMain) # 인덱스: 7
         self.addWidget(self.profile_character) # 인덱스: 8
         self.addWidget(self.hiddenending) # 인덱스: 9
+        self.addWidget(self.evidence)
+        self.addWidget(self.slect)
+        self.addWidget(self.evidence2)
 
         self.setCurrentIndex(6) # 인덱스가 6인 페이지(start)로 이동.
 
