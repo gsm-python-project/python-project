@@ -51,6 +51,7 @@ class Chapter2(Button):
         self.volt.hide()
         self.crow.hide()
         self.moreta.hide()
+        self.note.hide()
         self.subtitle.raise_()
 
         self.background.setPixmap(QPixmap("png/black.png").scaled(1600, 900))
@@ -82,6 +83,7 @@ class Chapter2(Button):
             self.volt.show()
             self.crow.show()
             self.moreta.show()
+            self.note.show()
             self.subtitle.hide()
 
         self.q+=1
@@ -102,6 +104,7 @@ class Chapter2(Button):
         self.volt.deleteLater()
         self.crow.deleteLater()
         self.moreta.deleteLater()
+        self.note.deleteLater()
 
     def criminal(self):
         self.result = 3 # result라는 변수에 3 저장

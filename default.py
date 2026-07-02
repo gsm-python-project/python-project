@@ -17,18 +17,16 @@ class Mainfront(QStackedWidget):
             "cri2" : volt(), # 변수에 butterfly 클래스 저장
             "cri3" : colombina(),
             "npc1" : crow(),
-            "npc2" : moreta()
+            "npc2" : moreta(self)
         }
-
-        from CHARACTER import moreta
-        moreta(self)
 
         from page0 import prologue # import문, 각 챕터랑 엔딩을 불러온다.
         from page1 import Chapter1
         from page2 import Chapter2
-        from ending import TrueEnding, FalseEnding
+        from ending import TrueEnding, FalseEnding, HiddenEnding
         from answerUI import Answer_default
         from CharacterProfile import Profile, Character_Profile # 파일 이름을 profile로 하니 모듈 profile로 인식해서 파일 이름 변경
+        from evidence import evidence
 
         self.prologue = prologue(self) # 변수에 추가
         self.chapter1 = Chapter1(self, self.characters)  # 캐릭터 넘겨주기
@@ -39,6 +37,8 @@ class Mainfront(QStackedWidget):
         self.startUI=startdisplay(self)
         self.profileMain = Profile(self, self.characters)
         self.profile_character = Character_Profile(self, self.characters)
+        self.hiddenending = HiddenEnding(self)
+        self.evidence = evidence(self)
 
         self.addWidget(self.prologue) # 페이지 추가 인덱스:0
         self.addWidget(self.chapter1) # 인덱스:1
@@ -49,6 +49,7 @@ class Mainfront(QStackedWidget):
         self.addWidget(self.startUI) # 인덱스:6
         self.addWidget(self.profileMain) # 인덱스: 7
         self.addWidget(self.profile_character) # 인덱스: 8
+        self.addWidget(self.hiddenending) # 인덱스: 9
 
         self.setCurrentIndex(6) # 인덱스가 6인 페이지(start)로 이동.
 
@@ -82,16 +83,12 @@ class App_default(QWidget):
         self.subtitle.setPalette(palette)
 
         font_path="fonts/defaultfonts.otf"
-        font_id=QFontDatabase.applicationFontFamilies(font_path)
+        font_id=QFontDatabase.addApplicationFont(font_path)
 
         if font_id != -1:
-            font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
-            global_font=QFont(font_family, 15)
-            self.subtitle.setFont(global_font)
-
-        font=QFont()
-        font.setPointSize(15)
-        self.subtitle.setFont(font)
+            self.font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
+            self.global_font=QFont(self.font_family, 15)
+            self.subtitle.setFont(self.global_font)
 
         self.player = QMediaPlayer(self)
 

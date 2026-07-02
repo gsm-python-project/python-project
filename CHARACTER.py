@@ -622,10 +622,9 @@ class moreta(Character):
 
     def answer(self, user_input):
         if "자살" in user_input and "까마귀" in user_input:
-            self.stack.setCurrentIndex()
+            self.stack.setCurrentIndex(9)
         else:
             return "..."
-        
 
 
 class Answer_Fail(QDialog): # 대화 횟수가 0일 때 살행하는 팝업창

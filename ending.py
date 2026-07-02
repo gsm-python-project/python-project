@@ -56,9 +56,8 @@ class TrueEnding(ending):
             self.background.lower()  # 제일 뒤로
         elif self.q==22:
             self._typing_timer.setInterval(100)
-            font=QFont()
-            font.setPointSize(27)
-            self.subtitle.setFont(font)
+            self.global_font=QFont(self.font_family, 27)
+            self.subtitle.setFont(self.global_font)
             self.subtitle.setGeometry(200,370,1500,200)
         self.q+=1
         self._start_typing(self.q)
@@ -102,20 +101,22 @@ class FalseEnding(ending):
             self.background.lower()  # 제일 뒤로
         elif self.q==5:
             self._typing_timer.setInterval(100)
-            font=QFont()
-            font.setPointSize(27)
+            self.global_font=QFont(self.font_family, 27)
+            self.subtitle.setFont(self.global_font)
+            self.subtitle.setGeometry(100,370,1500,200)
+            
             palette = self.subtitle.palette()
             palette.setColor(QPalette.ColorRole.WindowText, QColor(161, 161, 161))
             self.subtitle.setPalette(palette)
-            self.subtitle.setFont(font)
-            self.subtitle.setGeometry(100,370,1500,200)
+            
         self.q+=1
         self._start_typing(self.q)
 
 
 class HiddenEnding(ending):
-    def __init__(self):
+    def __init__(self, stack):
         super().__init__()
+        self.stack=stack
 
     def mousePressEvent(self, a0):
         pass
