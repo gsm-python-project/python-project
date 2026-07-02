@@ -119,7 +119,15 @@ class HiddenEnding(ending):
         self.stack=stack
 
     def mousePressEvent(self, a0):
-        pass
+        if self.typing:
+            self._finish_typing_immediately()
+            return
+        
+        if self.q==0:
+            pass
+
+        self.q+=1
+        self._start_typing(self.q)
 
     def showEvent(self, a0):
         super().showEvent(a0)

@@ -52,9 +52,9 @@ class Mainfront(QStackedWidget):
         self.addWidget(self.profileMain) # 인덱스: 7
         self.addWidget(self.profile_character) # 인덱스: 8
         self.addWidget(self.hiddenending) # 인덱스: 9
-        self.addWidget(self.evidence)
-        self.addWidget(self.slect)
-        self.addWidget(self.evidence2)
+        self.addWidget(self.evidence) # 인덱스: 10
+        self.addWidget(self.slect) # 인덱스: 11
+        self.addWidget(self.evidence2) # 인덱스: 12
 
         self.setCurrentIndex(6) # 인덱스가 6인 페이지(start)로 이동.
 
@@ -221,6 +221,7 @@ class ClickableLabel(QLabel): # 이미지 기본 설정 클래스
     def mousePressEvent(self, ev):
         if ev.button() == Qt.LeftButton:
             self.clicked.emit()
+            
 
 class startdisplay(App_default):
     def __init__(self, stack):
