@@ -20,6 +20,20 @@ class evidence(App_default):
         self.smile.clicked.connect(self.on_click_note)
         self.smile.setCursor(QCursor(Qt.PointingHandCursor))
 
+        self.imprint = ClickableLabel("png/.png", self)
+        self.imprint.setGeometry(1480, 20, self.x, self.y)
+        self.imprint.clicked.connect(self.on_click_imprint)
+        self.imprint.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.hurt = ClickableLabel("png/.png", self)
+        self.hurt.setGeometry(1480, 20, self.x, self.y)
+        self.hurt.clicked.connect(self.on_click_imprint)
+        self.hurt.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.ink=ClickableLabel("png/.png", self)
+        self.ink.setGeometry(1480, 20, self.x, self.y)
+        self.ink.clicked.connect(self.on_click_imprint)
+        self.ink.setCursor(QCursor(Qt.PointingHandCursor))
         
 
 class slect(App_default):
@@ -30,7 +44,21 @@ class slect(App_default):
         self.background.setPixmap(QPixmap("png/.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
+        from default import ClickableLabel
+        self.study=ClickableLabel("png/.png", self)
+        self.study.setGeometry(1480, 20, self.x, self.y)
+        self.study.clicked.connect(self.on_click_imprint)
+        self.study.setCursor(QCursor(Qt.PointingHandCursor))
         
+        self.storage=ClickableLabel("png/.png", self)
+        self.storage.setGeometry(1480, 20, self.x, self.y)
+        self.storage.clicked.connect(self.on_click_imprint)
+        self.storage.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.bookstore=ClickableLabel("png/.png", self)
+        self.bookstore.setGeometry(1480, 20, self.x, self.y)
+        self.bookstore.clicked.connect(self.on_click_imprint)
+        self.bookstore.setCursor(QCursor(Qt.PointingHandCursor))
 
 
 class evidence2(App_default):
