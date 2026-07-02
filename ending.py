@@ -38,21 +38,21 @@ class TrueEnding(ending):
                         "< 완벽한 거짓은 존재하지 않는다. >"]
         
         
-        self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
+        self.background.setPixmap(QPixmap("png/black.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
     
     def showEvent(self, a0):
         super().showEvent(a0)
         if self.stack.currentWidget() is self:
-            self.play_bgm("chapter1.mp3")
+            self.play_bgm("bgm/TrueEnding.mp3")
     
     def mousePressEvent(self, a0):
         if self.typing:
             self._finish_typing_immediately()
             return
         if self.q==0:
-            self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
+            self.background.setPixmap(QPixmap("png/black.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
         elif self.q==22:
             self._typing_timer.setInterval(100)
@@ -70,7 +70,7 @@ class FalseEnding(ending):
         self.stack = stack # stack에 mainfront 클래스 저장
         
 
-        self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
+        self.background.setPixmap(QPixmap("png/black.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
         self.messages=["",
@@ -85,7 +85,7 @@ class FalseEnding(ending):
     def showEvent(self, a0):
         super().showEvent(a0)
         if self.stack.currentWidget() is self:
-            self.play_bgm("chapter1.mp3")
+            self.play_bgm("bgm/FalseEnding.mp3")
 
     def mousePressEvent(self, a0):
         if self.typing:
@@ -98,7 +98,7 @@ class FalseEnding(ending):
             pass
         elif self.q==4:
             
-            self.background.setPixmap(QPixmap("falseending.png").scaled(1600, 900))
+            self.background.setPixmap(QPixmap("png/falseending.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
         elif self.q==5:
             self._typing_timer.setInterval(100)
@@ -111,3 +111,16 @@ class FalseEnding(ending):
             self.subtitle.setGeometry(100,370,1500,200)
         self.q+=1
         self._start_typing(self.q)
+
+
+class HiddenEnding(ending):
+    def __init__(self):
+        super().__init__()
+
+    def mousePressEvent(self, a0):
+        pass
+
+    def showEvent(self, a0):
+        super().showEvent(a0)
+        if self.stack.currentWidget() is self:
+            self.play_bgm("bgm/HiddenEnding.mp3")

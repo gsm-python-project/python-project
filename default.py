@@ -20,11 +20,15 @@ class Mainfront(QStackedWidget):
             "npc2" : moreta()
         }
 
+        from CHARACTER import moreta
+        moreta(self)
+
         from page0 import prologue # import문, 각 챕터랑 엔딩을 불러온다.
         from page1 import Chapter1
         from page2 import Chapter2
         from ending import TrueEnding, FalseEnding
         from answerUI import Answer_default
+        from CharacterProfile import Profile, Character_Profile # 파일 이름을 profile로 하니 모듈 profile로 인식해서 파일 이름 변경
 
         self.prologue = prologue(self) # 변수에 추가
         self.chapter1 = Chapter1(self, self.characters)  # 캐릭터 넘겨주기
@@ -33,6 +37,8 @@ class Mainfront(QStackedWidget):
         self.falseending = FalseEnding(self)
         self.answerUI= Answer_default(self)
         self.startUI=startdisplay(self)
+        self.profileMain = Profile(self, self.characters)
+        self.profile_character = Character_Profile(self, self.characters)
 
         self.addWidget(self.prologue) # 페이지 추가 인덱스:0
         self.addWidget(self.chapter1) # 인덱스:1
@@ -41,6 +47,8 @@ class Mainfront(QStackedWidget):
         self.addWidget(self.falseending) # 인덱스:4
         self.addWidget(self.answerUI) # 인덱스:5
         self.addWidget(self.startUI) # 인덱스:6
+        self.addWidget(self.profileMain) # 인덱스: 7
+        self.addWidget(self.profile_character) # 인덱스: 8
 
         self.setCurrentIndex(6) # 인덱스가 6인 페이지(start)로 이동.
 
@@ -54,7 +62,7 @@ class App_default(QWidget):
 
         self.background = QLabel(self)
         self.background.setGeometry(0, 0, 1600, 900)
-        self.background.setPixmap(QPixmap("background.png").scaled(1600, 900))
+        self.background.setPixmap(QPixmap("png/background.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
         
         self.subtitle=QLabel(self)
@@ -72,6 +80,14 @@ class App_default(QWidget):
         palette = self.subtitle.palette()
         palette.setColor(QPalette.ColorRole.WindowText, QColor(255, 255, 255))
         self.subtitle.setPalette(palette)
+
+        font_path="fonts/defaultfonts.otf"
+        font_id=QFontDatabase.applicationFontFamilies(font_path)
+
+        if font_id != -1:
+            font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
+            global_font=QFont(font_family, 15)
+            self.subtitle.setFont(global_font)
 
         font=QFont()
         font.setPointSize(15)
@@ -129,27 +145,32 @@ class Button(App_default): # 버튼. chapterr 1, chapter2에서 사용!
         self.x = 200 # 버튼의 가로 사이즈
         self.y = 300 # 버튼의 세로 사이즈/
 
-        self.butterfly = ClickableLabel("butterfly.png", self)
+        self.note = ClickableLabel("png/note.png", self)
+        self.note.setGeometry(1480, 20, self.x, self.y)
+        self.note.clicked.connect(self.on_click_note)
+        self.note.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.butterfly = ClickableLabel("png/butterfly.png", self)
         self.butterfly.setGeometry(820, 210, self.x, self.y)
         self.butterfly.clicked.connect(self.on_click_butterfly)
         self.butterfly.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.volt = ClickableLabel("volt.png",self) # "" 사이에 이미지 경로 넣기!
+        self.volt = ClickableLabel("png/volt.png",self) # "" 사이에 이미지 경로 넣기!
         self.volt.setGeometry(90, 350, self.x, self.y)
         self.volt.clicked.connect(self.on_click_volt)
         self.volt.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.colombina = ClickableLabel("colombina.png", self) # "" 사이에 이미지 경로 넣기!
+        self.colombina = ClickableLabel("png/colombina.png", self) # "" 사이에 이미지 경로 넣기!
         self.colombina.setGeometry(450, 310, self.x, self.y)
         self.colombina.clicked.connect(self.on_click_colombina)
         self.colombina.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.crow = ClickableLabel("crow.png", self)
+        self.crow = ClickableLabel("png/crow.png", self)
         self.crow.setGeometry(980, 470, self.x, self.y)
         self.crow.clicked.connect(self.on_click_crow)
         self.crow.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.moreta = ClickableLabel("moreta.png", self)
+        self.moreta = ClickableLabel("png/moreta.png", self)
         self.moreta.setGeometry(1150, 310, self.x, self.y)
         self.moreta.clicked.connect(self.on_click_moreta)
         self.moreta.setCursor(QCursor(Qt.PointingHandCursor))
@@ -207,7 +228,7 @@ class startdisplay(App_default):
         self.x = 200
         self.y=80
 
-        self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
+        self.background.setPixmap(QPixmap("png/black.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
         self.label = QLabel("옥장판", self) 

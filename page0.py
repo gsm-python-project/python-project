@@ -12,7 +12,7 @@ class prologue(App_default):
         self.y=100
 
 
-        self.play_bgm("prologue.mp3")
+        self.play_bgm("bgm/prologue.mp3")
 
         self.messages = [
             "화려한 샹들리에 아래, 최고 부자로 소문난 남작의 가면 무도회에 초대된 당신은 아끼던 휴가까지 써가며 이 대저택에 왔다.",
@@ -31,7 +31,7 @@ class prologue(App_default):
             "과연 이 3초의 어둠 속에서 진실은 어디로 사라진 것일까?"
         ]
         
-        self.background.setPixmap(QPixmap("prologue1.png").scaled(1600, 900))
+        self.background.setPixmap(QPixmap("png/prologue1.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
         # chapter1으로 넘어가는 버튼 설정
@@ -51,16 +51,16 @@ class prologue(App_default):
             return
         
         if self.q==0:
-            self.background.setPixmap(QPixmap("prologue2.png").scaled(1600, 900))
+            self.background.setPixmap(QPixmap("png/prologue2.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
         elif self.q==3:
-            self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
+            self.background.setPixmap(QPixmap("png/black.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
         elif self.q==7:
-            self.background.setPixmap(QPixmap("prologue3.png").scaled(1600, 900))
+            self.background.setPixmap(QPixmap("png/prologue3.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
         elif self.q==12:
-            self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
+            self.background.setPixmap(QPixmap("png/black.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
         elif self.q==13:
             self.btn_next_prologue.show()

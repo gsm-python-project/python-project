@@ -27,19 +27,19 @@ class Chapter2(Button):
 
         # 범인 1,2,3은 임의로 넣어놓은 값이고 나중에 이름으로 바꿀 거임!
         # 버튼 클릭 시 3이나 4를 반환하여 엔딩을 가른다.
-        self.btn_cri1 = ClickableLabel("butterfly.png", self) # 버튼 생성
+        self.btn_cri1 = ClickableLabel("png/butterfly.png", self) # 버튼 생성
         self.btn_cri1.hide()
         self.btn_cri1.setGeometry(50, 300, self.x, self.y)
         self.btn_cri1.clicked.connect(self.nocriminal)
         self.btn_cri1.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.btn_cri2 = ClickableLabel("volt.png", self) # 버튼 생성
+        self.btn_cri2 = ClickableLabel("png/volt.png", self) # 버튼 생성
         self.btn_cri2.hide()
         self.btn_cri2.setGeometry(800, 300, self.x, self.y)
         self.btn_cri2.clicked.connect(self.criminal)
         self.btn_cri2.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.btn_cri3 = ClickableLabel("colombina.png", self) # 버튼 생성
+        self.btn_cri3 = ClickableLabel("png/colombina.png", self) # 버튼 생성
         self.btn_cri3.hide()
         self.btn_cri3.setGeometry(1300, 300, self.x, self.y)
         self.btn_cri3.clicked.connect(self.nocriminal)
@@ -53,7 +53,7 @@ class Chapter2(Button):
         self.moreta.hide()
         self.subtitle.raise_()
 
-        self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
+        self.background.setPixmap(QPixmap("png/black.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
         
         
@@ -68,13 +68,13 @@ class Chapter2(Button):
             self._finish_typing_immediately()
             return
         if self.q==0:
-            self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
+            self.background.setPixmap(QPixmap("png/black.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
         elif self.q==1:
-            self.background.setPixmap(QPixmap("black.png").scaled(1600, 900))
+            self.background.setPixmap(QPixmap("png/black.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
         elif self.q==3:
-            self.background.setPixmap(QPixmap("background.png").scaled(1600, 900))
+            self.background.setPixmap(QPixmap("png/background.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
             self.cri_slct.show()
             self.butterfly.show()
@@ -90,7 +90,7 @@ class Chapter2(Button):
     def showEvent(self, a0):
         super().showEvent(a0)
         if self.stack.currentWidget() is self:
-            self.play_bgm("chapter1.mp3")
+            self.play_bgm("bgm/chapter1.mp3")
         
     def criminal_show(self): # 범인 선택 버튼 클릭시 실행
         self.btn_cri1.show() 

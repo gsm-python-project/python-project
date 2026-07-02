@@ -16,7 +16,7 @@ class Answer_default(App_default):
         #배경화면
         self.background = QLabel(self)
         self.background.setGeometry(0, 0, 1600, 900)
-        self.background.setPixmap(QPixmap("backgroundld.png").scaled(1600, 900))
+        self.background.setPixmap(QPixmap("png/backgroundld.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
         self.chat_log = QTextEdit(self)
@@ -51,16 +51,15 @@ class Answer_default(App_default):
         self.palette_input_box.setColor(QPalette.Text, QColor("white"))
         self.input_box.setPalette(self.palette_input_box)
 
-        font = QFont()
-        font.setPointSize(12)  # 글자 크기
-        self.chat_log.setFont(font)
-        self.input_box.setFont(font)
+        self.subtitle.setFont(self.global_font)
+        self.chat_log.setFont(self.global_font)
+        self.input_box.setFont(self.global_font)
         self.back.raise_()
 
     def set_chatlog(self, character):
         self.character = character
         self.chat_log.clear()
-        pixmap=QPixmap(f"{character.name}.png")
+        pixmap=QPixmap(f"png/{character.name}.png")
         self.character_img.setPixmap(pixmap.scaled(800, 900, Qt.KeepAspectRatio))
 
         for sender, msg in character.history:
