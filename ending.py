@@ -118,6 +118,24 @@ class HiddenEnding(ending):
         super().__init__()
         self.stack=stack
 
+        self.messages=["",
+                       "",
+                       "제가 죽였습니다.",
+                       "나비 씨의 팬던트도 제가 두었고, 검은색 손수건도 제것입니다.",
+                       "하지만 몸싸움을 한 흔적이 있었고, 범인쪽이 우세해보였어요.",
+                       "현장에 놓여있던 쪽지와, 흰 장갑이 있던 이유도 설명이 되지 않습니다!",
+                       "... 그렇다면 그 팬던트와 제 손수건이 있던 이유는요?",
+                       "선생님이라면 알아냈겠지만, 사인은 독살이죠. 제가 이걸 아는 이유가 뭐겠습니까. ",
+                       "죄송합니다, 선생님.",
+                       "...",
+                       " 그렇게 모레타는 스스로 자백해 꽤나 큰 벌을 받게 되었다.",
+                       "나는 그녀가 범인이라고 생각하지 않는다.",
+                       "< 진실의 침묵. >"
+                       ]
+        
+        self._start_typing(self.q)
+        
+        
     def mousePressEvent(self, a0):
         if self.typing:
             self._finish_typing_immediately()

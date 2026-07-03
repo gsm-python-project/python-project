@@ -43,6 +43,14 @@ class prologue(App_default):
 
 
         self._start_typing(self.q)
+
+        self.snow = SnowWidget(self, num_flakes=180)
+        self.snow.setGeometry(0, 0, 800, 600)
+        self.snow.raise_()  # 맨 위로
+ 
+    def resizeEvent(self, event):
+        self.snow.setGeometry(0, 0, self.width(), self.height())
+        super().resizeEvent(event)
     
     
     def mousePressEvent(self, event):
@@ -72,3 +80,64 @@ class prologue(App_default):
         self.stop_bgm()
         self.stack.setCurrentIndex(1) 
 
+
+class Snowflake:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.reset(random_y=True)
+ 
+    def reset(self, random_y=False):
+        self.x = random.uniform(0, self.width)
+        self.y = random.uniform(-self.height, 0) if not random_y else random.uniform(0, self.height)
+        self.radius = random.uniform(1.5, 4.5)
+        self.speed = random.uniform(1.0, 3.5)          # 낙하 속도
+        self.drift = random.uniform(-0.5, 0.5)          # 좌우 흔들림
+        self.opacity = random.uniform(0.4, 1.0)
+ 
+    def update(self):
+        self.y += self.speed
+        self.x += self.drift
+        if self.y > self.height:
+            self.reset()
+ 
+ 
+class SnowWidget(QWidget):
+    """투명 배경 위에 눈송이만 그리는 오버레이 위젯"""
+ 
+    def __init__(self, parent=None, num_flakes=150):
+        super().__init__(parent)
+        self.setAttribute(Qt.WA_TransparentForMouseEvents)  # 마우스 이벤트 통과
+        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.num_flakes = num_flakes
+        self.flakes = []
+ 
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.on_tick)
+        self.timer.start(16)  # 약 60 FPS
+ 
+    def resizeEvent(self, event):
+        w, h = self.width(), self.height()
+        # 크기가 잡히면 눈송이를 생성/재배치
+        if not self.flakes and w > 0 and h > 0:
+            self.flakes = [Snowflake(w, h) for _ in range(self.num_flakes)]
+        else:
+            for f in self.flakes:
+                f.width, f.height = w, h
+        super().resizeEvent(event)
+ 
+    def on_tick(self):
+        for f in self.flakes:
+            f.update()
+        self.update()  # paintEvent 호출
+ 
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.Antialiasing)
+        painter.setPen(Qt.NoPen)
+ 
+        for f in self.flakes:
+            color = QColor(255, 255, 255)
+            color.setAlphaF(f.opacity)
+            painter.setBrush(QBrush(color))
+            painter.drawEllipse(QPointF(f.x, f.y), f.radius, f.radius)

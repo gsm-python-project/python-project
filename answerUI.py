@@ -142,9 +142,11 @@ class Stream(QThread):
 
     def run(self):
         try:
-            full_text=""
-            for chunk in self.character.answer(self.user_input):
-                full_text += chunk
+            result = self.character.communication(self.user_input)  # communication() 거치기
+            if result is None:  # answer_Fail() 실행된 경우 (대화 횟수 0)
+                self.finished.emit()
+                return
+            for chunk in result:  # answer()의 제너레이터를 여기서 순회
                 self.token_received.emit(chunk)
             self.finished.emit()
         except Exception as e:
