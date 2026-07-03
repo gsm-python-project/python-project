@@ -64,6 +64,9 @@ class slect(App_default):
         super().__init__()
         self.stack= stack
 
+        self.x=100
+        self.y=100
+
         self.background.setPixmap(QPixmap("png/.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 

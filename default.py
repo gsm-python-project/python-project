@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
+import random
 
 
 class Mainfront(QStackedWidget):
@@ -250,5 +251,107 @@ class startdisplay(App_default):
         self.btn.clicked.connect(self.next_prologue)
         self.btn.setCursor(QCursor(Qt.PointingHandCursor))
 
+                # 비 효과 오버레이
+        self.rain = RainWidget(self, num_drops=250)
+        self.rain.setGeometry(0, 0, 800, 600)
+        self.rain.raise_()
+        self.rain.start_rain()  # 처음에 자동으로 비 시작
+ 
+    def resizeEvent(self, event):
+        self.rain.setGeometry(0, 0, self.width(), self.height())
+        super().resizeEvent(event)
+    
+
     def next_prologue(self):
         self.stack.setCurrentIndex(0) # 프롤로그로 이동
+
+
+
+
+ 
+class Raindrop:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.reset(random_y=True)
+ 
+    def reset(self, random_y=False):
+        self.x = random.uniform(0, self.width)
+        self.y = random.uniform(-self.height, 0) if not random_y else random.uniform(0, self.height)
+        self.length = random.uniform(10, 22)          # 빗줄기 길이
+        self.speed = random.uniform(12, 28)             # 낙하 속도 (눈보다 훨씬 빠름)
+        self.drift = random.uniform(-0.5, 0.5)          # 바람에 의한 살짝의 기울기
+        self.opacity = random.uniform(0.25, 0.6)
+        self.thickness = random.uniform(1.0, 2.0)
+ 
+    def update(self, respawn=True):
+        self.y += self.speed
+        self.x += self.drift
+        if self.y - self.length > self.height:
+            if respawn:
+                self.reset()
+            # respawn=False면 화면 밖으로 나간 채로 그대로 둠 (widget에서 걸러냄)
+ 
+ 
+ 
+class RainWidget(QWidget):
+    """투명 배경 위에 빗방울만 그리는 오버레이 위젯"""
+ 
+    def __init__(self, parent=None, num_drops=200):
+        super().__init__(parent)
+        self.setAttribute(Qt.WA_TransparentForMouseEvents)
+        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.num_drops = num_drops
+        self.drops = []
+        self.is_stopping = False   # 그치는 중인지 여부 (새 빗방울 리스폰 금지)
+        self.is_running = False
+ 
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.on_tick)
+ 
+    def resizeEvent(self, event):
+        w, h = self.width(), self.height()
+        if not self.drops and w > 0 and h > 0:
+            self.drops = [Raindrop(w, h) for _ in range(self.num_drops)]
+        else:
+            for d in self.drops:
+                d.width, d.height = w, h
+        super().resizeEvent(event)
+ 
+    def start_rain(self):
+        self.is_stopping = False
+        self.is_running = True
+        if not self.timer.isActive():
+            self.timer.start(16)
+ 
+    def stop_rain(self):
+        self.is_stopping = True
+ 
+    def on_tick(self):
+        for d in self.drops:
+            d.update(respawn=not self.is_stopping)
+ 
+        if self.is_stopping: # 그치는 중에는 리스폰 대신 화면 밖으로 나간 빗방울을 제거
+            self.drops = [d for d in self.drops if d.y - d.length <= d.height]
+            if not self.drops:
+                self.timer.stop()
+                self.is_running = False
+                self.is_stopping = False
+        self.update()
+ 
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.Antialiasing)
+ 
+        for d in self.drops:
+            color = QColor(180, 200, 230)  # 살짝 푸른빛 도는 빗줄기
+            color.setAlphaF(d.opacity)
+            pen = QPen(color)
+            pen.setWidthF(d.thickness)
+            painter.setPen(pen)
+            # 살짝 기울어진 선으로 빗줄기 표현 (drift 방향 반영)
+            x2 = d.x - d.drift * 4
+            y2 = d.y - d.length
+            painter.drawLine(QLineF(d.x, d.y, x2, y2))
+ 
+ 

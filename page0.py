@@ -25,10 +25,11 @@ class prologue(App_default):
             "세상은 단 3초 동안 숨을 죽였다.",
             "3초가 지나가고 무심하게 켜진 조명은 오로지 한 곳을 비추었다.", #q==7
             "파티의 주인공이자 탐욕스러운 지배자, 남작의 자리였다.",
-            "비명 소리가 정적을 깨뜨렸지만, 당신의 눈에 비친 사람들의 표정은 공포보다 경악에 더 가까웠다.",
             "범인은 이 짧은 찰나를 이용해 남작의 숨을 끊어놓았다. 완벽하게 계산된 어둠, 그리고 그 속에서 춤추듯 움직인 살의. 가장 화려한 순간에 시작된 가장 비극적인 무대.",
-            "이제 당신은 이 아수라장 속에서 흩어진 증거를 찾아 첫 번째 발자국을 뗴어야한다.",
-            "과연 이 3초의 어둠 속에서 진실은 어디로 사라진 것일까?"
+            "이제 당신은 이 아수라장 속에서 흩어진 증거를 찾아 첫 번째 발자국을 떼어야한다.",
+            "과연 이 3초의 어둠 속에서 진실은 어디로 사라진 것일까?",
+            "현재 알 수 있는 건 용의자 3명과 목격자 2명의 프로필 뿐이다.",
+            "수수께끼의 진실은 당신에게 달려있다."
         ]
         
         self.background.setPixmap(QPixmap("png/prologue1.png").scaled(1600, 900))
@@ -44,15 +45,7 @@ class prologue(App_default):
 
         self._start_typing(self.q)
 
-        self.snow = SnowWidget(self, num_flakes=180)
-        self.snow.setGeometry(0, 0, 800, 600)
-        self.snow.raise_()  # 맨 위로
- 
-    def resizeEvent(self, event):
-        self.snow.setGeometry(0, 0, self.width(), self.height())
-        super().resizeEvent(event)
-    
-    
+
     def mousePressEvent(self, event):
         if self.typing:
             self._finish_typing_immediately()
@@ -79,65 +72,3 @@ class prologue(App_default):
     def on_click_prologue(self): # 버튼 클릭 시 인덱스가 1인 페이지로 넘어가게 해주는 함수
         self.stop_bgm()
         self.stack.setCurrentIndex(1) 
-
-
-class Snowflake:
-    def __init__(self, width, height):
-        self.width = width
-        self.height = height
-        self.reset(random_y=True)
- 
-    def reset(self, random_y=False):
-        self.x = random.uniform(0, self.width)
-        self.y = random.uniform(-self.height, 0) if not random_y else random.uniform(0, self.height)
-        self.radius = random.uniform(1.5, 4.5)
-        self.speed = random.uniform(1.0, 3.5)          # 낙하 속도
-        self.drift = random.uniform(-0.5, 0.5)          # 좌우 흔들림
-        self.opacity = random.uniform(0.4, 1.0)
- 
-    def update(self):
-        self.y += self.speed
-        self.x += self.drift
-        if self.y > self.height:
-            self.reset()
- 
- 
-class SnowWidget(QWidget):
-    """투명 배경 위에 눈송이만 그리는 오버레이 위젯"""
- 
-    def __init__(self, parent=None, num_flakes=150):
-        super().__init__(parent)
-        self.setAttribute(Qt.WA_TransparentForMouseEvents)  # 마우스 이벤트 통과
-        self.setAttribute(Qt.WA_TranslucentBackground)
-        self.num_flakes = num_flakes
-        self.flakes = []
- 
-        self.timer = QTimer(self)
-        self.timer.timeout.connect(self.on_tick)
-        self.timer.start(16)  # 약 60 FPS
- 
-    def resizeEvent(self, event):
-        w, h = self.width(), self.height()
-        # 크기가 잡히면 눈송이를 생성/재배치
-        if not self.flakes and w > 0 and h > 0:
-            self.flakes = [Snowflake(w, h) for _ in range(self.num_flakes)]
-        else:
-            for f in self.flakes:
-                f.width, f.height = w, h
-        super().resizeEvent(event)
- 
-    def on_tick(self):
-        for f in self.flakes:
-            f.update()
-        self.update()  # paintEvent 호출
- 
-    def paintEvent(self, event):
-        painter = QPainter(self)
-        painter.setRenderHint(QPainter.Antialiasing)
-        painter.setPen(Qt.NoPen)
- 
-        for f in self.flakes:
-            color = QColor(255, 255, 255)
-            color.setAlphaF(f.opacity)
-            painter.setBrush(QBrush(color))
-            painter.drawEllipse(QPointF(f.x, f.y), f.radius, f.radius)

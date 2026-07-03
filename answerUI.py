@@ -81,6 +81,7 @@ class Answer_default(App_default):
         self.input_box.clear()
 
         self.character.history.append(("나", user_input))
+        self.character.history.append((""))
 
         self.character.history.append((self.character.name, ""))
         self._refresh_chatlog()

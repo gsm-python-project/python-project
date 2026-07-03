@@ -59,9 +59,11 @@ class Chapter2(Button):
         
         
         self.messages = ["",
-                        "당신은 흩어진 증거를 모아 퍼즐을 맞추어 가기 시작했다.",
+                        "당신은 남작의 시체를 통해 실제 살해 현장을 찾아냈다.",
                         "모든 증언은 부서진 유리 조각과 같다. 날카롭고 위험하며, 함부로 만졌다간 진실보다 먼저 상처를 입게 된다.",
-                        "이제 진실은 질문 속에 있고, 정답은 교묘한 대답 뒤에 숨어 있다. 당신의 날카로운 추리력을 발현하여 정교하게 설계된 거짓말의 빈틈을 파고 들어 이 비극의 마침표를 찍을 진범을 가려내야 한다."]
+                        "이제 진실은 질문 속에 있고, 정답은 교묘한 대답 뒤에 숨어 있다. 당신의 날카로운 추리력을 발현하여 정교하게 설계된 거짓말의 빈틈을 파고 들어 이 비극의 마침표를 찍을 진범을 가려내야 한다.",
+                        "당신은 사건의 현장에서 증거를 수집할 수 있다.",
+                        "증거를 모아, 하나의 퍼즐을 완성하라. 진실은 결코 스스로 모습을 드러내지 않는다."]
         
         self._start_typing(self.q)
 
@@ -93,7 +95,7 @@ class Chapter2(Button):
     def showEvent(self, a0):
         super().showEvent(a0)
         if self.stack.currentWidget() is self:
-            self.play_bgm("bgm/chapter1.mp3")
+            self.play_bgm("bgm/chapter2.mp3")
         
     def criminal_show(self): # 범인 선택 버튼 클릭시 실행
         self.btn_cri1.show() 

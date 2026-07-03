@@ -594,7 +594,7 @@ class volt(Character):
 
 
 class colombina(Character):
-    def __init__(self, age=25, name="콜롬비나", communicationCount=1):
+    def __init__(self, age=25, name="콜롬비나", communicationCount=5):
         self.prompt="""당신은 추리 게임 속 캐릭터 '콜롬비나'이다.
 
 [캐릭터 정보]
