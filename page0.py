@@ -11,9 +11,6 @@ class prologue(App_default):
         self.x=200
         self.y=100
 
-
-        self.play_bgm("bgm/prologue.mp3")
-
         self.messages = [
             "화려한 샹들리에 아래, 최고 부자로 소문난 남작의 가면 무도회에 초대된 당신은 아끼던 휴가까지 써가며 이 대저택에 왔다.",
             "기대에 걸맞은 화려함과 여러 사치품, 그리고 가면을 쓴 귀족들의 웃음 소리가 연회장을 가득 채우고 있었다.",  # q==1: 대사 없음
@@ -42,9 +39,12 @@ class prologue(App_default):
         self.btn_next_prologue.setCursor(QCursor(Qt.PointingHandCursor)) # 커서 변경
         self.btn_next_prologue.hide() # 버튼 숨기기
 
-
         self._start_typing(self.q)
 
+    def showEvent(self, a0):
+        super().showEvent(a0)
+        self.play_bgm("bgm/prologue.mp3")
+        
 
     def mousePressEvent(self, event):
         if self.typing:
@@ -52,18 +52,21 @@ class prologue(App_default):
             return
         
         if self.q==0:
-            self.background.setPixmap(QPixmap("png/prologue2.png").scaled(1600, 900))
+            self.background.setPixmap(QPixmap("png/prologue/prologue2.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
+            
         elif self.q==3:
-            self.background.setPixmap(QPixmap("png/black.png").scaled(1600, 900))
+            self.background.setPixmap(QPixmap("png/bg/black.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
         elif self.q==7:
-            self.background.setPixmap(QPixmap("png/prologue3.png").scaled(1600, 900))
+            self.stop_bgm()
+            self.play_bgm("bgm/prologue1.mp3")
+            self.background.setPixmap(QPixmap("png/prologue/prologue3.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
         elif self.q==12:
-            self.background.setPixmap(QPixmap("png/black.png").scaled(1600, 900))
+            self.background.setPixmap(QPixmap("png/bg/black.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
-        elif self.q==13:
+        elif self.q==14:
             self.btn_next_prologue.show()
     
         self.q+=1

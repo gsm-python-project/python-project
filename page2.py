@@ -27,24 +27,25 @@ class Chapter2(Button):
 
         # 범인 1,2,3은 임의로 넣어놓은 값이고 나중에 이름으로 바꿀 거임!
         # 버튼 클릭 시 3이나 4를 반환하여 엔딩을 가른다.
-        self.btn_cri1 = ClickableLabel("png/butterfly.png", self) # 버튼 생성
+        self.btn_cri1 = ClickableLabel("png/SD/butterfly.png", self) # 버튼 생성
         self.btn_cri1.hide()
-        self.btn_cri1.setGeometry(50, 300, self.x, self.y)
+        self.btn_cri1.setGeometry(400, 300, self.x, self.y)
         self.btn_cri1.clicked.connect(self.nocriminal)
         self.btn_cri1.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.btn_cri2 = ClickableLabel("png/volt.png", self) # 버튼 생성
+        self.btn_cri2 = ClickableLabel("png/SD/volt.png", self) # 버튼 생성
         self.btn_cri2.hide()
         self.btn_cri2.setGeometry(800, 300, self.x, self.y)
         self.btn_cri2.clicked.connect(self.criminal)
         self.btn_cri2.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.btn_cri3 = ClickableLabel("png/colombina.png", self) # 버튼 생성
+        self.btn_cri3 = ClickableLabel("png/SD/colombina.png", self) # 버튼 생성
         self.btn_cri3.hide()
-        self.btn_cri3.setGeometry(1300, 300, self.x, self.y)
+        self.btn_cri3.setGeometry(1150, 300, self.x, self.y)
         self.btn_cri3.clicked.connect(self.nocriminal)
         self.btn_cri3.setCursor(QCursor(Qt.PointingHandCursor))
 
+        self.subtitle.show()
         self.cri_slct.hide()
         self.butterfly.hide()
         self.colombina.hide()
@@ -54,7 +55,9 @@ class Chapter2(Button):
         self.note.hide()
         self.subtitle.raise_()
 
-        self.background.setPixmap(QPixmap("png/black.png").scaled(1600, 900))
+        
+
+        self.background.setPixmap(QPixmap("png/bg/black.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
         
         
@@ -87,6 +90,7 @@ class Chapter2(Button):
             self.crow.show()
             self.moreta.show()
             self.note.show()
+            self.subtitle.hide()
             self.subtitle.hide()
 
         self.q+=1

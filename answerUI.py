@@ -51,6 +51,7 @@ class Answer_default(App_default):
         self.palette_input_box.setColor(QPalette.Text, QColor("white"))
         self.input_box.setPalette(self.palette_input_box)
 
+        self.global_font=QFont(self.font_family, 12)
         self.subtitle.setFont(self.global_font)
         self.chat_log.setFont(self.global_font)
         self.input_box.setFont(self.global_font)
@@ -59,7 +60,7 @@ class Answer_default(App_default):
     def set_chatlog(self, character):
         self.character = character
         self.chat_log.clear()
-        pixmap=QPixmap(f"png/{character.name}.png")
+        pixmap=QPixmap(f"png/LD/{character.name}.png")
         self.character_img.setPixmap(pixmap.scaled(800, 900, Qt.KeepAspectRatio))
 
         for sender, msg in character.history:
@@ -81,8 +82,7 @@ class Answer_default(App_default):
         self.input_box.clear()
 
         self.character.history.append(("나", user_input))
-        self.character.history.append((""))
-
+        self.character.history.append(("",""))
         self.character.history.append((self.character.name, ""))
         self._refresh_chatlog()
 
@@ -95,7 +95,10 @@ class Answer_default(App_default):
     def _refresh_chatlog(self):
         self.chat_log.clear()
         for sender, msg in self.character.history:
-            self.chat_log.append(f"{sender} : {msg}")
+            if sender == "" and msg == "":   # 빈 줄 구분용
+                self.chat_log.append("")     # 그냥 빈 줄만
+            else:
+                self.chat_log.append(f"{sender} : {msg}")
 
     def _on_token(self, chunk: str):
         self._char_queue+=chunk

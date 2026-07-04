@@ -38,27 +38,27 @@ class TrueEnding(ending):
                         "< 완벽한 거짓은 존재하지 않는다. >"]
         
         
-        self.background.setPixmap(QPixmap("png/black.png").scaled(1600, 900))
+        self.background.setPixmap(QPixmap("png/bg/black.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
     
     def showEvent(self, a0):
         super().showEvent(a0)
         if self.stack.currentWidget() is self:
-            self.play_bgm("bgm/TrueEnding.mp3")
+            self.play_bgm("bgm/ending/TrueEnding.mp3")
     
     def mousePressEvent(self, a0):
         if self.typing:
             self._finish_typing_immediately()
             return
         if self.q==0:
-            self.background.setPixmap(QPixmap("png/black.png").scaled(1600, 900))
+            self.background.setPixmap(QPixmap("png/bg/black.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
         elif self.q==22:
             self._typing_timer.setInterval(100)
             self.global_font=QFont(self.font_family, 27)
             self.subtitle.setFont(self.global_font)
-            self.subtitle.setGeometry(200,370,1500,200)
+            self.subtitle.setGeometry(400,370,1500,200)
         self.q+=1
         self._start_typing(self.q)
 
@@ -69,7 +69,7 @@ class FalseEnding(ending):
         self.stack = stack # stack에 mainfront 클래스 저장
         
 
-        self.background.setPixmap(QPixmap("png/black.png").scaled(1600, 900))
+        self.background.setPixmap(QPixmap("png/bg/black.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
         self.messages=["",
@@ -97,7 +97,7 @@ class FalseEnding(ending):
             pass
         elif self.q==4:
             
-            self.background.setPixmap(QPixmap("png/falseending.png").scaled(1600, 900))
+            self.background.setPixmap(QPixmap("png/ending/falseending.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
         elif self.q==5:
             self._typing_timer.setInterval(100)
@@ -132,6 +132,12 @@ class HiddenEnding(ending):
                        "나는 그녀가 범인이라고 생각하지 않는다.",
                        "< 진실의 침묵. >"
                        ]
+        
+               
+        self.stop_bgm()
+        
+        self.background.setPixmap(QPixmap("png/bg/black.png").scaled(1600, 900))
+        self.background.lower()  # 제일 뒤로
         
         self._start_typing(self.q)
         

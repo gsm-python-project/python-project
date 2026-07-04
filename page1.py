@@ -14,11 +14,13 @@ class Chapter1(Button):
         self.btn_next_chapter1.clicked.connect(self.on_click_chapter1) # 버튼을 on_click_chapter1이라는 함수에 연결.
         self.btn_next_chapter1.setCursor(QCursor(Qt.PointingHandCursor)) # 커서 변경
 
+        self.subtitle.hide()
+        self.subtitle_bg.hide()
+
     def showEvent(self, a0):
         super().showEvent(a0)
-        if self.stack.currentWidget() is self:
-            self.play_bgm("bgm/chapter1.mp3")
-
+        self.play_bgm("bgm/chapter1.mp3")
+        print("bgm start")
     def on_click_chapter1(self): # 인덱스가 2인 페이지로 넘어가게 해주는 함수.
         self.stack.answerUI.chapter = 2
 
