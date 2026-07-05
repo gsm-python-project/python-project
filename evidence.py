@@ -44,15 +44,43 @@ class evidence(App_default):
 
 
     def on_click_smile(self):
+        popup= EvidencePopup(
+            name="[남작의 웃음]",
+            description="자살이 사인이라면, 남작은 왜 웃고있을까? 남작의 웃음은 모순적이다. 독살이나 약물 복용의 가능성을 열어보자.",
+            parent=self
+        )
+
+        popup.exec_()
         self.smile_click=True
 
     def on_click_imprint(self):
+        popup= EvidencePopup(
+            name="[목이 졸린 흔적]",
+            description="목에 남아있는 흔적의 형태를 보아선, 목줄이 목을 조른 시점에 남작은 이미 죽은 상태였을 것이다.",
+            parent=self
+        )
+
+        popup.exec_()
         self.imprint_click=True
 
     def on_click_hurt(self):
+        popup= EvidencePopup(
+            name="[목의 자잘한 상처]",
+            description="저항한 흔적이 있다. 몸싸움을 했던 것일까? 단순 자살이 아닐 가능성이 높다.",
+            parent=self
+        )
+
+        popup.exec_()
         self.hurt_click=True
 
     def on_click_ink(self):
+        popup= EvidencePopup(
+            name="[옷에 묻어있는 잉크]",
+            description="연회장에 잉크는 없다. 다른 장소에서 묻은 것일까?",
+            parent=self
+        )
+
+        popup.exec_()
         self.ink_click=True
 
     def nextstage(self):
@@ -89,13 +117,21 @@ class slect(App_default):
         self.bookstore.setCursor(QCursor(Qt.PointingHandCursor))
 
     def on_click_study(self):
-        pass
+        popup=EVPopup(
+            description="이곳은 아닌 것 같다. 다시 생각해보자.",
+            parent=self
+        )
+        popup.exec_()
 
     def on_click_storage(self):
         self.stack.setCurrentIndex(2)
 
     def on_click_bookstore(self):
-        pass
+        popup=EVPopup(
+            description="이곳은 아닌 것 같다. 다시 생각해보자.",
+            parent=self
+        )
+        popup.exec_()
 
 
 class evidence2(App_default):
@@ -193,7 +229,7 @@ class evidence2(App_default):
 
 
 class EVPopup(QDialog):
-    def __init__(self, name, description, parent=None):
+    def __init__(self, description, parent=None):
         super().__init__(parent)
         self.setFixedSize(600, 200)
         self.setWindowFlags(Qt.FramelessWindowHint)  # 타이틀바 제거
@@ -213,7 +249,7 @@ class EVPopup(QDialog):
             self.global_font=QFont(self.font_family, 15)
         self.global_font.setBold(True)
 
-        # 증거 설명 (오른쪽 중간)
+        # 증거 설명
         self.desc_label = QLabel(description, self)
         self.desc_label.setGeometry(50, 100, 500, 80)
 
@@ -227,7 +263,7 @@ class EVPopup(QDialog):
 
         # 닫기 버튼 (오른쪽 하단)
         self.close_btn = QPushButton("닫기", self)
-        self.close_btn.setGeometry(560, 150, 100, 40)
+        self.close_btn.setGeometry(490, 150, 100, 40)
         self.close_btn.clicked.connect(self.close)
         self.close_btn.setCursor(QCursor(Qt.PointingHandCursor))
 
@@ -235,6 +271,8 @@ class EVPopup(QDialog):
 class EvidencePopup(QDialog):
     def __init__(self, name, description, parent=None):
         super().__init__(parent)
+
+        self.parent=parent
         self.setFixedSize(600, 200)
         self.setWindowFlags(Qt.FramelessWindowHint)  # 타이틀바 제거
 
@@ -261,7 +299,7 @@ class EvidencePopup(QDialog):
         palette_name.setColor(QPalette.WindowText, QColor("white"))
         self.name_label.setPalette(palette_name)
 
-        # 증거 설명 (오른쪽 중간)
+        # 증거 설명
         self.desc_label = QLabel(description, self)
         self.desc_label.setGeometry(50, 100, 500, 80)
         self.desc_label.setWordWrap(True)
@@ -271,8 +309,17 @@ class EvidencePopup(QDialog):
         palette_desc.setColor(QPalette.WindowText, QColor(200, 200, 200))
         self.desc_label.setPalette(palette_desc)
 
-        # 닫기 버튼 (오른쪽 하단)
+        # 닫기 버튼
         self.close_btn = QPushButton("닫기", self)
         self.close_btn.setGeometry(560, 150, 100, 40)
         self.close_btn.clicked.connect(self.close)
         self.close_btn.setCursor(QCursor(Qt.PointingHandCursor))
+
+class EvidencePopup2(EvidencePopup):
+    def __init__(self, name, description, parent=None):
+        super().__init__(name, description, parent)
+
+        self.close_btn.clicked.connect(self.on_click_btn)
+
+    def on_click_btn(self):
+        self.parent.nextstage()
