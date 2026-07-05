@@ -151,7 +151,7 @@ class evidence2(App_default):
 
         from default import ClickableLabel
         self.glass = ClickableLabel("png/ev/glass.png", self)
-        self.glass.setGeometry(900,330, self.x, 100)
+        self.glass.setGeometry(900,330, self.x, 120)
         self.glass.clicked.connect(self.on_click_glass)
         self.glass.setCursor(QCursor(Qt.PointingHandCursor))
         self.glass.setScaledContents(True)
@@ -192,6 +192,7 @@ class evidence2(App_default):
         description="독이 들어있었던 유리병이다.",
         parent=self
     )
+        popup.move(650,470)
         popup.exec_()  # 팝업 띄우기 (닫을 때까지 대기)
     
     def on_click_pendant(self):
@@ -200,7 +201,7 @@ class evidence2(App_default):
             description="붉은색의 보석이 눈에 띈다. 나비의 것으로 보인다.",
             parent=self
         )
-
+        popup.move(220,600)
         popup.exec_()
 
     def on_click_handkerchief(self):
@@ -209,17 +210,17 @@ class evidence2(App_default):
             description="검은색 손수건이다. 아래에 M이라는 자수가 새겨져있다. 모레타의 것일까?",
             parent=self
         )
-
+        popup.move(862,680)
         popup.exec_()
         
 
     def on_click_glove(self):
         popup= EvidencePopup(
-            name="[흰 장갑]",
-            description="남성용 흰 장갑이다. 오늘 연회에서 장갑을 낀 남성은 볼토와 콜롬비나 뿐이다.",
+            name="[남성용 장갑]",
+            description="남성용 검은 장갑이다. 오늘 연회에서 장갑을 낀 남성은 볼토와 콜롬비나 뿐이다.",
             parent=self
         )
-
+        popup.move(720,280)
         popup.exec_()
 
     def on_click_letter(self):
@@ -228,6 +229,7 @@ class evidence2(App_default):
             description="\"서류는 잠시 가져가겠네.\"라는 글이 쓰여져있다. 누구의 것일까?",
             parent=self
         )
+        popup.move(280,485)
 
         popup.exec_()
 
@@ -309,7 +311,7 @@ class EvidencePopup(QDialog):
 
         # 증거 설명
         self.desc_label = QLabel(description, self)
-        self.desc_label.setGeometry(50, 70, 500, 80)
+        self.desc_label.setGeometry(50, 70, 500, 120)
         self.desc_label.setWordWrap(True)
         self.desc_label.setAlignment(Qt.AlignTop)
         self.desc_label.setFont(self.global_font)
