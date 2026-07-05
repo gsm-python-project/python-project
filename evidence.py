@@ -44,7 +44,7 @@ class evidence(App_default):
 
 
     def on_click_smile(self):
-        popup= EvidencePopup(
+        popup= EvidencePopup2(
             name="[남작의 웃음]",
             description="자살이 사인이라면, 남작은 왜 웃고있을까? 남작의 웃음은 모순적이다. 독살이나 약물 복용의 가능성을 열어보자.",
             parent=self
@@ -54,7 +54,7 @@ class evidence(App_default):
         self.smile_click=True
 
     def on_click_imprint(self):
-        popup= EvidencePopup(
+        popup= EvidencePopup2(
             name="[목이 졸린 흔적]",
             description="목에 남아있는 흔적의 형태를 보아선, 목줄이 목을 조른 시점에 남작은 이미 죽은 상태였을 것이다.",
             parent=self
@@ -64,7 +64,7 @@ class evidence(App_default):
         self.imprint_click=True
 
     def on_click_hurt(self):
-        popup= EvidencePopup(
+        popup= EvidencePopup2(
             name="[목의 자잘한 상처]",
             description="저항한 흔적이 있다. 몸싸움을 했던 것일까? 단순 자살이 아닐 가능성이 높다.",
             parent=self
@@ -74,7 +74,7 @@ class evidence(App_default):
         self.hurt_click=True
 
     def on_click_ink(self):
-        popup= EvidencePopup(
+        popup= EvidencePopup2(
             name="[옷에 묻어있는 잉크]",
             description="연회장에 잉크는 없다. 다른 장소에서 묻은 것일까?",
             parent=self
@@ -97,8 +97,10 @@ class slect(App_default):
 
         self.subtitle_bg.hide()
 
-        self.background.setPixmap(QPixmap("png/.png").scaled(1600, 900))
+        self.background.setPixmap(QPixmap("png/bg/slect.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
+
+
 
         from default import ClickableLabel
         self.study=ClickableLabel("png/.png", self)
@@ -149,27 +151,27 @@ class evidence2(App_default):
 
         from default import ClickableLabel
         self.glass = ClickableLabel("png/ev/glass.png", self)
-        self.glass.setGeometry(180, 20, self.x, self.y)
+        self.glass.setGeometry(1090, 453, self.x, self.y)
         self.glass.clicked.connect(self.on_click_glass)
         self.glass.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.pendant = ClickableLabel("png/ev/pendant.png", self)
-        self.pendant.setGeometry(1480, 20, self.x, self.y)
+        self.pendant.setGeometry(129, 577, self.x, self.y)
         self.pendant.clicked.connect(self.on_click_pendant)
         self.pendant.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.handkerchief = ClickableLabel("png/ev/handkerchief.png", self)
-        self.handkerchief.setGeometry(1480, 20, self.x, self.y)
+        self.handkerchief.setGeometry(1461, 662, self.x, self.y)
         self.handkerchief.clicked.connect(self.on_click_handkerchief)
         self.handkerchief.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.glove = ClickableLabel("png/ev/glove.png", self)
-        self.glove.setGeometry(1480, 20, self.x, self.y)
+        self.glove.setGeometry(1152, 220, self.x, self.y)
         self.glove.clicked.connect(self.on_click_glove)
         self.glove.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.letter = ClickableLabel("png/ev/letter.png", self)
-        self.letter.setGeometry(1480, 20, self.x, self.y)
+        self.letter.setGeometry(683, 495, self.x, self.y)
         self.letter.clicked.connect(self.on_click_letter)
         self.letter.setCursor(QCursor(Qt.PointingHandCursor))
 
