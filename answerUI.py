@@ -13,6 +13,8 @@ class Answer_default(App_default):
         self._char_queue=""
         self._init_typing_timer()
 
+        self.subtitle_bg.hide()
+
         #배경화면
         self.background = QLabel(self)
         self.background.setGeometry(0, 0, 1600, 900)
@@ -21,11 +23,11 @@ class Answer_default(App_default):
 
         self.chat_log = QTextEdit(self)
         self.chat_log.setReadOnly(True)
-        self.chat_log.setGeometry(800, 0, 800, 750)  # 둘 다 고정
+        self.chat_log.setGeometry(800, 0, 800, 800)  # 둘 다 고정
 
         palette_chat_log = self.chat_log.palette()
-        palette_chat_log.setColor(QPalette.Base, QColor("white"))
-        palette_chat_log.setColor(QPalette.Text, QColor("black"))
+        palette_chat_log.setColor(QPalette.Base, QColor(0,0,0,150))
+        palette_chat_log.setColor(QPalette.Text, QColor("white"))
         self.chat_log.setPalette(palette_chat_log)
 
         self.back = QPushButton("돌아가기", self)
@@ -47,8 +49,8 @@ class Answer_default(App_default):
         self.input_box.setGeometry(0, 800, 1400, 100)
 
         self.palette_input_box = self.input_box.palette()
-        self.palette_input_box.setColor(QPalette.Base, QColor("white"))
-        self.palette_input_box.setColor(QPalette.Text, QColor("black"))
+        self.palette_input_box.setColor(QPalette.Base, QColor(0,0,0,150))
+        self.palette_input_box.setColor(QPalette.Text, QColor("white"))
         self.input_box.setPalette(self.palette_input_box)
 
         self.global_font=QFont(self.font_family, 12)

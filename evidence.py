@@ -146,39 +146,45 @@ class evidence2(App_default):
         self.background.setPixmap(QPixmap("png/bg/ev.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
-        self.x=100
-        self.y=100
+        self.x=80
+        self.y=80
 
         from default import ClickableLabel
         self.glass = ClickableLabel("png/ev/glass.png", self)
-        self.glass.setGeometry(1090, 453, self.x, self.y)
+        self.glass.setGeometry(900,330, self.x, 100)
         self.glass.clicked.connect(self.on_click_glass)
         self.glass.setCursor(QCursor(Qt.PointingHandCursor))
+        self.glass.setScaledContents(True)
 
         self.pendant = ClickableLabel("png/ev/pendant.png", self)
-        self.pendant.setGeometry(129, 577, self.x, self.y)
+        self.pendant.setGeometry(120, 500, self.x, 100)
         self.pendant.clicked.connect(self.on_click_pendant)
         self.pendant.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pendant.setScaledContents(True)
 
         self.handkerchief = ClickableLabel("png/ev/handkerchief.png", self)
-        self.handkerchief.setGeometry(1461, 662, self.x, self.y)
+        self.handkerchief.setGeometry(1462, 580, self.x, self.y)
         self.handkerchief.clicked.connect(self.on_click_handkerchief)
         self.handkerchief.setCursor(QCursor(Qt.PointingHandCursor))
+        self.handkerchief.setScaledContents(True)
 
         self.glove = ClickableLabel("png/ev/glove.png", self)
-        self.glove.setGeometry(1152, 220, self.x, self.y)
+        self.glove.setGeometry(980, 180, self.x, self.y)
         self.glove.clicked.connect(self.on_click_glove)
         self.glove.setCursor(QCursor(Qt.PointingHandCursor))
+        self.glove.setScaledContents(True)
 
         self.letter = ClickableLabel("png/ev/letter.png", self)
-        self.letter.setGeometry(683, 495, self.x, self.y)
+        self.letter.setGeometry(480, 365, self.x, self.y)
         self.letter.clicked.connect(self.on_click_letter)
         self.letter.setCursor(QCursor(Qt.PointingHandCursor))
+        self.letter.setScaledContents(True)
 
         self.back = ClickableLabel("png/button/back.png", self)
         self.back.setGeometry(10, 10, self.x, self.y)
         self.back.clicked.connect(self.on_click_back)
         self.back.setCursor(QCursor(Qt.PointingHandCursor))
+        self.back.setScaledContents(True)
         
     def on_click_glass(self):
         popup = EvidencePopup(
@@ -293,7 +299,8 @@ class EvidencePopup(QDialog):
 
         if font_id != -1:
             self.font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
-            self.global_font=QFont(self.font_family, 15)
+            self.global_font=QFont(self.font_family, 13)
+
         self.global_font.setBold(True)
         self.name_label.setFont(self.global_font)
         palette_name = self.name_label.palette()
@@ -302,7 +309,7 @@ class EvidencePopup(QDialog):
 
         # 증거 설명
         self.desc_label = QLabel(description, self)
-        self.desc_label.setGeometry(50, 100, 500, 80)
+        self.desc_label.setGeometry(50, 80, 500, 80)
         self.desc_label.setWordWrap(True)
         self.desc_label.setAlignment(Qt.AlignTop)
         self.desc_label.setFont(self.global_font)

@@ -38,6 +38,7 @@ class prologue(App_default):
         self.btn_next_prologue.clicked.connect(self.on_click_prologue) # 버튼과 함수를 연결
         self.btn_next_prologue.setCursor(QCursor(Qt.PointingHandCursor)) # 커서 변경
         self.btn_next_prologue.hide() # 버튼 숨기기
+        self.btn_next_prologue.setFont(self.global_font)
 
 
     def showEvent(self, a0):

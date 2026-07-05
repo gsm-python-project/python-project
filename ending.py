@@ -99,7 +99,10 @@ class FalseEnding(ending):
             
             self.background.setPixmap(QPixmap("png/ending/falseending.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
-        elif self.q==5:
+        elif self.q==6:
+            self.background.setPixmap(QPixmap("png/bg/black.png").scaled(1600, 900))
+            self.background.lower()  # 제일 뒤로
+
             self._typing_timer.setInterval(100)
             self.global_font=QFont(self.font_family, 27)
             self.subtitle.setFont(self.global_font)

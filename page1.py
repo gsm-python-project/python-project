@@ -26,14 +26,14 @@ class Chapter1(Button):
             self.music=False
     def on_click_chapter1(self): # 인덱스가 2인 페이지로 넘어가게 해주는 함수.
         self.stack.answerUI.chapter = 2
-        self.stack.profile_character = 2
+        self.stack.profileMain = 2
 
         for character in self.stack.characters.values():
             character.history.append(("", "-----------------------------제 2장-----------------------------:"))
             if character.chat:
                 character.chat.send_message_stream("2장 시작.") 
         self.stop_bgm()
-        self.stack.setCurrentIndex(2)
+        self.stack.setCurrentIndex(12)
 
     def chapter1_end(self): # chapter1이 끝났을때, 버튼을 보이게 하는 함수.
         self.btn_next_chapter1.show()

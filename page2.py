@@ -45,9 +45,9 @@ class Chapter2(Button):
         self.btn_cri3.clicked.connect(self.nocriminal)
         self.btn_cri3.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.ev = ClickableLabel("png/button/ev.png", self) # 버튼 생성
+        self.ev = QPushButton("범행 장소로 가기", self) # 버튼 생성
         self.ev.hide()
-        self.ev.setGeometry(1150, 300, self.x, self.y)
+        self.ev.setGeometry(1480, 120, 100, 100)
         self.ev.clicked.connect(self.on_click_evidence)
         self.ev.setCursor(QCursor(Qt.PointingHandCursor))
 
@@ -59,13 +59,12 @@ class Chapter2(Button):
         self.crow.hide()
         self.moreta.hide()
         self.note.hide()
-        self.ev.hide()
         self.subtitle.raise_()
 
         self.background.setPixmap(QPixmap("png/bg/black.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
         
-        self.messages = ["",
+        self.messages = [
                         "당신은 남작의 시체를 통해 실제 살해 현장을 찾아냈다.",
                         "모든 증언은 부서진 유리 조각과 같다. 날카롭고 위험하며, 함부로 만졌다간 진실보다 먼저 상처를 입게 된다.",
                         "이제 진실은 질문 속에 있고, 정답은 교묘한 대답 뒤에 숨어 있다. 당신의 날카로운 추리력을 발현하여 정교하게 설계된 거짓말의 빈틈을 파고 들어 이 비극의 마침표를 찍을 진범을 가려내야 한다.",
@@ -81,10 +80,7 @@ class Chapter2(Button):
         if self.q==0:
             self.background.setPixmap(QPixmap("png/bg/black.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
-        elif self.q==1:
-            self.background.setPixmap(QPixmap("png/bg/black.png").scaled(1600, 900))
-            self.background.lower()  # 제일 뒤로
-        elif self.q==3:
+        elif self.q==2:
             self.background.setPixmap(QPixmap("png/bg/background.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
             self.cri_slct.show()
@@ -133,7 +129,7 @@ class Chapter2(Button):
         self.stack.setCurrentIndex(self.result) # 위 저장 값에 따라 어떤 엔딩이 달라짐!!
 
     def on_click_evidence(self):
-        self.stack.setCurrentIndex(10)
+        self.stack.setCurrentIndex(12)
 
     def chapter2_end(self):
         self.btn_next_Ending.show()
