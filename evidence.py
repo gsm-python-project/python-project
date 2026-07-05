@@ -8,7 +8,7 @@ class evidence(App_default):
         super().__init__()
         self.stack=stack
 
-        self.background.setPixmap(QPixmap("png/bg/ev.png").scaled(1600, 900))
+        self.background.setPixmap(QPixmap("png/bg/evi.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
         self.subtitle_bg.hide()
@@ -141,7 +141,7 @@ class evidence2(App_default):
 
         self.subtitle_bg.hide()
 
-        self.background.setPixmap(QPixmap("png/.png").scaled(1600, 900))
+        self.background.setPixmap(QPixmap("png/bg/ev.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
         self.x=100
@@ -153,27 +153,27 @@ class evidence2(App_default):
         self.glass.clicked.connect(self.on_click_glass)
         self.glass.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.pendant = ClickableLabel("png/ev/.png", self)
+        self.pendant = ClickableLabel("png/ev/pendant.png", self)
         self.pendant.setGeometry(1480, 20, self.x, self.y)
         self.pendant.clicked.connect(self.on_click_pendant)
         self.pendant.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.handkerchief = ClickableLabel("png/ev/.png", self)
+        self.handkerchief = ClickableLabel("png/ev/handkerchief.png", self)
         self.handkerchief.setGeometry(1480, 20, self.x, self.y)
         self.handkerchief.clicked.connect(self.on_click_handkerchief)
         self.handkerchief.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.glove = ClickableLabel("png/ev/.png", self)
+        self.glove = ClickableLabel("png/ev/glove.png", self)
         self.glove.setGeometry(1480, 20, self.x, self.y)
         self.glove.clicked.connect(self.on_click_glove)
         self.glove.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.letter = ClickableLabel("png/ev/.png", self)
+        self.letter = ClickableLabel("png/ev/letter.png", self)
         self.letter.setGeometry(1480, 20, self.x, self.y)
         self.letter.clicked.connect(self.on_click_letter)
         self.letter.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.back = ClickableLabel("png/button/ev/back.png", self)
+        self.back = ClickableLabel("png/button/back.png", self)
         self.back.setGeometry(10, 10, self.x, self.y)
         self.back.clicked.connect(self.on_click_back)
         self.back.setCursor(QCursor(Qt.PointingHandCursor))

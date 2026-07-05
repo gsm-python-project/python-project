@@ -33,7 +33,7 @@ class Chapter1(Button):
             if character.chat:
                 character.chat.send_message_stream("2장 시작.") 
         self.stop_bgm()
-        self.stack.setCurrentIndex(10)
+        self.stack.setCurrentIndex(2)
 
     def chapter1_end(self): # chapter1이 끝났을때, 버튼을 보이게 하는 함수.
         self.btn_next_chapter1.show()
