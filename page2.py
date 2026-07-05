@@ -45,6 +45,12 @@ class Chapter2(Button):
         self.btn_cri3.clicked.connect(self.nocriminal)
         self.btn_cri3.setCursor(QCursor(Qt.PointingHandCursor))
 
+        self.ev = ClickableLabel("png/button/ev.png", self) # 버튼 생성
+        self.ev.hide()
+        self.ev.setGeometry(1150, 300, self.x, self.y)
+        self.ev.clicked.connect(self.on_click_evidence)
+        self.ev.setCursor(QCursor(Qt.PointingHandCursor))
+
         self.subtitle.show()
         self.cri_slct.hide()
         self.butterfly.hide()
@@ -53,9 +59,8 @@ class Chapter2(Button):
         self.crow.hide()
         self.moreta.hide()
         self.note.hide()
+        self.ev.hide()
         self.subtitle.raise_()
-
-        
 
         self.background.setPixmap(QPixmap("png/bg/black.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
@@ -90,8 +95,11 @@ class Chapter2(Button):
             self.crow.show()
             self.moreta.show()
             self.note.show()
+            self.ev.show()
             self.subtitle.hide()
             self.subtitle.hide()
+            self.subtitle.hide()
+            self.subtitle_bg.hide()
 
         self.q+=1
         self._start_typing(self.q)
@@ -124,6 +132,9 @@ class Chapter2(Button):
     def on_click_chapter2(self):
         self.stop_bgm()
         self.stack.setCurrentIndex(self.result) # 위 저장 값에 따라 어떤 엔딩이 달라짐!!
+
+    def on_click_evidence(self):
+        self.stack.setCurrentIndex(12)
 
     def chapter2_end(self):
         self.btn_next_Ending.show()

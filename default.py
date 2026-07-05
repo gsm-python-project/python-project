@@ -159,7 +159,7 @@ class Button(App_default): # 버튼. chapterr 1, chapter2에서 사용!
         self.y = 300 # 버튼의 세로 사이즈/
 
         self.note = ClickableLabel("png/SD/note.png", self)
-        self.note.setGeometry(1480, 20, self.x, self.y)
+        self.note.setGeometry(1480, 20, 80, 80)
         self.note.clicked.connect(self.on_click_note)
         self.note.setCursor(QCursor(Qt.PointingHandCursor))
 

@@ -11,6 +11,8 @@ class evidence(App_default):
         self.background.setPixmap(QPixmap("png/.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
+        self.subtitle_bg.hide()
+
         self.x=100
         self.y=100
 
@@ -65,6 +67,8 @@ class slect(App_default):
         self.x=100
         self.y=100
 
+        self.subtitle_bg.hide()
+
         self.background.setPixmap(QPixmap("png/.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
@@ -88,7 +92,7 @@ class slect(App_default):
         pass
 
     def on_click_storage(self):
-        self.stack.setCurrentIndex(12)
+        self.stack.setCurrentIndex(2)
 
     def on_click_bookstore(self):
         pass
@@ -99,6 +103,8 @@ class evidence2(App_default):
         super().__init__()
         self.stack=stack
 
+        self.subtitle_bg.hide()
+
         self.background.setPixmap(QPixmap("png/.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
@@ -106,51 +112,130 @@ class evidence2(App_default):
         self.y=100
 
         from default import ClickableLabel
-        self.glass = ClickableLabel("png/note.png", self)
-        self.glass.setGeometry(1480, 20, self.x, self.y)
+        self.glass = ClickableLabel("png/ev/glass.png", self)
+        self.glass.setGeometry(180, 20, self.x, self.y)
         self.glass.clicked.connect(self.on_click_glass)
         self.glass.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.pendant = ClickableLabel("png/note.png", self)
+        self.pendant = ClickableLabel("png/ev/.png", self)
         self.pendant.setGeometry(1480, 20, self.x, self.y)
         self.pendant.clicked.connect(self.on_click_pendant)
         self.pendant.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.handkerchief = ClickableLabel("png/note.png", self)
+        self.handkerchief = ClickableLabel("png/ev/.png", self)
         self.handkerchief.setGeometry(1480, 20, self.x, self.y)
         self.handkerchief.clicked.connect(self.on_click_handkerchief)
         self.handkerchief.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.glove = ClickableLabel("png/note.png", self)
+        self.glove = ClickableLabel("png/ev/.png", self)
         self.glove.setGeometry(1480, 20, self.x, self.y)
         self.glove.clicked.connect(self.on_click_glove)
         self.glove.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.letter = ClickableLabel("png/note.png", self)
+        self.letter = ClickableLabel("png/ev/.png", self)
         self.letter.setGeometry(1480, 20, self.x, self.y)
         self.letter.clicked.connect(self.on_click_letter)
         self.letter.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.back = ClickableLabel("png/button/back.png", self)
+        self.back.setGeometry(10, 10, self.x, self.y)
+        self.back.clicked.connect(self.on_click_back)
+        self.back.setCursor(QCursor(Qt.PointingHandCursor))
         
     def on_click_glass(self):
-        pass
+        popup = EvidencePopup(
+        name="[유리병]",
+        description="독이 들어있었던 유리병이다.",
+        parent=self
+    )
+        popup.exec_()  # 팝업 띄우기 (닫을 때까지 대기)
     
     def on_click_pendant(self):
-        pass
+        popup= EvidencePopup(
+            name="[펜던트]",
+            description="붉은색의 보석이 눈에 띈다. 나비의 것으로 보인다.",
+            parent=self
+        )
+
+        popup.exec_()
 
     def on_click_handkerchief(self):
-        pass
+        popup= EvidencePopup(
+            name="[손수건]",
+            description="검은색 손수건이다. 아래에 M이라는 자수가 새겨져있다. 모레타의 것일까?",
+            parent=self
+        )
+
+        popup.exec_()
+        
 
     def on_click_glove(self):
-        pass
+        popup= EvidencePopup(
+            name="[흰 장갑]",
+            description="남성용 흰 장갑이다. 오늘 연회에서 장갑을 낀 남성은 볼토와 콜롬비나 뿐이다.",
+            parent=self
+        )
+
+        popup.exec_()
 
     def on_click_letter(self):
-        pass
+        popup= EvidencePopup(
+            name="[의문의 쪽지]",
+            description="\"서류는 잠시 가져가겠네.\"라는 글이 쓰여져있다. 누구의 것일까?",
+            parent=self
+        )
+
+        popup.exec_()
+
+    def on_click_back(self):
+        self.stack.setCurrentIndex(2)
+
+
+
+class EVPopup(QDialog):
+    def __init__(self, name, description, parent=None):
+        super().__init__(parent)
+        self.setFixedSize(600, 200)
+        self.setWindowFlags(Qt.FramelessWindowHint)  # 타이틀바 제거
+
+        # 배경색
+        palette = self.palette()
+        palette.setColor(QPalette.Window, QColor(30, 30, 30))
+        self.setPalette(palette)
+        self.setAutoFillBackground(True)
+
+        # 폰트 설정
+        font_path="fonts/defaultfonts.otf"
+        font_id=QFontDatabase.addApplicationFont(font_path)
+
+        if font_id != -1:
+            self.font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
+            self.global_font=QFont(self.font_family, 15)
+        self.global_font.setBold(True)
+
+        # 증거 설명 (오른쪽 중간)
+        self.desc_label = QLabel(description, self)
+        self.desc_label.setGeometry(50, 100, 500, 80)
+
+        self.desc_label.setWordWrap(True)
+        self.desc_label.setAlignment(Qt.AlignTop)
+        self.desc_label.setFont(self.global_font)
+
+        palette_desc = self.desc_label.palette()
+        palette_desc.setColor(QPalette.WindowText, QColor(200, 200, 200))
+        self.desc_label.setPalette(palette_desc)
+
+        # 닫기 버튼 (오른쪽 하단)
+        self.close_btn = QPushButton("닫기", self)
+        self.close_btn.setGeometry(560, 150, 100, 40)
+        self.close_btn.clicked.connect(self.close)
+        self.close_btn.setCursor(QCursor(Qt.PointingHandCursor))
 
 
 class EvidencePopup(QDialog):
-    def __init__(self, name, description, popup_image_path, parent=None):
+    def __init__(self, name, description, parent=None):
         super().__init__(parent)
-        self.setFixedSize(700, 500)
+        self.setFixedSize(600, 200)
         self.setWindowFlags(Qt.FramelessWindowHint)  # 타이틀바 제거
 
         # 배경색
@@ -161,9 +246,15 @@ class EvidencePopup(QDialog):
 
         # 증거 이름 (오른쪽 상단)
         self.name_label = QLabel(name, self)
-        self.name_label.setGeometry(360, 40, 300, 60)
+        self.name_label.setGeometry(50, 10, 300, 60)
         self.name_label.setWordWrap(True)
+        
+        font_path="fonts/defaultfonts.otf"
+        font_id=QFontDatabase.addApplicationFont(font_path)
 
+        if font_id != -1:
+            self.font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
+            self.global_font=QFont(self.font_family, 15)
         self.global_font.setBold(True)
         self.name_label.setFont(self.global_font)
         palette_name = self.name_label.palette()
@@ -172,7 +263,7 @@ class EvidencePopup(QDialog):
 
         # 증거 설명 (오른쪽 중간)
         self.desc_label = QLabel(description, self)
-        self.desc_label.setGeometry(360, 120, 300, 250)
+        self.desc_label.setGeometry(50, 100, 500, 80)
         self.desc_label.setWordWrap(True)
         self.desc_label.setAlignment(Qt.AlignTop)
         self.desc_label.setFont(self.global_font)
@@ -182,6 +273,6 @@ class EvidencePopup(QDialog):
 
         # 닫기 버튼 (오른쪽 하단)
         self.close_btn = QPushButton("닫기", self)
-        self.close_btn.setGeometry(560, 430, 100, 40)
+        self.close_btn.setGeometry(560, 150, 100, 40)
         self.close_btn.clicked.connect(self.close)
         self.close_btn.setCursor(QCursor(Qt.PointingHandCursor))

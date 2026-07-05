@@ -29,7 +29,7 @@ class prologue(App_default):
             "수수께끼의 진실은 당신에게 달려있다."
         ]
         
-        self.background.setPixmap(QPixmap("png/prologue1.png").scaled(1600, 900))
+        self.background.setPixmap(QPixmap("png/prologue/prologue1.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
         # chapter1으로 넘어가는 버튼 설정
@@ -39,11 +39,10 @@ class prologue(App_default):
         self.btn_next_prologue.setCursor(QCursor(Qt.PointingHandCursor)) # 커서 변경
         self.btn_next_prologue.hide() # 버튼 숨기기
 
-        self._start_typing(self.q)
-
     def showEvent(self, a0):
         super().showEvent(a0)
         self.play_bgm("bgm/prologue.mp3")
+        self._start_typing(self.q)
         
 
     def mousePressEvent(self, event):

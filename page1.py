@@ -17,10 +17,13 @@ class Chapter1(Button):
         self.subtitle.hide()
         self.subtitle_bg.hide()
 
+        self.music=True
+
     def showEvent(self, a0):
         super().showEvent(a0)
-        self.play_bgm("bgm/chapter1.mp3")
-        print("bgm start")
+        if self.music:
+            self.play_bgm("bgm/chapter1.mp3")
+            self.music=False
     def on_click_chapter1(self): # 인덱스가 2인 페이지로 넘어가게 해주는 함수.
         self.stack.answerUI.chapter = 2
 
@@ -29,7 +32,7 @@ class Chapter1(Button):
             if character.chat:
                 character.chat.send_message_stream("2장 시작.") 
         self.stop_bgm()
-        self.stack.setCurrentIndex(10)
+        self.stack.setCurrentIndex(12)
     def chapter1_end(self): # chapter1이 끝났을때, 버튼을 보이게 하는 함수.
         self.btn_next_chapter1.show()
     
