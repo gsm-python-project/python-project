@@ -55,7 +55,6 @@ class prologue(App_default):
         if self.q==0:
             self.background.setPixmap(QPixmap("png/prologue/prologue2.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
-            
         elif self.q==3:
             self.background.setPixmap(QPixmap("png/bg/black.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로

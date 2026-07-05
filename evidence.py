@@ -309,7 +309,7 @@ class EvidencePopup(QDialog):
 
         # 증거 설명
         self.desc_label = QLabel(description, self)
-        self.desc_label.setGeometry(50, 80, 500, 80)
+        self.desc_label.setGeometry(50, 70, 500, 80)
         self.desc_label.setWordWrap(True)
         self.desc_label.setAlignment(Qt.AlignTop)
         self.desc_label.setFont(self.global_font)
