@@ -65,7 +65,6 @@ class Chapter2(Button):
         self.background.setPixmap(QPixmap("png/bg/black.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
         
-        
         self.messages = ["",
                         "당신은 남작의 시체를 통해 실제 살해 현장을 찾아냈다.",
                         "모든 증언은 부서진 유리 조각과 같다. 날카롭고 위험하며, 함부로 만졌다간 진실보다 먼저 상처를 입게 된다.",
@@ -80,13 +79,13 @@ class Chapter2(Button):
             self._finish_typing_immediately()
             return
         if self.q==0:
-            self.background.setPixmap(QPixmap("png/black.png").scaled(1600, 900))
+            self.background.setPixmap(QPixmap("png/bg/black.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
         elif self.q==1:
-            self.background.setPixmap(QPixmap("png/black.png").scaled(1600, 900))
+            self.background.setPixmap(QPixmap("png/bg/black.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
         elif self.q==3:
-            self.background.setPixmap(QPixmap("png/background.png").scaled(1600, 900))
+            self.background.setPixmap(QPixmap("png/bg/background.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
             self.cri_slct.show()
             self.butterfly.show()
@@ -134,7 +133,7 @@ class Chapter2(Button):
         self.stack.setCurrentIndex(self.result) # 위 저장 값에 따라 어떤 엔딩이 달라짐!!
 
     def on_click_evidence(self):
-        self.stack.setCurrentIndex(12)
+        self.stack.setCurrentIndex(10)
 
     def chapter2_end(self):
         self.btn_next_Ending.show()

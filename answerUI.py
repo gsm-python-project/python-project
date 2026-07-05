@@ -24,8 +24,8 @@ class Answer_default(App_default):
         self.chat_log.setGeometry(800, 0, 800, 750)  # 둘 다 고정
 
         palette_chat_log = self.chat_log.palette()
-        palette_chat_log.setColor(QPalette.Base, Qt.transparent)
-        palette_chat_log.setColor(QPalette.Text, QColor("white"))
+        palette_chat_log.setColor(QPalette.Base, QColor("white"))
+        palette_chat_log.setColor(QPalette.Text, QColor("black"))
         self.chat_log.setPalette(palette_chat_log)
 
         self.back = QPushButton("돌아가기", self)
@@ -41,14 +41,14 @@ class Answer_default(App_default):
         self.send.setShortcut('Return')
 
         self.character_img = QLabel(self)
-        self.character_img.setGeometry(0, 0, 900, 900)
+        self.character_img.setGeometry(30, 0, 900, 900)
 
         self.input_box = QLineEdit(self)
         self.input_box.setGeometry(0, 800, 1400, 100)
 
         self.palette_input_box = self.input_box.palette()
-        self.palette_input_box.setColor(QPalette.Base, Qt.transparent)
-        self.palette_input_box.setColor(QPalette.Text, QColor("white"))
+        self.palette_input_box.setColor(QPalette.Base, QColor("white"))
+        self.palette_input_box.setColor(QPalette.Text, QColor("black"))
         self.input_box.setPalette(self.palette_input_box)
 
         self.global_font=QFont(self.font_family, 12)

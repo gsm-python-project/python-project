@@ -8,6 +8,8 @@ class Profile(App_default):
         super().__init__()
         self.stack = stack
         self.chapter = 1
+        self.subtitle.hide()
+        self.subtitle_bg.hide()
 
         self.cri1 = characters["cri1"]  # 새로 만들지 않고 받아서 사용
         self.cri2 = characters["cri2"]
@@ -22,7 +24,7 @@ class Profile(App_default):
         self.background.lower()  # 제일 뒤로
 
         self.back = QPushButton("이전으로 돌아가기", self)
-        self.back.setGeometry(0,0,200,100)
+        self.back.setGeometry(0,0,150,80)
         self.back.clicked.connect(self.on_click_back)
         self.back.setCursor(QCursor(Qt.PointingHandCursor))
 
@@ -80,6 +82,9 @@ class Character_Profile(App_default):
     def __init__(self, stack, characters):
         super().__init__()
         self.stack=stack
+        
+        self.subtitle.hide()
+        self.subtitle_bg.hide()
 
         self.cri1 = characters["cri1"]  # 새로 만들지 않고 받아서 사용
         self.cri2 = characters["cri2"]
@@ -90,7 +95,7 @@ class Character_Profile(App_default):
         self.character=None
 
         self.x=100
-        self.y=100
+        self.y=70
 
         self.character_img = QLabel(self)
         self.character_img.setGeometry(0, 0, 1600, 900)

@@ -39,6 +39,7 @@ class prologue(App_default):
         self.btn_next_prologue.setCursor(QCursor(Qt.PointingHandCursor)) # 커서 변경
         self.btn_next_prologue.hide() # 버튼 숨기기
 
+
     def showEvent(self, a0):
         super().showEvent(a0)
         self.play_bgm("bgm/prologue.mp3")

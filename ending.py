@@ -134,7 +134,7 @@ class HiddenEnding(ending):
                
         self.stop_bgm()
         
-        self.background.setPixmap(QPixmap("png/bg/black.png").scaled(1600, 900))
+        self.background.setPixmap(QPixmap("png/ending/hidden.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
         
         self._start_typing(self.q)
@@ -146,7 +146,8 @@ class HiddenEnding(ending):
             return
         
         if self.q==0:
-            pass
+            self.background.setPixmap(QPixmap("png/ending/hidden1.png").scaled(1600, 900))
+            self.background.lower()  # 제일 뒤로
 
         self.q+=1
         self._start_typing(self.q)

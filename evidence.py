@@ -8,7 +8,7 @@ class evidence(App_default):
         super().__init__()
         self.stack=stack
 
-        self.background.setPixmap(QPixmap("png/.png").scaled(1600, 900))
+        self.background.setPixmap(QPixmap("png/bg/ev.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
         self.subtitle_bg.hide()
@@ -173,7 +173,7 @@ class evidence2(App_default):
         self.letter.clicked.connect(self.on_click_letter)
         self.letter.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.back = ClickableLabel("png/button/back.png", self)
+        self.back = ClickableLabel("png/button/ev/back.png", self)
         self.back.setGeometry(10, 10, self.x, self.y)
         self.back.clicked.connect(self.on_click_back)
         self.back.setCursor(QCursor(Qt.PointingHandCursor))
@@ -225,7 +225,6 @@ class evidence2(App_default):
 
     def on_click_back(self):
         self.stack.setCurrentIndex(2)
-
 
 
 class EVPopup(QDialog):
@@ -310,8 +309,8 @@ class EvidencePopup(QDialog):
         self.desc_label.setPalette(palette_desc)
 
         # 닫기 버튼
-        self.close_btn = QPushButton("닫기", self)
-        self.close_btn.setGeometry(560, 150, 100, 40)
+        self.close_btn = QPushButton("X", self)
+        self.close_btn.setGeometry(550, 150, 40, 40)
         self.close_btn.clicked.connect(self.close)
         self.close_btn.setCursor(QCursor(Qt.PointingHandCursor))
 

@@ -158,10 +158,11 @@ class Button(App_default): # 버튼. chapterr 1, chapter2에서 사용!
         self.x = 200 # 버튼의 가로 사이즈
         self.y = 300 # 버튼의 세로 사이즈/
 
-        self.note = ClickableLabel("png/SD/note.png", self)
+        self.note = ClickableLabel("png/button/note.png", self)
         self.note.setGeometry(1480, 20, 80, 80)
         self.note.clicked.connect(self.on_click_note)
         self.note.setCursor(QCursor(Qt.PointingHandCursor))
+        self.note.setScaledContents(True)
 
         self.butterfly = ClickableLabel("png/SD/butterfly.png", self)
         self.butterfly.setGeometry(820, 210, self.x, self.y)
@@ -226,8 +227,6 @@ class ClickableLabel(QLabel): # 이미지 기본 설정 클래스
         pixmap = QPixmap(image_path) # pixmap 메소드로 imagepath 저장
         self.setPixmap(pixmap)
         self.setPixmap(pixmap.scaled(200, 300, Qt.KeepAspectRatio, Qt.SmoothTransformation)) # 크기
-
-        self.resize(pixmap.size()) 
         
     def mousePressEvent(self, ev):
         if ev.button() == Qt.LeftButton:
