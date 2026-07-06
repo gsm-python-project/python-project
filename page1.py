@@ -29,7 +29,7 @@ class Chapter1(Button):
         self.stack.profileMain = 2
 
         for character in self.stack.characters.values():
-            character.history.append(("", "-----------------------------제 2장-----------------------------:"))
+            character.history.append(("", "-----------------------제 2장-----------------------:"))
             if character.chat:
                 character.chat.send_message_stream("2장 시작.") 
         self.stop_bgm()
