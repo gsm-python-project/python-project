@@ -10,7 +10,7 @@ class Chapter1(Button):
         
         # chapter2로 넘어가는 버튼 설정
         from default import ClickableLabel
-        self.btn_next_chapter1 = ClickableLabel("next", self) # 버튼 생성
+        self.btn_next_chapter1 = ClickableLabel("png/button/next.png", self) # 버튼 생성
         self.btn_next_chapter1.setGeometry(1370, 765, 200, 100) # 버튼 크기 설정
         self.btn_next_chapter1.clicked.connect(self.on_click_chapter1) # 버튼을 on_click_chapter1이라는 함수에 연결.
         self.btn_next_chapter1.setCursor(QCursor(Qt.PointingHandCursor)) # 커서 변경
@@ -38,7 +38,7 @@ class Chapter1(Button):
             if character.chat:
                 character.chat.send_message_stream("2장 시작.") 
         self.stop_bgm()
-        self.stack.setCurrentIndex(12)
+        self.stack.setCurrentIndex(10)
         
 
     def chapter1_end(self): # chapter1이 끝났을때, 버튼을 보이게 하는 함수.

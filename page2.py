@@ -12,7 +12,7 @@ class Chapter2(Button):
         self.y=300
         
         # 버튼 클릭 시 범인 후보 3명을 띄워줌.
-        self.cri_slct = ClickableLabel("png/button/.png", self) # 버튼 생성, 범인 선택하기를 누르면 다른 버튼들이 안 보이고 범인을 선택하는 창이 나타남.
+        self.cri_slct = ClickableLabel("png/button/next.png", self) # 버튼 생성, 범인 선택하기를 누르면 다른 버튼들이 안 보이고 범인을 선택하는 창이 나타남.
         self.cri_slct.hide()
         self.cri_slct.setGeometry(1370, 765, 200, 100)
         self.cri_slct.clicked.connect(self.criminal_show)

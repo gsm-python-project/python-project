@@ -34,7 +34,7 @@ class prologue(App_default):
 
         # chapter1으로 넘어가는 버튼 설정
         from default import ClickableLabel
-        self.btn_next_prologue = ClickableLabel("png/button/next", self) # 버튼 생성
+        self.btn_next_prologue = ClickableLabel("png/button/next.png", self) # 버튼 생성
         self.btn_next_prologue.setGeometry(1370, 765, self.x, self.y) # 버튼 크기 설정
         self.btn_next_prologue.clicked.connect(self.on_click_prologue) # 버튼과 함수를 연결
         self.btn_next_prologue.setCursor(QCursor(Qt.PointingHandCursor)) # 커서 변경

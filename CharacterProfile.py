@@ -17,8 +17,8 @@ class Profile(App_default):
         self.npc1 = characters["npc1"]
         self.npc2 = characters["npc2"]
 
-        self.x=215
-        self.y=215
+        self.x=300
+        self.y=300
         
         self.background.setPixmap(QPixmap("png/profile/background.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
@@ -31,27 +31,27 @@ class Profile(App_default):
         self.back.setScaledContents(True)
 
         self.butterfly = ClickableLabel("png/profile/butterfly", self)
-        self.butterfly.setGeometry(459, 33, self.x, self.y)
+        self.butterfly.setGeometry(429, 43, self.x, self.y)
         self.butterfly.clicked.connect(self.on_click_butterfly)
         self.butterfly.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.colombina = ClickableLabel("png/profile/colombina", self)
-        self.colombina.setGeometry(459, 33, self.x, self.y)
+        self.colombina.setGeometry(1000, 65, self.x, self.y)
         self.colombina.clicked.connect(self.on_click_colombina)
         self.colombina.setCursor(QCursor(Qt.PointingHandCursor))
         
         self.volt = ClickableLabel("png/profile/volt", self)
-        self.volt.setGeometry(182,502, self.x, self.y)
+        self.volt.setGeometry(232,466, 400, 400)
         self.volt.clicked.connect(self.on_click_volt)
         self.volt.setCursor(QCursor(Qt.PointingHandCursor))
         
         self.crow = ClickableLabel("png/profile/crow", self)
-        self.crow.setGeometry(585, 658, self.x, self.y)
+        self.crow.setGeometry(1161,480, self.x, self.y)
         self.crow.clicked.connect(self.on_click_crow)
         self.crow.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.moreta = ClickableLabel("png/profile/moreta", self)
-        self.moreta.setGeometry(1131,464, self.x, self.y)
+        self.moreta.setGeometry(620, 628, self.x, self.y)
         self.moreta.clicked.connect(self.on_click_moreta)
         self.moreta.setCursor(QCursor(Qt.PointingHandCursor))
         

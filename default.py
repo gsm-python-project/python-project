@@ -165,7 +165,7 @@ class Button(App_default): # 버튼. chapterr 1, chapter2에서 사용!
         self.note.setScaledContents(True)
 
         self.butterfly = ClickableLabel("png/SD/butterfly.png", self)
-        self.butterfly.setGeometry(820, 210, self.x, self.y)
+        self.butterfly.setGeometry(820, 210, 200, 300)
         self.butterfly.clicked.connect(self.on_click_butterfly)
         self.butterfly.setCursor(QCursor(Qt.PointingHandCursor))
 
@@ -180,7 +180,7 @@ class Button(App_default): # 버튼. chapterr 1, chapter2에서 사용!
         self.colombina.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.crow = ClickableLabel("png/SD/crow.png", self)
-        self.crow.setGeometry(980, 470, self.x, self.y)
+        self.crow.setGeometry(980, 470, self.x, 400)
         self.crow.clicked.connect(self.on_click_crow)
         self.crow.setCursor(QCursor(Qt.PointingHandCursor))
 

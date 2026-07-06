@@ -11,81 +11,98 @@ class evidence(App_default):
         self.background.setPixmap(QPixmap("png/bg/evi.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
-        self.subtitle_bg.hide()
+        self.messages=["남작의 수상한 부분을 네 군데 찾아보자."]
 
         self.x=100
         self.y=100
 
         from default import ClickableLabel
-        self.smile = ClickableLabel("png/ev/.png", self)
-        self.smile.setGeometry(1480, 20, self.x, self.y)
+        self.smile = ClickableLabel("png/ev/blank.png", self)
+        self.smile.setGeometry(955, 180, self.x, self.y)
         self.smile.clicked.connect(self.on_click_smile)
         self.smile.setCursor(QCursor(Qt.PointingHandCursor))
         self.smile_click = False
 
-        self.imprint = ClickableLabel("png/ev/.png", self)
-        self.imprint.setGeometry(1480, 20, self.x, self.y)
+        self.imprint = ClickableLabel("png/ev/blank.png", self)
+        self.imprint.setGeometry(902, 316, 200, self.y)
         self.imprint.clicked.connect(self.on_click_imprint)
         self.imprint.setCursor(QCursor(Qt.PointingHandCursor))
         self.imprint_click = False
 
-        self.hurt = ClickableLabel("png/ev/.png", self)
-        self.hurt.setGeometry(1480, 20, self.x, self.y)
+        self.hurt = ClickableLabel("png/ev/blank.png", self)
+        self.hurt.setGeometry(466, 426, self.x, self.y)
         self.hurt.clicked.connect(self.on_click_hurt)
         self.hurt.setCursor(QCursor(Qt.PointingHandCursor))
         self.hurt_click = False
 
-        self.ink=ClickableLabel("png/ev/.png", self)
-        self.ink.setGeometry(1480, 20, self.x, self.y)
+        self.ink=ClickableLabel("png/ev/blank.png", self)
+        self.ink.setGeometry(740,580, 200, 200)
         self.ink.clicked.connect(self.on_click_ink)
         self.ink.setCursor(QCursor(Qt.PointingHandCursor))
         self.ink_click = False
 
+    def showEvent(self, a0):
+        super().showEvent(a0)
+        self._start_typing(self.q)
 
+    def mousePressEvent(self, a0):
+        if self.typing:
+            self._finish_typing_immediately()
+            return
+        if self.q==0:
+            self.subtitle_bg.hide()
+            self.subtitle.hide()
+        self.q+=1
+        self._start_typing(self.q)
 
     def on_click_smile(self):
+        self.ink_click=True
         popup= EvidencePopup2(
             name="[남작의 웃음]",
             description="자살이 사인이라면, 남작은 왜 웃고있을까? 남작의 웃음은 모순적이다. 독살이나 약물 복용의 가능성을 열어보자.",
             parent=self
         )
-
+        popup.move(325, 10)
         popup.exec_()
         self.smile_click=True
 
     def on_click_imprint(self):
+        self.imprint_click=True
         popup= EvidencePopup2(
             name="[목이 졸린 흔적]",
             description="목에 남아있는 흔적의 형태를 보아선, 목줄이 목을 조른 시점에 남작은 이미 죽은 상태였을 것이다.",
             parent=self
         )
-
+        popup.move(762, 416)
         popup.exec_()
-        self.imprint_click=True
+        
 
     def on_click_hurt(self):
+        self.hurt_click=True
         popup= EvidencePopup2(
             name="[목의 자잘한 상처]",
             description="저항한 흔적이 있다. 몸싸움을 했던 것일까? 단순 자살이 아닐 가능성이 높다.",
             parent=self
         )
 
+        popup.move(266, 576)
         popup.exec_()
-        self.hurt_click=True
+        
 
     def on_click_ink(self):
+        self.ink_click=True
         popup= EvidencePopup2(
             name="[옷에 묻어있는 잉크]",
             description="연회장에 잉크는 없다. 다른 장소에서 묻은 것일까?",
             parent=self
         )
-
+        popup.move(590,460)
         popup.exec_()
-        self.ink_click=True
+        
 
     def nextstage(self):
         if self.ink_click and self.imprint_click and self.smile_click and self.hurt_click:
-            self.stack.setCurrentIndex(11)
+            self.stack.setCurrentIndex(12)
 
 class slect(App_default):
     def __init__(self, stack):
