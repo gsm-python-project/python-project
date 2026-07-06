@@ -86,6 +86,7 @@ class Answer_default(App_default):
         self.character.history.append(("나", user_input))
         self.character.history.append(("",""))
         self.character.history.append((self.character.name, ""))
+        
         self._refresh_chatlog()
 
         self.worker = Stream(self.character, user_input)
@@ -133,6 +134,8 @@ class Answer_default(App_default):
         self.send.setEnabled(True)    
     
     def _on_stream_finished(self):
+        self.character.history.append(("", ""))
+        
         self.waiting=False
         self.send.setEnabled(True)
 

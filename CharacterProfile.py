@@ -23,12 +23,13 @@ class Profile(App_default):
         self.background.setPixmap(QPixmap("png/profile/background.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
-        self.back = QPushButton("이전으로 돌아가기", self)
-        self.back.setGeometry(0,0,150,80)
+        from default import ClickableLabel
+        self.back = ClickableLabel("png/button/back.png", self)
+        self.back.setGeometry(0, 0, 80, 80)
         self.back.clicked.connect(self.on_click_back)
         self.back.setCursor(QCursor(Qt.PointingHandCursor))
+        self.back.setScaledContents(True)
 
-        from default import ClickableLabel
         self.butterfly = ClickableLabel("png/profile/butterfly", self)
         self.butterfly.setGeometry(459, 33, self.x, self.y)
         self.butterfly.clicked.connect(self.on_click_butterfly)
@@ -101,10 +102,12 @@ class Character_Profile(App_default):
         self.character_img.setGeometry(0, 0, 1600, 900)
         self.character_img.lower()  # 제일 뒤로
 
-        self.back=QPushButton("이전으로 돌아가기", self)
-        self.back.setGeometry(1500,800,self.x,self.y)
+        from default import ClickableLabel
+        self.back = ClickableLabel("png/button/back.png", self)
+        self.back.setGeometry(10, 10, self.x, self.y)
         self.back.clicked.connect(self.on_click_back)
         self.back.setCursor(QCursor(Qt.PointingHandCursor))
+        self.back.setScaledContents(True)
 
     def profile(self, character):
         self.character=character

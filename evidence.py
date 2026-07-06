@@ -100,23 +100,24 @@ class slect(App_default):
         self.background.setPixmap(QPixmap("png/bg/slect.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
-
-
         from default import ClickableLabel
         self.study=ClickableLabel("png/.png", self)
         self.study.setGeometry(1480, 20, self.x, self.y)
         self.study.clicked.connect(self.on_click_study)
         self.study.setCursor(QCursor(Qt.PointingHandCursor))
+        self.study.hide()
         
         self.storage=ClickableLabel("png/.png", self)
         self.storage.setGeometry(1480, 20, self.x, self.y)
         self.storage.clicked.connect(self.on_click_storage)
         self.storage.setCursor(QCursor(Qt.PointingHandCursor))
+        self.storage.hide()
 
         self.bookstore=ClickableLabel("png/.png", self)
         self.bookstore.setGeometry(1480, 20, self.x, self.y)
         self.bookstore.clicked.connect(self.on_click_bookstore)
         self.bookstore.setCursor(QCursor(Qt.PointingHandCursor))
+        self.bookstore.hide()
 
     def on_click_study(self):
         popup=EVPopup(

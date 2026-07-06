@@ -57,7 +57,7 @@ class Mainfront(QStackedWidget):
         self.addWidget(self.slect) # 인덱스: 11
         self.addWidget(self.evidence2) # 인덱스: 12
 
-        self.setCurrentIndex(12) # 인덱스가 6인 페이지(start)로 이동.
+        self.setCurrentIndex(6) # 인덱스가 6인 페이지(start)로 이동.
 
 class App_default(QWidget):
     def __init__(self):
@@ -400,7 +400,7 @@ class RainWidget(QWidget):
         painter.setRenderHint(QPainter.Antialiasing)
  
         for d in self.drops[:self.active]:
-            color = QColor(240, 175, 12)
+            color = QColor("white")
             color.setAlphaF(d.opacity)
             pen = QPen(color)
             pen.setWidthF(d.thickness)

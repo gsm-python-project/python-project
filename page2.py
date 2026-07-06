@@ -12,14 +12,14 @@ class Chapter2(Button):
         self.y=300
         
         # 버튼 클릭 시 범인 후보 3명을 띄워줌.
-        self.cri_slct = QPushButton("범인 선택하기", self) # 버튼 생성, 범인 선택하기를 누르면 다른 버튼들이 안 보이고 범인을 선택하는 창이 나타남.
+        self.cri_slct = ClickableLabel("png/button/.png", self) # 버튼 생성, 범인 선택하기를 누르면 다른 버튼들이 안 보이고 범인을 선택하는 창이 나타남.
         self.cri_slct.hide()
         self.cri_slct.setGeometry(1370, 765, 200, 100)
         self.cri_slct.clicked.connect(self.criminal_show)
         self.cri_slct.setCursor(QCursor(Qt.PointingHandCursor))
 
         # 범인 선택 후 네 를 클릭해야 넘어가짐(잘못 선택했을 때 바꿀 수 있도록!!)
-        self.btn_next_Ending = QPushButton("네", self) # 버튼 생성, 범인을 클릭할 시에 나타남.
+        self.btn_next_Ending = ClickableLabel("png/button/next.png", self) # 버튼 생성, 범인을 클릭할 시에 나타남.
         self.btn_next_Ending.hide()
         self.btn_next_Ending.setGeometry(1380, 780, 200, 100)
         self.btn_next_Ending.clicked.connect(self.on_click_chapter2)
