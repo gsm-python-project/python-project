@@ -30,8 +30,9 @@ class Answer_default(App_default):
         palette_chat_log.setColor(QPalette.Text, QColor("white"))
         self.chat_log.setPalette(palette_chat_log)
 
-        self.back = QPushButton("돌아가기", self)
-        self.back.setGeometry(20, 0, 100, 50)
+        from default import ClickableLabel
+        self.back = ClickableLabel("png/button/back.png", self)
+        self.back.setGeometry(0, 0, 100, 50)
         self.back.clicked.connect(self.on_click_back)
         self.back.setCursor(QCursor(Qt.PointingHandCursor))
         self.back.raise_()

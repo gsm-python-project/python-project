@@ -102,56 +102,76 @@ class evidence(App_default):
 
     def nextstage(self):
         if self.ink_click and self.imprint_click and self.smile_click and self.hurt_click:
-            self.stack.setCurrentIndex(12)
+            self.stack.setCurrentIndex(11)
 
 class slect(App_default):
     def __init__(self, stack):
         super().__init__()
         self.stack= stack
 
-        self.x=100
+        self.x=200
         self.y=100
-
-        self.subtitle_bg.hide()
 
         self.background.setPixmap(QPixmap("png/bg/slect.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
 
-        from default import ClickableLabel
-        self.study=ClickableLabel("png/.png", self)
-        self.study.setGeometry(1480, 20, self.x, self.y)
+        self.messages=["정말 남작은 이곳에서 죽었을까?"]
+
+        self.study=QPushButton("넓은 책방", self)
+        self.study.setGeometry(800, 300, self.x, self.y)
         self.study.clicked.connect(self.on_click_study)
         self.study.setCursor(QCursor(Qt.PointingHandCursor))
         self.study.hide()
         
-        self.storage=ClickableLabel("png/.png", self)
-        self.storage.setGeometry(1480, 20, self.x, self.y)
+        self.storage=QPushButton("어두운 창고", self)
+        self.storage.setGeometry(400, 300, self.x, self.y)
         self.storage.clicked.connect(self.on_click_storage)
         self.storage.setCursor(QCursor(Qt.PointingHandCursor))
         self.storage.hide()
 
-        self.bookstore=ClickableLabel("png/.png", self)
-        self.bookstore.setGeometry(1480, 20, self.x, self.y)
+        self.bookstore=QPushButton("남작의 서재", self)
+        self.bookstore.setGeometry(1150, 300, self.x, self.y)
         self.bookstore.clicked.connect(self.on_click_bookstore)
         self.bookstore.setCursor(QCursor(Qt.PointingHandCursor))
         self.bookstore.hide()
 
     def on_click_study(self):
         popup=EVPopup(
-            description="이곳은 아닌 것 같다. 다시 생각해보자.",
+            description="창고는 외부인의 발길이 닿을 수 없는 곳이고, 만약 정말 창고였다면 몸에 자잘한 상처보다는 큰 상처가 생길 가능성이 크다. 다시 생각해보자.",
             parent=self
         )
         popup.exec_()
 
     def on_click_storage(self):
-        self.stack.setCurrentIndex(2)
-
-    def on_click_bookstore(self):
         popup=EVPopup(
-            description="이곳은 아닌 것 같다. 다시 생각해보자.",
+            description="책방에 잉크나, 잉크와 관련된 물건은 없다. 다시 생각해보자.",
             parent=self
         )
         popup.exec_()
+        
+
+    def on_click_bookstore(self):
+        self.stack.setCurrentIndex(2)
+
+    def showEvent(self, a0):
+        super().showEvent(a0)
+        self._start_typing(self.q)
+
+    def mousePressEvent(self, a0):
+        super().mousePressEvent(a0)
+        if self.typing:
+            self._finish_typing_immediately()
+            return
+        if self.q==0:
+            self.subtitle_bg.hide()
+            self.subtitle.hide()
+
+            self.study.show()
+            self.bookstore.show()
+            self.storage.show()
+        self.q+=1
+        self._start_typing(self.q)
+        
 
 
 class evidence2(App_default):
@@ -258,7 +278,7 @@ class evidence2(App_default):
 class EVPopup(QDialog):
     def __init__(self, description, parent=None):
         super().__init__(parent)
-        self.setFixedSize(600, 200)
+        self.setFixedSize(600, 300)
         self.setWindowFlags(Qt.FramelessWindowHint)  # 타이틀바 제거
 
         # 배경색

@@ -58,7 +58,7 @@ class TrueEnding(ending):
             self._typing_timer.setInterval(100)
             self.global_font=QFont(self.font_family, 27)
             self.subtitle.setFont(self.global_font)
-            self.subtitle.setGeometry(400,370,1500,200)
+            self.subtitle.setGeometry(500,370,1500,200)
         self.q+=1
         self._start_typing(self.q)
 
@@ -105,11 +105,7 @@ class FalseEnding(ending):
             self._typing_timer.setInterval(100)
             self.global_font=QFont(self.font_family, 27)
             self.subtitle.setFont(self.global_font)
-            self.subtitle.setGeometry(100,370,1500,200)
-            
-            palette = self.subtitle.palette()
-            palette.setColor(QPalette.ColorRole.WindowText, QColor(161, 161, 161))
-            self.subtitle.setPalette(palette)
+            self.subtitle.setGeometry(400,370,1500,200)
             
         self.q+=1
         self._start_typing(self.q)
@@ -150,6 +146,21 @@ class HiddenEnding(ending):
         
         if self.q==0:
             self.background.setPixmap(QPixmap("png/ending/hidden1.png").scaled(1600, 900))
+            self.background.lower()  # 제일 뒤로
+        elif self.q==2:
+            self.palette.setColor(QPalette.ColorRole.WindowText, QColor("yellow"))
+            self.subtitle.setPalette(self.palette)
+        elif self.q==4:
+            self.palette.setColor(QPalette.ColorRole.WindowText, QColor(255, 255, 255))
+            self.subtitle.setPalette(self.palette)
+        elif self.q==7:
+            self.palette.setColor(QPalette.ColorRole.WindowText, QColor("yellow"))
+            self.subtitle.setPalette(self.palette)
+        elif self.q==8:
+            self.palette.setColor(QPalette.ColorRole.WindowText, QColor(255, 255, 255))
+            self.subtitle.setPalette(self.palette)
+        elif self.q==10:
+            self.background.setPixmap(QPixmap("png/bg/black.png").scaled(1600, 900))
             self.background.lower()  # 제일 뒤로
 
         self.q+=1

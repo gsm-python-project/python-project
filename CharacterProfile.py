@@ -63,11 +63,11 @@ class Profile(App_default):
         self.stack.setCurrentIndex(8)
     
     def on_click_colombina(self):
-        self.stack.profile_character.profile(self.cri2)
+        self.stack.profile_character.profile(self.cri3)
         self.stack.setCurrentIndex(8)
         
     def on_click_volt(self):
-        self.stack.profile_character.profile(self.cri3)
+        self.stack.profile_character.profile(self.cri2)
         self.stack.setCurrentIndex(8)
         
     def on_click_crow(self):
