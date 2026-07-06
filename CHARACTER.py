@@ -5,8 +5,7 @@ from dotenv import load_dotenv
 
 
 class Character:
-    def __init__(self, age=None, name=None, communicationCount=None):
-        self.age = age # 인물의 나이
+    def __init__(self, name=None, communicationCount=None):
         self.name = name # 인물의 이름
         self.communicationCount = communicationCount # 대화 횟수
         self.history=[]
@@ -41,7 +40,7 @@ class Character:
 
 
 class butterfly(Character):
-    def __init__(self, age=22, name="나비", communicationCount=5): # 나이, 이름, 대화 횟수 결정
+    def __init__(self, name="나비", communicationCount=5): # 나이, 이름, 대화 횟수 결정
         self.prompt="""당신은 추리 게임 속 캐릭터 "나비"이다.
 플레이어는 사건을 조사하는 탐정이며, 당신은 탐정에게 조사받는 3명의 용의자 중 한 명이다.
 항상 나비의 입장에서만 대답한다.
@@ -298,11 +297,11 @@ class butterfly(Character):
 - 검은 장갑 : 볼토의 것이다.
 - 의문의 쪽지 : 까마귀가 작성한 것이다.
 """ #캐릭터 prompt 설정
-        super().__init__(age, name, communicationCount)
+        super().__init__(name, communicationCount)
 
 
 class volt(Character):
-    def __init__(self, age=27, name="볼토", communicationCount=5):
+    def __init__(self, name="볼토", communicationCount=5):
         self.prompt="""당신은 추리 게임 속 캐릭터 '볼토'이다.
 플레이어는 사건을 조사하는 탐정이며, 당신은 탐정에게 조사받는 3명의 용의자 중 한 명이다.
 항상 볼토의 입장에서만 대답한다.
@@ -594,11 +593,11 @@ class volt(Character):
 - 검은 장갑 : 자신의 것이다.
 - 의문의 쪽지 : 까마귀가 작성한 것이다.
 """ #캐릭터 prompt 설정
-        super().__init__(age, name, communicationCount)
+        super().__init__(name, communicationCount)
 
 
 class colombina(Character):
-    def __init__(self, age=25, name="콜롬비나", communicationCount=5):
+    def __init__(self, name="콜롬비나", communicationCount=5):
         self.prompt="""당신은 추리 게임 속 캐릭터 '콜롬비나'이다.
 플레이어는 사건을 조사하는 탐정이며, 당신은 탐정에게 조사받는 3명의 용의자 중 한 명이다.
 항상 콜롬비나의 입장에서만 대답한다.
@@ -870,11 +869,11 @@ class colombina(Character):
 - 검은 장갑 : 볼토의 것이다.
 - 의문의 쪽지 : 까마귀가 작성한 것이다.
 """ #캐릭터 prompt 설정
-        super().__init__(age, name, communicationCount)
+        super().__init__(name, communicationCount)
         
 
 class crow(Character):
-    def __init__(self, age=39, name="까마귀", communicationCount=3):
+    def __init__(self, name="까마귀", communicationCount=3):
         self.prompt="""당신은 추리 게임 속 캐릭터 '까마귀'이다.
 플레이어는 사건을 조사하는 탐정이며, 당신은 탐정에게 협력하는 2의 목격 중 한 명이다.
 항상 까마귀의 입장에서만 대답한다.
@@ -1161,12 +1160,12 @@ class crow(Character):
 - 검은 장갑 : 그의 것이다.
 - 의문의 쪽지 : 제가 작성한 것이다.
 """ #캐릭터 prompt 설정
-        super().__init__(age, name, communicationCount)
+        super().__init__(name, communicationCount)
         
 
 class moreta(Character):
-    def __init__(self, stack, age=33, name="모레타", communicationCount=3):
-        super().__init__(age, name, communicationCount)
+    def __init__(self, stack, name="모레타", communicationCount=3):
+        super().__init__(name, communicationCount)
         self.stack=stack
 
     def answer(self, user_input):

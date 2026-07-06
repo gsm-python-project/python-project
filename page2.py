@@ -45,7 +45,7 @@ class Chapter2(Button):
         self.btn_cri3.clicked.connect(self.nocriminal)
         self.btn_cri3.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.ev = QPushButton("범행 장소로 가기", self) # 버튼 생성
+        self.ev = ClickableLabel("png/ev/bookstore.png", self) # 버튼 생성
         self.ev.hide()
         self.ev.setGeometry(1480, 120, 100, 100)
         self.ev.clicked.connect(self.on_click_evidence)

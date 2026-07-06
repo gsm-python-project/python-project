@@ -117,19 +117,20 @@ class slect(App_default):
 
         self.messages=["정말 남작은 이곳에서 죽었을까?"]
 
-        self.study=QPushButton("넓은 책방", self)
+        from default import ClickableLabel
+        self.study=ClickableLabel("png/ev/study.png", self)
         self.study.setGeometry(700, 300, self.x, self.y)
         self.study.clicked.connect(self.on_click_study)
         self.study.setCursor(QCursor(Qt.PointingHandCursor))
         self.study.hide()
         
-        self.storage=QPushButton("어두운 창고", self)
+        self.storage=ClickableLabel("png/ev/storage.png", self)
         self.storage.setGeometry(300, 300, self.x, self.y)
         self.storage.clicked.connect(self.on_click_storage)
         self.storage.setCursor(QCursor(Qt.PointingHandCursor))
         self.storage.hide()
 
-        self.bookstore=QPushButton("남작의 서재", self)
+        self.bookstore=ClickableLabel("png/ev/bookstore.png", self)
         self.bookstore.setGeometry(1050, 300, self.x, self.y)
         self.bookstore.clicked.connect(self.on_click_bookstore)
         self.bookstore.setCursor(QCursor(Qt.PointingHandCursor))
