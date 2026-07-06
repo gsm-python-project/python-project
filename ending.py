@@ -58,7 +58,7 @@ class TrueEnding(ending):
             self._typing_timer.setInterval(100)
             self.global_font=QFont(self.font_family, 27)
             self.subtitle.setFont(self.global_font)
-            self.subtitle.setGeometry(300,370,1500,200)
+            self.subtitle.setGeometry(350,320,1500,200)
         self.q+=1
         self._start_typing(self.q)
 
@@ -105,7 +105,7 @@ class FalseEnding(ending):
             self._typing_timer.setInterval(100)
             self.global_font=QFont(self.font_family, 27)
             self.subtitle.setFont(self.global_font)
-            self.subtitle.setGeometry(400,370,1500,200)
+            self.subtitle.setGeometry(410,320,1500,200)
             
         self.q+=1
         self._start_typing(self.q)
@@ -166,7 +166,7 @@ class HiddenEnding(ending):
             self._typing_timer.setInterval(100)
             self.global_font=QFont(self.font_family, 27)
             self.subtitle.setFont(self.global_font)
-            self.subtitle.setGeometry(400,370,1500,200)
+            self.subtitle.setGeometry(560,320,1500,200)
 
         self.q+=1
         self._start_typing(self.q)

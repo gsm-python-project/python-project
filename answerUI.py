@@ -35,7 +35,7 @@ class Answer_default(App_default):
         self.back.setGeometry(0, 0, 100, 50)
         self.back.clicked.connect(self.on_click_back)
         self.back.setCursor(QCursor(Qt.PointingHandCursor))
-        self.back.raise_()
+        self.back.setScaledContents(True)
 
         self.send = QPushButton("전송", self)
         self.send.setGeometry(1400, 800, 200, 100)

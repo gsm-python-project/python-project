@@ -298,7 +298,7 @@ class EVPopup(QDialog):
 
         # 증거 설명
         self.desc_label = QLabel(description, self)
-        self.desc_label.setGeometry(50, 100, 500, 80)
+        self.desc_label.setGeometry(10, 100, 500, 240)
 
         self.desc_label.setWordWrap(True)
         self.desc_label.setAlignment(Qt.AlignTop)
@@ -309,8 +309,8 @@ class EVPopup(QDialog):
         self.desc_label.setPalette(palette_desc)
 
         # 닫기 버튼 (오른쪽 하단)
-        self.close_btn = QPushButton("닫기", self)
-        self.close_btn.setGeometry(490, 150, 100, 40)
+        self.close_btn = QPushButton("X", self)
+        self.close_btn.setGeometry(490, 250, 40, 40)
         self.close_btn.clicked.connect(self.close)
         self.close_btn.setCursor(QCursor(Qt.PointingHandCursor))
 

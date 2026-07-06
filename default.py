@@ -57,7 +57,7 @@ class Mainfront(QStackedWidget):
         self.addWidget(self.slect) # 인덱스: 11
         self.addWidget(self.evidence2) # 인덱스: 12
 
-        self.setCurrentIndex(6) # 인덱스가 6인 페이지(start)로 이동.
+        self.setCurrentIndex(9) # 인덱스가 6인 페이지(start)로 이동.
 
 class App_default(QWidget):
     def __init__(self):
@@ -263,7 +263,7 @@ class startdisplay(App_default):
         self.btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn.hide()
         
-        self.global_font=QFont(20)
+        self.global_font=QFont(self.font_family,20)
         self.btn.setFont(self.global_font)
 
 
