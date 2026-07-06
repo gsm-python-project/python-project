@@ -31,7 +31,7 @@ class Profile(App_default):
         self.back.setScaledContents(True)
 
         self.butterfly = ClickableLabel("png/profile/butterfly", self)
-        self.butterfly.setGeometry(429, 43, self.x, self.y)
+        self.butterfly.setGeometry(429, 56, self.x, self.y)
         self.butterfly.clicked.connect(self.on_click_butterfly)
         self.butterfly.setCursor(QCursor(Qt.PointingHandCursor))
 
@@ -80,27 +80,16 @@ class Profile(App_default):
 
 
 class Character_Profile(App_default):
-    def __init__(self, stack, characters):
+    def __init__(self, stack):
         super().__init__()
         self.stack=stack
         
         self.subtitle.hide()
         self.subtitle_bg.hide()
-
-        self.cri1 = characters["cri1"]  # 새로 만들지 않고 받아서 사용
-        self.cri2 = characters["cri2"]
-        self.cri3 = characters["cri3"]
-        self.npc1 = characters["npc1"]
-        self.npc2 = characters["npc2"]
-
         self.character=None
 
         self.x=100
         self.y=70
-
-        self.character_img = QLabel(self)
-        self.character_img.setGeometry(0, 0, 1600, 900)
-        self.character_img.lower()  # 제일 뒤로
 
         from default import ClickableLabel
         self.back = ClickableLabel("png/button/back.png", self)
@@ -111,8 +100,8 @@ class Character_Profile(App_default):
 
     def profile(self, character):
         self.character=character
-        pixmap=QPixmap(f"png/profile/{character.name}_profile.png")
-        self.character_img.setPixmap(pixmap.scaled(1600, 900, Qt.KeepAspectRatio))
+        self.background.setPixmap(QPixmap(f"png/profile/{self.character.name}_profile.png").scaled(1600, 900))
+        self.background.lower()  # 제일 뒤로
 
     def on_click_back(self):
         self.stack.setCurrentIndex(7)

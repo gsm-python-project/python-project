@@ -37,7 +37,7 @@ class Mainfront(QStackedWidget):
         self.answerUI= Answer_default(self)
         self.startUI=startdisplay(self)
         self.profileMain = Profile(self, self.characters)
-        self.profile_character = Character_Profile(self, self.characters)
+        self.profile_character = Character_Profile(self)
         self.hiddenending = HiddenEnding(self)
         self.evidence = evidence(self)
         self.slect=slect(self)
