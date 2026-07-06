@@ -115,6 +115,7 @@ class Chapter2(Button):
         self.crow.deleteLater()
         self.moreta.deleteLater()
         self.note.deleteLater()
+        self.ev.deleteLater()
 
     def criminal(self):
         self.result = 3 # result라는 변수에 3 저장

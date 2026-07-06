@@ -262,6 +262,10 @@ class startdisplay(App_default):
         self.btn.clicked.connect(self.next_prologue)
         self.btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn.hide()
+        
+        self.global_font=QFont(20)
+        self.btn.setFont(self.global_font)
+
 
                 # 비 효과 오버레이
         self.rain = RainWidget(self, num_drops=250, on_finished=self.on_rain_finished)
