@@ -50,6 +50,7 @@ class Chapter2(Button):
         self.ev.setGeometry(1480, 120, 100, 100)
         self.ev.clicked.connect(self.on_click_evidence)
         self.ev.setCursor(QCursor(Qt.PointingHandCursor))
+        self.ev.setScaledContents(True)
 
         self.subtitle.show()
         self.cri_slct.hide()

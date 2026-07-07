@@ -110,7 +110,7 @@ class slect(App_default):
         self.stack= stack
 
         self.x=200
-        self.y=100
+        self.y=200
 
         self.background.setPixmap(QPixmap("png/bg/slect.png").scaled(1600, 900))
         self.background.lower()  # 제일 뒤로
@@ -123,18 +123,21 @@ class slect(App_default):
         self.study.clicked.connect(self.on_click_study)
         self.study.setCursor(QCursor(Qt.PointingHandCursor))
         self.study.hide()
+        self.study.setScaledContents(True)
         
         self.storage=ClickableLabel("png/ev/storage.png", self)
         self.storage.setGeometry(300, 300, self.x, self.y)
         self.storage.clicked.connect(self.on_click_storage)
         self.storage.setCursor(QCursor(Qt.PointingHandCursor))
         self.storage.hide()
+        self.storage.setScaledContents(True)
 
         self.bookstore=ClickableLabel("png/ev/bookstore.png", self)
         self.bookstore.setGeometry(1050, 300, self.x, self.y)
         self.bookstore.clicked.connect(self.on_click_bookstore)
         self.bookstore.setCursor(QCursor(Qt.PointingHandCursor))
         self.bookstore.hide()
+        self.bookstore.setScaledContents(True)
 
     def on_click_study(self):
         popup=EVPopup(
