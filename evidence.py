@@ -279,7 +279,7 @@ class evidence2(App_default):
 class EVPopup(QDialog):
     def __init__(self, description, parent=None):
         super().__init__(parent)
-        self.setFixedSize(600, 300)
+        self.setFixedSize(600, 250)
         self.setWindowFlags(Qt.FramelessWindowHint)  # 타이틀바 제거
 
         # 배경색
@@ -299,7 +299,7 @@ class EVPopup(QDialog):
 
         # 증거 설명
         self.desc_label = QLabel(description, self)
-        self.desc_label.setGeometry(10, 100, 500, 240)
+        self.desc_label.setGeometry(30, 30, 500, 190)
 
         self.desc_label.setWordWrap(True)
         self.desc_label.setAlignment(Qt.AlignTop)
@@ -311,7 +311,7 @@ class EVPopup(QDialog):
 
         # 닫기 버튼 (오른쪽 하단)
         self.close_btn = QPushButton("X", self)
-        self.close_btn.setGeometry(490, 250, 40, 40)
+        self.close_btn.setGeometry(540, 200, 40, 40)
         self.close_btn.clicked.connect(self.close)
         self.close_btn.setCursor(QCursor(Qt.PointingHandCursor))
 

@@ -1169,7 +1169,7 @@ class moreta(Character):
         self.stack=stack
 
     def answer(self, user_input):
-        if "자살" in user_input and "까마귀" in user_input:
+        if "" in user_input and "까마귀" in user_input:
             self.stack.setCurrentIndex(9)
         else:
             return "..."
